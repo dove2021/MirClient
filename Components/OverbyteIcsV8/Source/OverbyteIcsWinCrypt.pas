@@ -8,7 +8,7 @@ unit OverbyteIcsWinCrypt;
 { OverbyteIcsJwaWinCrypt.inc with conditionals to make it independent of JCL }
 { and stop it being compiled alone }
 
-{$WEAKPACKAGEUNIT}
+// {$WEAKPACKAGEUNIT}
 {$I Include\OverbyteIcsDefs.inc}
 
 interface
