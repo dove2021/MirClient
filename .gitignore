@@ -1,0 +1,45 @@
+# Delphi / RAD Studio 编译产物
+Bin/
+Build/
+build_obj/
+build_out.txt
+*.exe
+*.dll
+*.dcu
+*.obj
+*.dpu
+*.dpk
+*.bpl
+*.dcp
+*.drc
+*.map
+*.log
+
+# Delphi IDE 临时文件
+*.dsk
+*.identcache
+*.local
+*.tvsconfig
+*.rsm
+*.ota
+*.emProject
+
+# 资源文件编译产物
+*.res.bak
+*.res~
+
+# Python 临时文件
+__pycache__/
+*.pyc
+*.pyo
+*.pybak
+
+# 调试脚本（非源代码）
+debug_*.py
+test_*.py
+gui_test.py
+!debug.txt
+
+# 系统文件
+.DS_Store
+Thumbs.db
