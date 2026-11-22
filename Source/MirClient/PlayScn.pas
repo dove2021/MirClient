@@ -893,8 +893,8 @@ var
   pMapDescInfo              : pTMapDescInfo;
 begin
   if g_nMiniMapIndex < 0 then Exit;
-  if g_nMiniMapIndex >= 300 then begin
-    D := g_opui.Images[g_nMiniMapIndex + 1];   //ASP×¢ÊÍ
+  if g_nMiniMapIndex >= g_WMMapImages.ImageCount then begin
+    D := nil;
   end else
     D := g_WMMapImages.Images[g_nMiniMapIndex];
   if D = nil then begin
