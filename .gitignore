@@ -38,7 +38,21 @@ __pycache__/
 debug_*.py
 test_*.py
 gui_test.py
-!debug.txt
+
+# 生成的预览图片
+minmap_preview/
+*.preview/
+
+# .NET 编译产物
+**/bin/
+**/obj/
+
+# Delphi 编译错误日志
+*.err
+
+# 临时调试文件
+\!debug.txt
+debug.txt
 
 # 系统文件
 .DS_Store
