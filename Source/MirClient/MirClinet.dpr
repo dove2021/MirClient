@@ -53,8 +53,10 @@ uses
 
 {$R *.RES}
 
+function IsUserAnAdmin: BOOL; stdcall; external 'shell32.dll';
+
 begin
-  //Èç¹ûÔÚ·¢ĞĞÄ£Ê½ÏÂÖ±½ÓÆô¶¯ ½«»áÁ¬½Ó127.0.01 ·şÎñÆ÷
+  //å¦‚æœåœ¨å‘è¡Œæ¨¡å¼ä¸‹ç›´æ¥å¯åŠ¨ å°†ä¼šè¿æ¥127.0.01 æœåŠ¡å™¨
 //  if ParamStr(1) = '' then
 //  begin
 //    ClientParamStr := 'cx5gN0ZumuLh67G8oIJmWaSROj6mKANZxjKg7JAlun3H9btrP687Obj'+
@@ -83,8 +85,8 @@ begin
   begin
     FillChar(g_MirStartupInfo, SizeOf(TMirStartupInfo), #0);
     try
-      uEDCode.DecodeSourceData(ClientParamStr, g_MirStartupInfo, SizeOf(TMirStartupInfo));   //ÕâĞĞÊÇÄ¬ÈÏ½âÃÜ
-    //uEDCode.DecodeData(ClientParamStr, g_MirStartupInfo, SizeOf(TMirStartupInfo), 'ÃÜÔ¿×Ô¼ºÂÒĞ´'); ×Ô¶¨Òå¼ÓÃÜ20200712
+      uEDCode.DecodeSourceData(ClientParamStr, g_MirStartupInfo, SizeOf(TMirStartupInfo));   //è¿™è¡Œæ˜¯é»˜è®¤è§£å¯†
+    //uEDCode.DecodeData(ClientParamStr, g_MirStartupInfo, SizeOf(TMirStartupInfo), 'å¯†é’¥è‡ªå·±ä¹±å†™'); è‡ªå®šä¹‰åŠ å¯†20200712
     except
       Application.Terminate;
     end;
@@ -92,7 +94,8 @@ begin
 //{$ENDIF}
   Application.MainFormOnTaskBar := True;
   Application.Initialize;
-  AddApplicationToFirewall('MirClient', Application.ExeName);
+  if IsUserAnAdmin then  // éç®¡ç†å‘˜è·³è¿‡åŠ é˜²ç«å¢™ï¼Œé¿å… HNetCfg.FwMgr æŠ› EOleExceptionâ€œæ‹’ç»è®¿é—®â€
+    AddApplicationToFirewall('MirClient', Application.ExeName);
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TFrmDlg, FrmDlg);
   Application.CreateForm(TfrmWebBrowser, frmWebBrowser);

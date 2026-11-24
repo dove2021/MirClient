@@ -1,7 +1,7 @@
 // ******************************************************************************
 // *                                                                            *
-// *                         AsphyreSphinx��ͼ�޸�                              *
-// *                         ���ߣ����� QQ117594672                             *
+// *                         AsphyreSphinx绘图修改                              *
+// *                         作者：盼盼 QQ117594672                             *
 // *                                                                            *
 // ******************************************************************************
 unit ClMain;
@@ -114,7 +114,7 @@ type
     procedure RunTimerTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
-    FailureHandled: Boolean; // ASP����
+    FailureHandled: Boolean; // ASP增加
     FAppTerminated: Boolean;
     FPrintScreenNow: Boolean;
 
@@ -290,7 +290,7 @@ type
   public
     CSocket: TClientSocket;
     DCP_mars: TDCP_mars;
-    // DDClipper: TDirectDrawClipper;  //ASP�޸�
+    // DDClipper: TDirectDrawClipper;  //ASP修改
     ActionFailLock: Boolean;
     ActionFailLockTime: LongWord;
     LastHitTick: LongWord;
@@ -570,7 +570,7 @@ begin
       ((ATimer < g_AspeederTime) or (CTimer < g_AspeederTime)) then
     begin
       frmMain.CSocket.Close;
-      FrmDlg.DMessageDlg('��ȷ�����Ƿ������˼�������\' + '�Ƚ��ر���Ϸ�ͻ���', [mbOk]);
+      FrmDlg.DMessageDlg('请确认您是否运行了加速软件\' + '既将关闭游戏客户端', [mbOk]);
       frmMain.Close;
       PostMessage(frmMain.Handle, WM_CLOSE, 0, 0);
     end;
@@ -713,7 +713,7 @@ begin
   end;
 end;
 
-function DecrypStr(Src, Key: string): string; // �ַ������ܺ���
+function DecrypStr(Src, Key: string): string; // 字符串解密函数
 var
   KeyLen: Integer;
   KeyPos: Integer;
@@ -881,7 +881,7 @@ var
   sStr:string;
 begin
 
-  stdItem.Name:='������';
+  stdItem.Name:='哈哈哈';
   stdItem.looks:=100;
 
   sStr:= EncodeBuffer(@stdItem,sizeof(TClientStdItem));
@@ -906,7 +906,7 @@ begin
     FreeLibrary(0);
   end;
 
-  Color := clWhite; // ������ɫ  clWhite    clblack
+  Color := clWhite; // 背景颜色  clWhite    clblack
   Canvas.Font.Assign(Font);
 
   ALogoLoaded := False;
@@ -930,7 +930,7 @@ begin
   begin
     with g_MirStartupInfo do
     begin
-      sServerName := '��Ѫ����';
+      sServerName := '热血传奇';
       sServeraddr := '127.0.0.1';
       sServerKey := '6aFuoeTrZZMvjqulNzzFgseeLaPLlCN2';
       sUIPakKey := '';
@@ -961,12 +961,12 @@ begin
 
   FboDisplayChange := False;
   FDDrawHandle := 0;
-  // //������Կ
+  // //设置秘钥
   // SetNetPassWord(g_MirStartupInfo.sServerKey);
-  // //����LoginGata��Կ
+  // //设置LoginGata秘钥
   // SetLoginGateKey(g_MirStartupInfo.sServerKey);
 
-  ConsoleDebug(Format('���÷����ͨ����Կ:%s', [g_MirStartupInfo.sServerKey]));
+  ConsoleDebug(Format('设置服务端通信秘钥:%s', [g_MirStartupInfo.sServerKey]));
 
   InitScreenConfig();
   ScreenChanged();
@@ -991,13 +991,13 @@ begin
 
   UserCfgDir := ResourceDir + 'Users\';
   FAppTerminated := False;
-  // ��ȡ�ͻ���������Դ�ļ�Ŀ¼
+  // 获取客户端所有资源文件目录
   WIL.GetClientLibFile(ResourceDir);
 
-  // �������΢�˰汾�ļ�û�гɹ���ôֱ�ӹر�΢�ˡ�
+  // 如果加载微端版本文件没有成功那么直接关闭微端。
   if not LibManager.LoadMiniImageFile(WIL.ResDir + 'MiniVer.dat') then
   begin
-    ConsoleDebug(Format('��Ϊû������ԴĿ¼��:%s,������΢�˿�����Ϣ,��������΢�˹ر�', [WIL.ResDir]));
+    ConsoleDebug(Format('因为没有在资源目录下:%s,发现有微端控制信息,所以设置微端关闭', [WIL.ResDir]));
     g_MirStartupInfo.boMini := False;
   end;
   g_SndMgr := TSoundMgr.Create(Self.Handle);
@@ -1011,13 +1011,13 @@ begin
   begin
     g_LocalMessager.SetPort(g_MirStartupInfo.nLocalMiniPort);
     g_LocalMessager.Open;
-    ConsoleDebug(Format('���ñ���ͨ��:%d', [g_MirStartupInfo.nLocalMiniPort]));
+    ConsoleDebug(Format('设置本地通信:%d', [g_MirStartupInfo.nLocalMiniPort]));
   end;
 
   Randomize;
   // ini := TIniFile.Create('.\lscfg.ini');
   // g_sCurFontName := ini.ReadString('Setup', 'FontName', g_sCurFontName);
-  g_sCurFontName := '����';
+  g_sCurFontName := '宋体';
   // g_boFullScreen := ini.ReadBool('Setup', 'FullScreen', g_boFullScreen);
   // g_gcGeneral[11] := ini.ReadBool('Setup', 'EffectSound', True);
   // g_gcGeneral[12] := ini.ReadBool('Setup', 'EffectBKGSound', g_gcGeneral[12]);
@@ -1028,9 +1028,9 @@ begin
 
   SSE_AVAILABLE := True;
 
-  // ����ҿ���
+  // 反外挂开启
   {$IFNDEF DEBUG}
-   CheckHackTimer.Enabled := true;    //����ǿ��� ��
+   CheckHackTimer.Enabled := true;    //这句是开启 吗
    g_dwSHGetTime := GetTickCount();
    QueryPerformanceFrequency(Frequency);
    QueryPerformanceCounter(OldCounter);
@@ -1222,8 +1222,8 @@ begin
 
   MouseTimer.Enabled := True;
   TimerPacket.Enabled := True;
-  Self.Color := clblack; // 20200703LOGO����ɫ
-  // 20200703�Ż�ȫ��ģʽ
+  Self.Color := clblack; // 20200703LOGO背景色
+  // 20200703优化全屏模式
   ImageLogo.Left := (ClientWidth - ImageLogo.Width) div 2;
   ImageLogo.Top := (ClientHeight - ImageLogo.Height) div 2;
 
@@ -1674,7 +1674,7 @@ begin
             g_GameCanvas.DrawBlend(P.X - (d.Width div 2),
               P.Y - (d.Height div 2), d, 1);
         end
-        else if g_MovingItem.Item.S.reserve[3] in [100 .. 249] then     //20200927������Ч�ƶ�
+        else if g_MovingItem.Item.S.reserve[3] in [100 .. 249] then     //20200927背包特效移动
         begin
           if GetTickCount - g_MovingItemShine.tick > 200 then
           begin
@@ -1731,7 +1731,7 @@ begin
 end;
 
 const
-  g_sChgWindowMsg = 'ALT + ENTER �л�����ģʽ';
+  g_sChgWindowMsg = 'ALT + ENTER 切换窗口模式';
 
 procedure TfrmMain.DrawGameNotice();
 begin
@@ -1756,7 +1756,7 @@ end;
 
 procedure TfrmMain.AppLogout;
 begin
-  if mrOk = FrmDlg.DMessageDlg('ȷ���˳���ѡ���ɫ������', [mbOk, mbCancel]) then
+  if mrOk = FrmDlg.DMessageDlg('确认退出到选择角色界面吗？', [mbOk, mbCancel]) then
   begin
     AppLogoutEx;
   end;
@@ -1865,7 +1865,7 @@ begin
   bmp.SaveToFile(flname);
   bmp.Free;
 
-  DScreen.AddChatBoardString('[��Ļ��ͼ��' + g_sServerName + '_Images' +
+  DScreen.AddChatBoardString('[屏幕截图：' + g_sServerName + '_Images' +
     IntToStr2(g_nCaptureSerial) + '.bmp' + ']', clGreen, clWhite)
 end;
 
@@ -2003,21 +2003,21 @@ begin
         (abs(g_APMapPath[g_APStep].Y - g_MySelf.m_nCurrY) <= 3) then
       begin
         if High(g_APMapPath) >= 2 then
-        begin // 3������
+        begin // 3点以上
 
           if g_APStep >= High(g_APMapPath) then
-          begin // ��ǰ�����յ�...
-            // �յ� <-> ��� �����Զ...
+          begin // 当前点在终点...
+            // 终点 <-> 起点 距离过远...
             if (abs(g_APMapPath[High(g_APMapPath)].X - g_APMapPath[0].X) >= 36)
               or (abs(g_APMapPath[High(g_APMapPath)].Y - g_APMapPath[0].Y) >= 36)
             then
             begin
-              g_APGoBack := True; // ԭ·����
+              g_APGoBack := True; // 原路返回
               g_APLastPoint := g_APMapPath[g_APStep];
               Dec(g_APStep);
             end
             else
-            begin // ѭ�������...
+            begin // 循环到起点...
               g_APGoBack := False;
               g_APLastPoint := g_APMapPath[g_APStep];
               g_APStep := 0;
@@ -2026,24 +2026,24 @@ begin
           else
           begin
             if g_APGoBack then
-            begin // ԭ·����
+            begin // 原路返回
               g_APLastPoint := g_APMapPath[g_APStep];
               Dec(g_APStep);
               if g_APStep <= 0 then
-              begin // �ѻص����
+              begin // 已回到起点
                 g_APStep := 0;
                 g_APGoBack := False;
               end;
             end
             else
-            begin // ѭ��...
+            begin // 循环...
               g_APLastPoint := g_APMapPath[g_APStep];
               Inc(g_APStep);
             end;
           end;
         end
         else
-        begin // 2��,ѭ��...
+        begin // 2点,循环...
           g_APLastPoint := g_APMapPath[g_APStep];
           Inc(g_APStep);
           if g_APStep > High(g_APMapPath) then
@@ -2092,7 +2092,7 @@ begin
                 begin
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
-                  DScreen.AddChatBoardString('�Զ��ƶ�������ֹͣ�ƶ�', GetRGB(5), clWhite);
+                  DScreen.AddChatBoardString('自动移动出错，停止移动', GetRGB(5), clWhite);
                 end;
               finally
                 g_PathBusy := False;
@@ -2189,11 +2189,11 @@ begin
           end;
         caRun:
           begin
-            // ������
+            // 免助跑
             if g_boCanStartRun or (g_nRunReadyCount >= 1) then
             begin
               crun := g_MySelf.CanRun;
-              // ������ʼ
+              // 骑马开始
               if (g_MySelf.m_btHorse <> 0) and
                 (GetDistance(mx, my, dx, dy) >= 3) and (crun > 0) and
                 IsUnLockAction() then
@@ -2208,7 +2208,7 @@ begin
                     Dec(g_nOverAPZone);
                 end
                 else
-                begin // �����ʧ��������ȥ��
+                begin // 如果跑失败则跳回去走
                   g_ChrAction := caWalk;
                   goto TTTT;
                 end;
@@ -2229,7 +2229,7 @@ begin
                         Dec(g_nOverAPZone);
                     end
                     else
-                    begin // �����ʧ��������ȥ��
+                    begin // 如果跑失败则跳回去走
                       { if TimerAutoPlay.Enabled and (g_APTagget <> nil) then begin
                         if (abs(g_MySelf.m_nCurrX - g_APTagget.m_nCurrX) <= 1) and (abs(g_MySelf.m_nCurrY - g_APTagget.m_nCurrY) <= 1) and (not g_APTagget.m_boDeath) then
                         g_ChrAction := caWalk
@@ -2255,7 +2255,7 @@ begin
                   g_nTargetX := -1;
                   goto LB_WALK;
                 end;
-              end; // ��������
+              end; // 骑马结束
             end
             else
             begin
@@ -2269,7 +2269,7 @@ begin
     then
     begin
       frmMain.SendPickup;
-      g_sAPStr := 'ʰȡ��Ʒ';
+      g_sAPStr := '拾取物品';
       if g_boAPAutoMove and (g_APPathList.count > 0) then
       begin
         Init_Queue2();
@@ -2444,7 +2444,7 @@ begin
         end;
         if not g_DlgInitialize then
         begin
-          Key := 0; // ȡ������л�
+          Key := 0; // 取消快捷切换
           FullScreen(not g_boFullScreen);
           Exit;
         end;
@@ -2461,7 +2461,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASP�޸�
+        // ASP修改
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end;
@@ -2474,7 +2474,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASP�޸�
+        // ASP修改
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end;
@@ -2646,9 +2646,9 @@ begin
       begin
         g_gcGeneral[4] := not g_gcGeneral[4];
         if g_gcGeneral[4] then
-          DScreen.AddChatBoardString('[��Ʒ��ʾ��]', clWhite, clblack)
+          DScreen.AddChatBoardString('[物品显示打开]', clWhite, clblack)
         else
-          DScreen.AddChatBoardString('[��Ʒ��ʾ�ر�]', clWhite, clblack);
+          DScreen.AddChatBoardString('[物品显示关闭]', clWhite, clblack);
       end;
     Word('B'):
       if ssCtrl in Shift then
@@ -2707,15 +2707,15 @@ begin
           begin
             FrmDlg.m_BlockList.Delete(wc);
             FrmDlg.DFrdSave();
-            DScreen.AddChatBoardString('���Ѿ���' + g_FocusCret.m_sUserName +
-              '�Ӻ��������', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('您已经将' + g_FocusCret.m_sUserName +
+              '从黑名单清除', GetRGB(219), clWhite);
           end
           else
           begin
             FrmDlg.m_BlockList.Add(g_FocusCret.m_sUserName);
             FrmDlg.DFrdSave();
-            DScreen.AddChatBoardString('���Ѿ���' + g_FocusCret.m_sUserName +
-              '���������', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('您已经将' + g_FocusCret.m_sUserName +
+              '放入黑名单', GetRGB(219), clWhite);
           end;
         end;
       end;
@@ -2769,7 +2769,7 @@ begin
             g_nAPStatus := -1;
             g_nTargetX := -1;
             g_APGoBack := False;
-            DScreen.AddChatBoardString('[�һ�] ��ʼ�Զ��һ�...', clWhite, clRed);
+            DScreen.AddChatBoardString('[挂机] 开始自动挂机...', clWhite, clRed);
             SaveWayPoint;
             if (g_APMapPath <> nil) then
             begin
@@ -2788,7 +2788,7 @@ begin
             // SetLength(g_APMapPath2, 0);
             // g_APStep := -1;
             // g_APLastPoint.X := -1;
-            DScreen.AddChatBoardString('[�һ�] ֹͣ�Զ��һ�...', clWhite, clRed);
+            DScreen.AddChatBoardString('[挂机] 停止自动挂机...', clWhite, clRed);
           end;
           Exit;
         end;
@@ -2797,9 +2797,9 @@ begin
           // if CanNextAction and ServerAcceptNextAction then
           g_gcGeneral[0] := not g_gcGeneral[0];
           if g_gcGeneral[0] then
-            DScreen.AddChatBoardString('[��ʾ��������]', clWhite, clblack)
+            DScreen.AddChatBoardString('[显示人物名字]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[������������]', clWhite, clblack);
+            DScreen.AddChatBoardString('[隐藏人物名字]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'ShowActorName', g_gcGeneral[0]);
@@ -2821,7 +2821,7 @@ begin
             g_nAPStatus := -1;
             g_nTargetX := -1;
             g_APGoBack := False;
-            DScreen.AddChatBoardString('[�һ�] ��ʼ�Զ��һ�...', clWhite, clRed);
+            DScreen.AddChatBoardString('[挂机] 开始自动挂机...', clWhite, clRed);
             SaveWayPoint;
             if (g_APMapPath <> nil) then
             begin
@@ -2840,7 +2840,7 @@ begin
             // SetLength(g_APMapPath2, 0);
             // g_APStep := -1;
             // g_APLastPoint.X := -1;
-            DScreen.AddChatBoardString('[�һ�] ֹͣ�Զ��һ�...', clWhite, clRed);
+            DScreen.AddChatBoardString('[挂机] 停止自动挂机...', clWhite, clRed);
           end;
           Exit;
         end;
@@ -2866,9 +2866,9 @@ begin
         begin
           g_gcGeneral[2] := not g_gcGeneral[2];
           if g_gcGeneral[2] then
-            DScreen.AddChatBoardString('[��Shift ��]', clWhite, clblack)
+            DScreen.AddChatBoardString('[免Shift 开]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[��Shift ��]', clWhite, clblack);
+            DScreen.AddChatBoardString('[免Shift 关]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'AutoAttack', g_gcGeneral[2]);
@@ -2885,9 +2885,9 @@ begin
         begin
           g_gcGeneral[8] := not g_gcGeneral[8];
           if g_gcGeneral[8] then
-            DScreen.AddChatBoardString('[���ع���ʬ��]', clWhite, clblack)
+            DScreen.AddChatBoardString('[隐藏怪物尸体]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[��ʾ����ʬ��]', clWhite, clblack);
+            DScreen.AddChatBoardString('[显示怪物尸体]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'HideDeathBody', g_gcGeneral[2]);
@@ -2960,7 +2960,7 @@ begin
         if g_SendSayListIdx < g_SendSayList.count then
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
-        // FrmDlg.DEdChat.ChangeCurPos(Length(FrmDlg.DEdChat.Text), True);  //ASP�޸�
+        // FrmDlg.DEdChat.ChangeCurPos(Length(FrmDlg.DEdChat.Text), True);  //ASP修改
         FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end
@@ -2981,7 +2981,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASP�޸�
+        // ASP修改
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end
@@ -3034,7 +3034,7 @@ begin
   begin
     IntroScene.m_boOnClick := True;
     IntroScene.m_dwStartTime := GetTickCount + 100;
-    // Exit;  //20200905�޸������˺���Ҫ2�ε�����
+    // Exit;  //20200905修复输入账号需要2次的问题
   end;
   if g_DWinMan.KeyPress(Key) then
     Exit;
@@ -3069,7 +3069,7 @@ begin
           begin
             FrmDlg.DEdChat.Text := '!~';
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASP�޸�
+              True); // ASP修改
             FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end
@@ -3092,7 +3092,7 @@ begin
             else
               FrmDlg.DEdChat.Text := Key;
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASP�޸�
+              True); // ASP修改
             FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end
@@ -3101,7 +3101,7 @@ begin
             FrmDlg.DEdChat.Text := Key;
             // FrmDlg.DEdChat.SelStart := 1;
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASP�޸�
+              True); // ASP修改
             FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end;
@@ -3192,7 +3192,7 @@ begin
       end;
 
       if pcm.Def.wMagicid = 26 then
-      begin // �һ�ʱ����
+      begin // 烈火时间间隔
         if g_boNextTimeFireHit or (GetTickCount - g_dwLatestFireHitTick <= 10 *
           1000) then
           Exit;
@@ -3216,7 +3216,7 @@ begin
           Exit;
       end;
       if (pcm.Def.wMagicid in [27]) then
-      begin // Ұ��ʱ����
+      begin // 野蛮时间间隔
         if (GetTickCount - g_dwLatestRushRushTick <= 3 * 1000) then
           Exit;
       end;
@@ -3377,7 +3377,7 @@ begin
           if GetTickCount - g_dwOverSpaceWarningTick > 1000 then
           begin
             g_dwOverSpaceWarningTick := GetTickCount;
-            DScreen.AddSysMsg('Ŀ��̫Զ�ˣ�ʩչħ��ʧ�ܣ�����');
+            DScreen.AddSysMsg('目标太远了，施展魔法失败！！！');
           end;
           g_PlayScene.ProcMagic.nTargetX := -1;
         end;
@@ -3420,14 +3420,14 @@ begin
       if GetTickCount - g_IPointLessHintTick > 5000 then
       begin
         g_IPointLessHintTick := GetTickCount;
-        DScreen.AddSysMsg(Format('��Ҫ %d ����ֵ�����ͷ� %s',
+        DScreen.AddSysMsg(Format('需要 %d 内力值才能释放 %s',
           [SpellSpend, pcm.Def.sMagicName]));
       end;
     end
     else if GetTickCount - g_MPLessHintTick > 1000 then
     begin
       g_MPLessHintTick := GetTickCount;
-      DScreen.AddSysMsg(Format('��Ҫ %d ħ��ֵ�����ͷ� %s',
+      DScreen.AddSysMsg(Format('需要 %d 魔法值才能释放 %s',
         [SpellSpend, pcm.Def.sMagicName]));
     end;
   end;
@@ -3541,7 +3541,7 @@ begin
         00:
           case g_ItemArr[i].S.Shape of
             0:
-              begin // ��ͨҩ
+              begin // 普通药
                 if g_gcProtect[0] and (g_ItemArr[i].S.AC > 0) and
                   (g_ItemArr[i].S.AC < MaxHP) then
                 begin
@@ -3556,7 +3556,7 @@ begin
                 end;
               end;
             1:
-              begin // ��Чҩ
+              begin // 速效药
                 if g_gcProtect[3] and (g_ItemArr[i].S.AC > 0) and
                   (g_ItemArr[i].S.AC < MaxSP) then
                 begin
@@ -3586,7 +3586,7 @@ begin
           else
             if g_gcProtect[5] and
               (CompareText(g_ItemArr[i].S.Name,
-              g_sRenewBooks[g_gnProtectPercent[6]] + '��') = 0) then
+              g_sRenewBooks[g_gnProtectPercent[6]] + '包') = 0) then
               ubidx := i;
           end;
       end;
@@ -3626,8 +3626,8 @@ begin
           bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString('��Ľ�ҩ�Ѿ����꣡', clWhite, clBlue);
-            DScreen.AddSysMsgCenter('��Ľ�ҩ�Ѿ����꣡', clLime, clblack, 10);
+            // DScreen.AddChatBoardString('你的金创药已经用完！', clWhite, clBlue);
+            DScreen.AddSysMsgCenter('你的金创药已经用完！', clLime, clblack, 10);
           bEatOK := False;
         end;
       end;
@@ -3657,8 +3657,8 @@ begin
             bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString('���ħ��ҩ�Ѿ����꣡', clWhite, clBlue);
-            DScreen.AddSysMsgCenter('���ħ��ҩ�Ѿ����꣡', clLime, clblack, 10);
+            // DScreen.AddChatBoardString('你的魔法药已经用完！', clWhite, clBlue);
+            DScreen.AddSysMsgCenter('你的魔法药已经用完！', clLime, clblack, 10);
           bEatOK := False;
         end;
       end;
@@ -3678,8 +3678,8 @@ begin
         else if (nCount > 4) and (usidx > -1) then
           EatItem(usidx)
         else if bHint { and not bSH } then
-          // DScreen.AddChatBoardString('�������ҩƷ�Ѿ����꣡', clWhite, clBlue);
-          DScreen.AddSysMsgCenter('�������ҩƷ�Ѿ����꣡', clLime, clblack, 10);
+          // DScreen.AddChatBoardString('你的特殊药品已经用完！', clWhite, clBlue);
+          DScreen.AddSysMsgCenter('你的特殊药品已经用完！', clLime, clblack, 10);
       end;
     end;
   end;
@@ -3694,9 +3694,9 @@ begin
       else if (nCount > 4) and (ubidx > -1) then
         EatItem(ubidx)
       else if bHint { and not bSH } then
-        // DScreen.AddChatBoardString('���' + g_sRenewBooks[g_gnProtectPercent[6]] + '�Ѿ����꣡', clWhite, clBlue);
-        DScreen.AddSysMsgCenter('���' + g_sRenewBooks[g_gnProtectPercent[6]] +
-          '�Ѿ����꣡', clLime, clblack, 10);
+        // DScreen.AddChatBoardString('你的' + g_sRenewBooks[g_gnProtectPercent[6]] + '已经用完！', clWhite, clBlue);
+        DScreen.AddSysMsgCenter('你的' + g_sRenewBooks[g_gnProtectPercent[6]] +
+          '已经用完！', clLime, clblack, 10);
     end;
   end;
 end;
@@ -3727,7 +3727,7 @@ begin
         00:
           case g_HeroItemArr[i].S.Shape of
             0:
-              begin // ��ͨҩ
+              begin // 普通药
                 if (g_HeroItemArr[i].S.AC > 0) and
                   (g_HeroItemArr[i].S.AC < MaxHP) then
                 begin
@@ -3742,7 +3742,7 @@ begin
                 end;
               end;
             1:
-              begin // ��Чҩ
+              begin // 速效药
                 if (g_HeroItemArr[i].S.AC > 0) and
                   (g_HeroItemArr[i].S.AC < MaxSP) then
                 begin
@@ -3798,8 +3798,8 @@ begin
           bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString(Format('Ӣ��[%s]�Ľ�ҩ�Ѿ����꣡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-            DScreen.AddSysMsgCenter(Format('Ӣ��[%s]�Ľ�ҩ�Ѿ����꣡',
+            // DScreen.AddChatBoardString(Format('英雄[%s]的金创药已经用完！', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+            DScreen.AddSysMsgCenter(Format('英雄[%s]的金创药已经用完！',
               [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
           bEatOK := False;
         end;
@@ -3831,8 +3831,8 @@ begin
             bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString(Format('Ӣ��[%s]��ħ��ҩ�Ѿ����꣡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-            DScreen.AddSysMsgCenter(Format('Ӣ��[%s]��ħ��ҩ�Ѿ����꣡',
+            // DScreen.AddChatBoardString(Format('英雄[%s]的魔法药已经用完！', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+            DScreen.AddSysMsgCenter(Format('英雄[%s]的魔法药已经用完！',
               [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
           bEatOK := False;
         end;
@@ -3855,8 +3855,8 @@ begin
         else if (nCount > 4) and (usidx > -1) then
           HeroEatItem(usidx)
         else if bHint { and not bSH } then
-          // DScreen.AddChatBoardString(Format('Ӣ��[%s]������ҩƷ�Ѿ����꣡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-          DScreen.AddSysMsgCenter(Format('Ӣ��[%s]������ҩƷ�Ѿ����꣡',
+          // DScreen.AddChatBoardString(Format('英雄[%s]的特殊药品已经用完！', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+          DScreen.AddSysMsgCenter(Format('英雄[%s]的特殊药品已经用完！',
             [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
       end;
     end;
@@ -3895,7 +3895,7 @@ begin
   AutoUnBindItem(nType, sItem);
 end;
 
-procedure TfrmMain.AutoUnBindItem(nType: Integer; sItem: string);  //20201003��ҩBUG
+procedure TfrmMain.AutoUnBindItem(nType: Integer; sItem: string);  //20201003吃药BUG
 var
   i, n, idx: Integer;
   boUnBindAble: Boolean;
@@ -3975,12 +3975,12 @@ var
   i: Integer;
 begin
   Result := False;
-  if (Str = 'С��') and (g_MySelf.m_nHiterCode > 0) then
+  if (Str = '小退') and (g_MySelf.m_nHiterCode > 0) then
   begin
     AppLogoutEx();
     Exit;
   end;
-  if (Str = '����') and (g_MySelf.m_nHiterCode > 0) then
+  if (Str = '大退') and (g_MySelf.m_nHiterCode > 0) then
   begin
     DScreen.ClearHint;
     Application.Terminate;
@@ -4147,8 +4147,8 @@ begin
       end;
       if (g_EatingItem.S.StdMode = 4) and (g_EatingItem.S.Shape < 50) then
       begin
-        if mrYes <> FrmDlg.DMessageDlg('�Ƿ�ȷ�Ͽ�ʼ��ϰ "' + g_EatingItem.S.Name +
-          '"��', [mbYes, mbNo]) then
+        if mrYes <> FrmDlg.DMessageDlg('是否确认开始练习 "' + g_EatingItem.S.Name +
+          '"？', [mbYes, mbNo]) then
         begin
           AddItemBag(g_EatingItem);
           Exit;
@@ -4349,7 +4349,7 @@ begin
       if (g_EatingItem.S.StdMode = 4) and (g_EatingItem.S.Shape < 50) then
       begin
         if mrYes <> FrmDlg.DMessageDlg
-          (Format('Ӣ��[%s]�Ƿ�ȷ�Ͽ�ʼ��ϰ "' + g_EatingItem.S.Name + '"��',
+          (Format('英雄[%s]是否确认开始练习 "' + g_EatingItem.S.Name + '"？',
           [g_MySelf.m_HeroObject.m_sUserName]), [mbYes, mbNo]) then
         begin
           HeroAddItemBag(g_EatingItem);
@@ -4978,7 +4978,7 @@ begin
     begin
       g_boAPAutoMove := False;
       if g_APTagget <> nil then
-        g_sAPStr := Format('[�һ�] ����Ŀ�꣺%s (%d,%d) ����ʹ����ͨ����',
+        g_sAPStr := Format('[挂机] 怪物目标：%s (%d,%d) 正在使用普通攻击',
           [g_APTagget.m_sUserName, g_APTagget.m_nCurrX, g_APTagget.m_nCurrY]);
     end;
 
@@ -5190,7 +5190,7 @@ begin
         g_dwLastAttackTick := GetTickCount;
       end
       else if g_boAutoLongAttack and g_gcTec[10] and TimerAutoPlay.Enabled then
-      begin // �ߴ�ɱλ
+      begin // 走刺杀位
         Result := True;
         Exit;
       end;
@@ -5218,7 +5218,7 @@ begin
     begin
       g_boAPAutoMove := True;
       if target <> nil then
-        g_sAPStr := Format('[�һ�] ����Ŀ�꣺%s (%d,%d) ��������',
+        g_sAPStr := Format('[挂机] 怪物目标：%s (%d,%d) 正在跑向',
           [target.m_sUserName, target.m_nCurrX, target.m_nCurrY]);
     end;
   end;
@@ -5251,16 +5251,16 @@ begin
       not g_RareBoxWindow.m_boRareBoxShow and (FrmDlg.DWBoxBKGnd.Visible) then
     begin
       AddItemBag(g_OpenBoxItem.Item, g_OpenBoxItem.Index);
-      DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '������');
+      DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '被发现');
       g_OpenBoxItem.Item.S.Name := '';
       FrmDlg.DWBoxBKGnd.Visible := False;
     end;
     if (Button = mbRight) and g_boItemMoving then
-    begin // ��ǰ�Ƿ����ƶ���Ʒ
+    begin // 当前是否在移动物品
       FrmDlg.CancelItemMoving;
       Exit;
     end;
-    if g_DWinMan.MouseDown(Button, Shift, X, Y) then // ����Ƶ���������������
+    if g_DWinMan.MouseDown(Button, Shift, X, Y) then // 鼠标移到窗口上了则跳过
       Exit;
   end;
   if (g_MySelf = nil) or (DScreen.CurrentScene <> g_PlayScene) then
@@ -5319,13 +5319,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('�Զ��ƶ�������(%d:%d)�������������ֹͣ����', [g_MySelf.m_nTagX,
+                    (Format('自动移动至坐标(%d:%d)，点击鼠标任意键停止……', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('�Զ��ƶ������(%d:%d)���ɵ���',
+                  DScreen.AddChatBoardString(Format('自动移动坐标点(%d:%d)不可到达',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -5379,7 +5379,7 @@ begin
           TimerAutoMove.Enabled := False;
           SetLength(g_MapPath, 0);
           g_MapPath := nil;
-          DScreen.AddChatBoardString('ֹͣ�Զ��ƶ�', GetRGB(5), clWhite);
+          DScreen.AddChatBoardString('停止自动移动', GetRGB(5), clWhite);
         end;
       end;
       if Shift = [ssRight] then
@@ -5413,7 +5413,7 @@ begin
               FrmDlg.DEdChat.SetFocus;
               FrmDlg.DEdChat.Text := '/' + target.m_sUserName + ' ';
               FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-                True); // ASP�޸�
+                True); // ASP修改
               FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
               FrmDlg.DEdChat.SelLength := 0;
               Exit;
@@ -5441,11 +5441,11 @@ begin
       end;
     end;
     g_PlayScene.CXYfromMouseXY(X, Y, g_nMouseCurrX, g_nMouseCurrY);
-    // ������Ҽ����������ָ���λ��
+    // 按鼠标右键，并且鼠标指向空位置
 
     if (abs(g_MySelf.m_nCurrX - g_nMouseCurrX) <= 1) and
       (abs(g_MySelf.m_nCurrY - g_nMouseCurrY) <= 1) then
-    begin // Ŀ������
+    begin // 目标座标
       if boClick then
       begin
         tdir := GetNextDirection(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY,
@@ -5519,7 +5519,7 @@ begin
         TimerAutoMove.Enabled := False;
         SetLength(g_MapPath, 0);
         g_MapPath := nil;
-        DScreen.AddChatBoardString('ֹͣ�Զ��ƶ�', GetRGB(5), clWhite);
+        DScreen.AddChatBoardString('停止自动移动', GetRGB(5), clWhite);
       end;
     end;
     target := nil;
@@ -5617,7 +5617,7 @@ begin
           end;
         end
         else
-        begin // ��������������
+        begin // 骑马不允许操作
           if (g_MySelf.m_btHorse = 0) then
           begin
             tdir := GetNextDirection(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY,
@@ -5708,7 +5708,7 @@ begin
           end;
         end
         else if GetTickCount - g_dwLastAttackTick > 900 then
-        begin // ��󹥻�����ͣ��ָ��ʱ������ƶ�
+        begin // 最后攻击操作停留指定时间才能移动
           if ssCtrl in Shift then
           begin
             //
@@ -5746,13 +5746,13 @@ procedure TfrmMain.FormActivate(Sender: TObject);
 begin
   if not g_UIInitialized then
   begin
-    ConsoleDebug('InitWMImagesLib��ʼ���ɹ�');
+    ConsoleDebug('InitWMImagesLib初始化成功');
     DScreen.Initialize;
-    ConsoleDebug('DScreen��ʼ���ɹ�');
+    ConsoleDebug('DScreen初始化成功');
     FrmDlg.Initialize(True);
-    ConsoleDebug('FrmDlg��ʼ���ɹ�');
+    ConsoleDebug('FrmDlg初始化成功');
     g_PlayScene.Initialize;
-    ConsoleDebug('PlayScene��ʼ���ɹ�');
+    ConsoleDebug('PlayScene初始化成功');
     FrmDlg.InitializeNext();
 
     g_UIInitialized := True;
@@ -5799,7 +5799,7 @@ begin
           if g_UseItems[i].Dura < 1500 then
           begin
             if g_gcGeneral[1] then
-              DScreen.AddSysMsgCenter(Format('���[%s]�־��ѵ����ޣ��뼰ʱ������',
+              DScreen.AddSysMsgCenter(Format('你的[%s]持久已到底限，请及时修理！',
                 [g_UseItems[i].S.Name]), clLime, clblack, 10);
             if g_gcGeneral[9] then
             begin
@@ -5821,7 +5821,7 @@ begin
               end
               else
               begin
-                DScreen.AddSysMsgCenter(Format('����޸���ˮ�Ѿ����꣬�뼰ʱ���䣡',
+                DScreen.AddSysMsgCenter(Format('你的修复神水已经用完，请及时补充！',
                   [g_UseItems[i].S.Name]), clLime, clblack, 10);
               end;
             end;
@@ -5842,7 +5842,7 @@ begin
           if g_HeroUseItems[i].Dura < 1500 then
           begin
             if g_gcGeneral[1] then
-              DScreen.AddSysMsgCenter(Format('(Ӣ��) ���[%s]�־��ѵ����ޣ��뼰ʱ������',
+              DScreen.AddSysMsgCenter(Format('(英雄) 你的[%s]持久已到底限，请及时修理！',
                 [g_HeroUseItems[i].S.Name]), clLime, clblack, 10);
             if g_gcGeneral[9] then
             begin
@@ -5864,7 +5864,7 @@ begin
               end
               else
               begin
-                DScreen.AddSysMsgCenter(Format('(Ӣ��) ����޸���ˮ�Ѿ����꣬�뼰ʱ���䣡',
+                DScreen.AddSysMsgCenter(Format('(英雄) 你的修复神水已经用完，请及时补充！',
                   [g_HeroUseItems[i].S.Name]), clLime, clblack, 10);
               end;
             end;
@@ -5983,7 +5983,7 @@ begin
     end;
   end;
 
-  // ���Լ�ȡ
+  // 动自捡取
   if g_boAutoPickUp and (g_MySelf <> nil) and
     (((GetTickCount() - g_dwAutoPickupTick) > g_dwAutoPickupTime)
     { or g_boQuickPickup } ) then
@@ -6106,8 +6106,10 @@ begin
               try
                 if g_Logined then
                 begin
-                  FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images
-                    [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height;
+                  if (FrmDlg.DscStart.WLib <> nil) and
+                    (FrmDlg.DscStart.WLib.Images[g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)] <> nil) then
+                    FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images
+                      [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height;
                   FrmDlg.DscStart.OnbtnState := tdisable;
                 end;
               except
@@ -6515,7 +6517,7 @@ end;
 procedure TfrmMain.CSocketConnect(Sender: TObject; Socket: TCustomWinSocket);
 begin
   g_boServerConnected := True;
-  ConsoleDebug('CSocket���ӳɹ�');
+  ConsoleDebug('CSocket连接成功');
   if g_ConnectionStep = cnsLogin { cnsIntro } then
   begin
     DScreen.ChangeScene(stLogin);
@@ -6569,11 +6571,11 @@ end;
 
 procedure TfrmMain.CSocketDisconnect(Sender: TObject; Socket: TCustomWinSocket);
 begin
-  ConsoleDebug('CSocket���ӶϿ�');
+  ConsoleDebug('CSocket连接断开');
   g_boServerConnected := False;
   if (DScreen.CurrentScene = LoginScene) and not g_boSendLogin then
   begin
-    FrmDlg.DMessageDlg('��Ϸ�����ѹر�...', [mbOk]);
+    FrmDlg.DMessageDlg('游戏连接已关闭...', [mbOk]);
     Close;
   end;
 end;
@@ -6581,7 +6583,7 @@ end;
 procedure TfrmMain.CSocketError(Sender: TObject; Socket: TCustomWinSocket;
   ErrorEvent: TErrorEvent; var ErrorCode: Integer);
 begin
-  ConsoleDebug('CSocket���Ӵ���');
+  ConsoleDebug('CSocket连接错误');
   ErrorCode := 0;
   Socket.Close;
 end;
@@ -6663,7 +6665,7 @@ begin
   SendSocket(EncodeMessage(msg) + EncodeString(sPlayer + '/' + sItemName));
 end;
 
-// �����˺�������
+// 发送账号与密码
 procedure TfrmMain.SendLogin(uid, passwd: string);
 var
   ss: string;
@@ -6674,11 +6676,11 @@ begin
   LoginPasswd := passwd;
   msg := MakeDefaultMsg(CM_IDPASSWORD, 0, 0, 0, 0);
   SendSocket(EncodeMessage(msg) + EncodeString(uid + '/' + passwd));
-  // 20090309 ���ӷ�����
+  // 20090309 增加服务名
   g_boSendLogin := True;
 end;
 
-procedure TfrmMain.SendNewAccount(ue: TUserEntryA); // �����ʺ�
+procedure TfrmMain.SendNewAccount(ue: TUserEntryA); // 创建帐号
 var
   msg: TDefaultMessage;
 begin
@@ -6696,7 +6698,7 @@ begin
     SizeOf(TClientBuildAcus)));
 end;
 
-procedure TfrmMain.SendSelectServer(svname: string); // ���������
+procedure TfrmMain.SendSelectServer(svname: string); // 点服务器名
 var
   msg: TDefaultMessage;
 begin
@@ -6704,7 +6706,7 @@ begin
   SendSocket(EncodeMessage(msg) + EncodeString(svname));
 end;
 
-procedure TfrmMain.SendChgPw(ID, passwd, newpasswd: string); // �޸�����
+procedure TfrmMain.SendChgPw(ID, passwd, newpasswd: string); // 修改密码
 var
   msg: TDefaultMessage;
 begin
@@ -6853,13 +6855,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('�Զ��ƶ�������(%d:%d)�������������ֹͣ����', [g_MySelf.m_nTagX,
+                    (Format('自动移动至坐标(%d:%d)，点击鼠标任意键停止……', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('�Զ��ƶ������(%d:%d)���ɵ���',
+                  DScreen.AddChatBoardString(Format('自动移动坐标点(%d:%d)不可到达',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -7149,8 +7151,8 @@ begin
         begin
           if (sM <> '') and (CompareText(g_sMapTitle, sM) <> 0) then
           begin
-            // �Զ��ƶ�
-            DScreen.AddChatBoardString(Format('���� %s ֮�����ʹ���Զ���·', [sM]),
+            // 自动移动
+            DScreen.AddChatBoardString(Format('到达 %s 之后才能使用自动走路', [sM]),
               clBlue, clWhite);
             Exit;
           end;
@@ -7175,13 +7177,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('�Զ��ƶ�������(%d:%d)�������������ֹͣ����', [g_MySelf.m_nTagX,
+                    (Format('自动移动至坐标(%d:%d)，点击鼠标任意键停止……', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('�Զ��ƶ������(%d:%d)���ɵ���',
+                  DScreen.AddChatBoardString(Format('自动移动坐标点(%d:%d)不可到达',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -7198,23 +7200,23 @@ begin
     if (rstr[1] = '@') and (rstr[2] = '@') then
     begin
       if CompareText(rstr, '@@buildguildnow') = 0 then
-        FrmDlg.DMessageDlg('�������л����ƣ�', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入行会名称：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@ybbuylf') = 0 then
-        FrmDlg.DMessageDlg('������Ҫ�һ����������(1~1000)��', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入要兑换的灵符数量(1~1000)：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@givezhh') = 0 then
-        FrmDlg.DMessageDlg('���������������Ľ�ɫ�����Լ��������м��ÿո�ָ���', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入你想赠给的角色名字以及数量，中间用空格分隔：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@kachu_M2') = 0 then
-        FrmDlg.DMessageDlg('��������Ҫ������ͽ�ܵĽ�ɫ����������Ӣ���ַ������ִ�Сд����', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入你要开除的徒弟的角色名（若含有英文字符请区分大小写）：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@sdmarry') = 0 then
-        FrmDlg.DMessageDlg('��������������Ľ�ɫ����������Ӣ���ַ������ִ�Сд����', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入你求婚对象的角色名（若含有英文字符请区分大小写）：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@dealybme') = 0 then
         FrmDlg.QueryYbSell()
       else if CompareText(rstr, '@@BuHero') = 0 then
-        FrmDlg.DMessageDlg('������Ӣ�۵����֣�', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入英雄的名字：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@BuHeroEx') = 0 then
-        FrmDlg.DMessageDlg('������Ӣ�۵����֣�', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入英雄的名字：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@BuHeroEx') = 0 then
-        FrmDlg.DMessageDlg('������Ӣ�۵����֣�', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('请输入英雄的名字：', [mbOk, mbAbort])
       else if CompareText(rstr, '@@TreasureIdentify') = 0 then
       begin
         FrmDlg.OpenDBTI();
@@ -7222,7 +7224,7 @@ begin
       else if CompareText(rstr, '@@ExchangeBook') = 0 then
       begin
         FrmDlg.ShowMDlg(0, '',
-          '�����Ҫ���ɾ�����Ƭ��װ�������������Ʒ���У��һ�������\����Ի�ȡ���ٸ�������Ƭ��\ \<����/@back>\<�ر�/@exit>');
+          '请把你要换成卷轴碎片的装备放在下面的物品栏中，我会帮你计算\你可以换取多少个卷轴碎片。\ \<返回/@back>\<关闭/@exit>');
         frmMain.ClientGetSendUserExchgBook(g_nCurMerchant);
       end
       else if CompareText(rstr, '@@SecretProperty') = 0 then
@@ -7230,7 +7232,7 @@ begin
         FrmDlg.OpenDBSP();
       end
       else
-        FrmDlg.DMessageDlg('��������Ϣ��', [mbOk, mbAbort]);
+        FrmDlg.DMessageDlg('请输入信息：', [mbOk, mbAbort]);
       param := Trim(FrmDlg.DlgEditText);
       rstr := rstr + #13 + param;
     end;
@@ -7649,7 +7651,7 @@ begin
     if GetTickCount - g_IPointLessHintTick > 10000 then
     begin
       g_IPointLessHintTick := GetTickCount;
-      DScreen.AddSysMsg('����ֵ����...');
+      DScreen.AddSysMsg('内力值不足...');
     end;
     Exit;
   end;
@@ -7701,7 +7703,7 @@ begin
   else
     Result := False;
 end;
-// �Ƿ���Թ��������ƹ����ٶ�
+// 是否可以攻击，控制攻击速度
 
 function TfrmMain.CanNextHit(settime: Boolean): Boolean;
 var
@@ -7720,7 +7722,7 @@ begin
   begin
     if g_MySelf.m_boAttackSlow then
       NextHitTime := g_nHitTime { 1400 } - LevelFastTime + 1500 - g_HitSpeedRate
-        * 20 // ��������ʱ�����������ٶ�
+        * 20 // 腕力超过时，减慢攻击速度
     else
       NextHitTime := g_nHitTime { 1400 } - LevelFastTime - g_HitSpeedRate * 20;
   end
@@ -7757,7 +7759,7 @@ end;
 
 function TfrmMain.IsUnLockAction( { Action, adir: Integer } ): Boolean;
 begin
-  if ActionFailLock then // �������������������ָ��ʱ������
+  if ActionFailLock then // 如果操作被锁定，则在指定时间后解锁
     if Integer(GetTickCount - ActionFailLockTime) >= 1000 then // blue 1000
       ActionFailLock := False;
   if (ActionFailLock) or (g_boMapMoving) or (g_boServerChanging) then
@@ -7790,7 +7792,7 @@ begin
     Inc(g_nTimeFakeDetectCount);
     if g_nTimeFakeDetectCount > 6 then begin
     Str := 'Bad';
-    FrmDlg.DMessageDlg('ϵͳ���ȶ�������״̬�����Ϸ����ֹ\' + '������������ϵ��Ϸ����Ա', [mbOk]);
+    FrmDlg.DMessageDlg('系统不稳定或网络状态极差，游戏被中止\' + '如有问题请联系游戏管理员', [mbOk]);
     frmMain.Close;
     end;
     end else begin
@@ -7827,7 +7829,7 @@ begin
           g_MySelf.m_nTagX := 0;
           g_MySelf.m_nTagY := 0;
           TimerAutoMove.Enabled := False;
-          DScreen.AddChatBoardString(Format('�Զ��ƶ�Ŀ��(%d:%d)��ռ�ݣ����ɵ���',
+          DScreen.AddChatBoardString(Format('自动移动目标(%d:%d)被占据，不可到达',
             [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
         end;
       finally
@@ -7915,15 +7917,15 @@ begin
             1:
               SendQueryChr();
             2:
-              FrmDlg.DMessageDlg('[ʧ��] ��ɫ��δ��ɾ��', [mbOk]);
+              FrmDlg.DMessageDlg('[失败] 角色并未被删除', [mbOk]);
             3:
-              FrmDlg.DMessageDlg('[ʧ��] �����ֻ��Ϊһ���ʺ�����2����ɫ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败] 你最多只能为一个帐号设置2个角色', [mbOk]);
             4:
-              FrmDlg.DMessageDlg('[ʧ��] û���ҵ���ɾ���Ľ�ɫ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败] 没有找到被删除的角色', [mbOk]);
             5:
-              FrmDlg.DMessageDlg('[ʧ��] ��ɫ�ѱ�ɾ��', [mbOk]);
+              FrmDlg.DMessageDlg('[失败] 角色已被删除', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[ʧ��] ��ɫ���ݶ�ȡʧ�ܣ����Ժ�����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 角色数据读取失败，请稍候再试', [mbOk]);
           end;
         end;
       SM_QUERYDELCHR:
@@ -7931,27 +7933,27 @@ begin
           if msg.Recog = 1 then
             ClientGetDelCharList(msg.series, body)
           else
-            FrmDlg.DMessageDlg('[ʧ��] û���ҵ���ɾ���Ľ�ɫ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 没有找到被删除的角色', [mbOk]);
         end;
       SM_NEWID_SUCCESS:
         begin
-          FrmDlg.DMessageDlg('�����ʺŴ����ɹ���\' +
-            '�����Ʊ��������ʺź����룬\���Ҳ�Ҫ���κ�ԭ����ʺź���������κ������ˡ�\' +
-            '�������������,\�����ͨ�����ǵ���ҳ�����һء�', [mbOk]);
+          FrmDlg.DMessageDlg('您的帐号创建成功。\' +
+            '请妥善保管您的帐号和密码，\并且不要因任何原因把帐号和密码告诉任何其他人。\' +
+            '如果忘记了密码,\你可以通过我们的主页重新找回。', [mbOk]);
         end;
       SM_NEWID_FAIL:
         begin
           case msg.Recog of
             0:
               begin
-                FrmDlg.DMessageDlg('�ʺ� "' + MakeNewId + '" �ѱ����������ʹ���ˡ�\' +
-                  '��ѡ�������ʺ���ע��', [mbOk]);
+                FrmDlg.DMessageDlg('帐号 "' + MakeNewId + '" 已被其他的玩家使用了。\' +
+                  '请选择其它帐号名注册', [mbOk]);
                 LoginScene.NewIdRetry(False);
               end;
             -2:
-              FrmDlg.DMessageDlg('���ʺ�������ֹʹ�ã�', [mbOk]);
+              FrmDlg.DMessageDlg('此帐号名被禁止使用！', [mbOk]);
           else
-            FrmDlg.DMessageDlg('�ʺŴ���ʧ�ܣ���ȷ���ʺ��Ƿ�����ո񡢼��Ƿ��ַ���Code: ' +
+            FrmDlg.DMessageDlg('帐号创建失败，请确认帐号是否包括空格、及非法字符！Code: ' +
               IntToStr(msg.Recog), [mbOk]);
           end;
         end;
@@ -7959,35 +7961,35 @@ begin
         begin
           case msg.Recog of
             - 1:
-              FrmDlg.DMessageDlg('�������', [mbOk]);
+              FrmDlg.DMessageDlg('密码错误！', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('����������󳬹�3�Σ����ʺű���ʱ���������Ժ��ٵ�¼��', [mbOk]);
+              FrmDlg.DMessageDlg('密码输入错误超过3次，此帐号被暂时锁定，请稍候再登录！', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('���ʺ��Ѿ���¼���쳣���������Ժ��ٵ�¼��', [mbOk]);
+              FrmDlg.DMessageDlg('此帐号已经登录或被异常锁定，请稍候再登录！', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('����ʺŷ���ʧ�ܣ�\��ʹ�������ʺŵ�¼��\�������븶��ע��', [mbOk]);
+              FrmDlg.DMessageDlg('这个帐号访问失败！\请使用其他帐号登录，\或者申请付费注册', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('����ʺű�������', [mbOk]);
+              FrmDlg.DMessageDlg('这个帐号被锁定！', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('��ʹ��ר�õ�½����½��Ϸ��', [mbOk]);
+              FrmDlg.DMessageDlg('请使用专用登陆器登陆游戏！', [mbOk]);
           else
-            FrmDlg.DMessageDlg('���ʺŲ����ڻ����δ֪����', [mbOk]);
+            FrmDlg.DMessageDlg('此帐号不存在或出现未知错误！', [mbOk]);
           end;
           LoginScene.PassWdFail;
         end;
-      SM_NEEDUPDATE_ACCOUNT: { //���� ������ �ٽ� �Է��϶�. }
+      SM_NEEDUPDATE_ACCOUNT: { //拌沥 沥焊甫 促矫 涝仿窍扼. }
         begin
           ClientGetNeedUpdateAccount(body);
         end;
       SM_UPDATEID_SUCCESS:
         begin
-          FrmDlg.DMessageDlg('�����ʺ���Ϣ���³ɹ���\' + '�����Ʊ��������ʺź����롣\' +
-            '���Ҳ�Ҫ���κ�ԭ����ʺź���������κ������ˡ�\' + '������������룬�����ͨ�����ǵ���ҳ�����һء�', [mbOk]);
+          FrmDlg.DMessageDlg('您的帐号信息更新成功。\' + '请妥善保管您的帐号和密码。\' +
+            '并且不要因任何原因把帐号和密码告诉任何其他人。\' + '如果忘记了密码，你可以通过我们的主页重新找回。', [mbOk]);
           ClientGetSelectServer;
         end;
       SM_UPDATEID_FAIL:
         begin
-          FrmDlg.DMessageDlg('�����ʺ�ʧ�ܣ�', [mbOk]);
+          FrmDlg.DMessageDlg('更新帐号失败！', [mbOk]);
           ClientGetSelectServer;
         end;
       SM_PASSOK_SELECTSERVER:
@@ -8001,7 +8003,7 @@ begin
           g_boDoFastFadeOut := False;
           g_boDoFadeIn := False;
           g_boDoFadeOut := False;
-          FrmDlg.DMessageDlg('��������֤ʧ�ܣ�', [mbOk]);
+          FrmDlg.DMessageDlg('服务器认证失败！', [mbOk]);
           Close;
         end;
       SM_NEWCHR_SUCCESS:
@@ -8010,36 +8012,36 @@ begin
         begin
           case msg.Recog of
             0:
-              FrmDlg.DMessageDlg('[������Ϣ] ����Ľ�ɫ���ư����Ƿ��ַ��� ������� = 0', [mbOk]);
+              FrmDlg.DMessageDlg('[错误信息] 输入的角色名称包含非法字符！ 错误代码 = 0', [mbOk]);
             2:
-              FrmDlg.DMessageDlg('[������Ϣ] ������ɫ�����ѱ�������ʹ�ã� ������� = 2', [mbOk]);
+              FrmDlg.DMessageDlg('[错误信息] 创建角色名称已被其他人使用！ 错误代码 = 2', [mbOk]);
             3:
-              FrmDlg.DMessageDlg('[������Ϣ] ��ֻ�ܴ���������Ϸ��ɫ�� ������� = 3', [mbOk]);
+              FrmDlg.DMessageDlg('[错误信息] 您只能创建二个游戏角色！ 错误代码 = 3', [mbOk]);
             4:
-              FrmDlg.DMessageDlg('[������Ϣ] ������ɫʱ���ִ��� ������� = 4', [mbOk]);
+              FrmDlg.DMessageDlg('[错误信息] 创建角色时出现错误！ 错误代码 = 4', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[������Ϣ] ������ɫʱ����δ֪����', [mbOk]);
+            FrmDlg.DMessageDlg('[错误信息] 创建角色时出现未知错误！', [mbOk]);
           end;
         end;
       SM_CHGPASSWD_SUCCESS:
-        FrmDlg.DMessageDlg('�����޸ĳɹ�', [mbOk]);
+        FrmDlg.DMessageDlg('密码修改成功', [mbOk]);
       SM_CHGPASSWD_FAIL:
         begin
           case msg.Recog of
             0:
-              FrmDlg.DMessageDlg('������ʺŲ����ڣ�', [mbOk]);
+              FrmDlg.DMessageDlg('输入的帐号不存在！', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('�����ԭʼ���벻��ȷ��', [mbOk]);
+              FrmDlg.DMessageDlg('输入的原始密码不正确！', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('���ʺű�������', [mbOk]);
+              FrmDlg.DMessageDlg('此帐号被锁定！', [mbOk]);
           else
-            FrmDlg.DMessageDlg('����������볤��С����λ��', [mbOk]);
+            FrmDlg.DMessageDlg('输入的新密码长度小于四位！', [mbOk]);
           end;
         end;
       SM_DELCHR_SUCCESS:
         SendQueryChr;
       SM_DELCHR_FAIL:
-        FrmDlg.DMessageDlg('[������Ϣ] ɾ����Ϸ��ɫʱ���ִ���', [mbOk]);
+        FrmDlg.DMessageDlg('[错误信息] 删除游戏角色时出现错误！', [mbOk]);
       SM_STARTPLAY:
         begin
           ClientGetStartPlay(body);
@@ -8048,14 +8050,14 @@ begin
       SM_STARTFAIL:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('�˷�������Ա��', [mbOk]);
+          FrmDlg.DMessageDlg('此服务器满员！', [mbOk]);
           ClientGetSelectServer();
           Exit;
         end;
       SM_VERSION_FAIL:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('��Ϸ����汾����ȷ�����������°汾��Ϸ����', [mbOk]);
+          FrmDlg.DMessageDlg('游戏程序版本不正确，请下载最新版本游戏程序！', [mbOk]);
           Close;
           Exit;
         end;
@@ -8063,7 +8065,7 @@ begin
       SM_OVERCLIENTCOUNT:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('�ͻ��˿����������࣬���ӱ��Ͽ�������', [mbOk]);
+          FrmDlg.DMessageDlg('客户端开启数量过多，连接被断开！！！', [mbOk]);
           Close();
           Exit;
         end;
@@ -8104,7 +8106,7 @@ begin
       begin
         case msg.Recog of
           - 1:
-            DScreen.AddChatBoardString('�л�ʱװ���Բ���̫���ˣ�', clWhite, clRed);
+            DScreen.AddChatBoardString('切换时装外显操作太快了！', clWhite, clRed);
         end;
         if msg.tag <> 0 then
           FrmDlg.CheckBox_hShowFashion.Checked := LoWord(msg.series) <> 0
@@ -8116,16 +8118,16 @@ begin
           if msg.tag <> 0 then
           begin
             if FrmDlg.CheckBox_hShowFashion.Checked then
-              DScreen.AddChatBoardString('[Ӣ��] ���� ʱװ���ԣ�', GetRGB(219), clWhite)
+              DScreen.AddChatBoardString('[英雄] 开启 时装外显！', GetRGB(219), clWhite)
             else
-              DScreen.AddChatBoardString('[Ӣ��] �ر� ʱװ���ԣ�', GetRGB(219), clWhite);
+              DScreen.AddChatBoardString('[英雄] 关闭 时装外显！', GetRGB(219), clWhite);
           end
           else
           begin
             if FrmDlg.CheckBox_ShowFashion.Checked then
-              DScreen.AddChatBoardString('���� ʱװ���ԣ�', GetRGB(219), clWhite)
+              DScreen.AddChatBoardString('开启 时装外显！', GetRGB(219), clWhite)
             else
-              DScreen.AddChatBoardString('�ر� ʱװ���ԣ�', GetRGB(219), clWhite);
+              DScreen.AddChatBoardString('关闭 时装外显！', GetRGB(219), clWhite);
           end;
         end;
       end;
@@ -8135,7 +8137,7 @@ begin
       ClientGetMyTitles(msg.Recog, body);
     SM_SecretProperty:
       begin
-        FrmDlg.DBSP.OnbtnState := tnor; // ASP��ʱע��
+        FrmDlg.DBSP.OnbtnState := tnor; // ASP临时注释
         FrmDlg.DBMB1.OnbtnState := tnor;
         FrmDlg.DBMB2.OnbtnState := tnor;
         FrmDlg.DBMB3.OnbtnState := tnor;
@@ -8203,7 +8205,7 @@ begin
       end;
     SM_ExchangeItem:
       begin
-        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASP��ʱע��
+        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASP临时注释
         FrmDlg.DBTIbtn2.OnbtnState := tnor;
         case msg.Recog of
           00:
@@ -8234,7 +8236,7 @@ begin
       end;
     SM_TreasureIdentify:
       begin
-        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASP��ʱע��
+        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASP临时注释
         FrmDlg.DBTIbtn2.OnbtnState := tnor;
 
         Str := DecodeString(body);
@@ -8314,60 +8316,60 @@ begin
         case msg.series of
           00:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ������Ϸ���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“上方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           01:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ��������Ϸ���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“右上方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           02:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ������ҷ���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“右方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           03:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ��������·���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“右下方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           04:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ������·���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“下方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           05:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ��������·���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“左下方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           06:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ������󷽡�Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“左方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           07:
             begin
-              DScreen.AddChatBoardString('[Ѱ����ý��Ӧ���˱���Ĵ��ڣ��������Ϸ���Ѱ��]', clWhite,
+              DScreen.AddChatBoardString('[寻宝灵媒感应到了宝物的存在，请向“左上方”寻找]', clWhite,
                 GetRGB($FC));
             end;
           09:
-            DScreen.AddChatBoardString('[�뽫��ýװ����̽��λ]', clWhite, GetRGB($FC));
+            DScreen.AddChatBoardString('[请将灵媒装备在探索位]', clWhite, GetRGB($FC));
           10:
-            DScreen.AddChatBoardString('[��ý������ֵ�Ѿ����㣬�벹����������ʹ��]', clWhite,
+            DScreen.AddChatBoardString('[灵媒的灵气值已经不足，请补充灵气后再使用]', clWhite,
               GetRGB($FC));
           11:
-            DScreen.AddChatBoardString('[ʹ�ñ�����ýƵ�ʲ���̫��]', clWhite, GetRGB($38));
+            DScreen.AddChatBoardString('[使用宝物灵媒频率不能太快]', clWhite, GetRGB($38));
           12:
-            DScreen.AddChatBoardString('[�����ı�����ýû�и�Ӧ������Ĵ���]', clWhite,
+            DScreen.AddChatBoardString('[这次你的宝物灵媒没有感应到宝物的存在]', clWhite,
               GetRGB($FC));
 
           20 .. 22:
             begin
               frmMain.DrawEffectHum(41 + msg.series - 20, msg.param, msg.tag);
               DScreen.AddChatBoardString
-                (Format('[�����������Χ(%d/%d)������Alt+�������Ϳ����ڱ���]',
+                (Format('[宝物就在您周围(%d/%d)，按下Alt+鼠标左键就可以挖宝了]',
                 [msg.param, msg.tag]), clWhite, GetRGB($FC));
             end;
 
@@ -8394,7 +8396,7 @@ begin
             end;
           -1:
             begin
-              DScreen.AddChatBoardString('[ʧ��] ����û�д���Ʒ', clWhite, GetRGB($38));
+              DScreen.AddChatBoardString('[失败] 包裹没有此物品', clWhite, GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
                 if IsBagItem(g_WaitingDetectItem.Index) then
@@ -8405,7 +8407,7 @@ begin
             end;
           -2:
             begin
-              DScreen.AddChatBoardString('[ʧ��] ����Ĳ�����ý��Ʒ', clWhite,
+              DScreen.AddChatBoardString('[失败] 放入的不是灵媒物品', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8417,7 +8419,7 @@ begin
             end;
           -3:
             begin
-              DScreen.AddChatBoardString('[ʧ��] Ҫȡ�µ���ý��Ʒ������', clWhite,
+              DScreen.AddChatBoardString('[失败] 要取下的灵媒物品不存在', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8427,7 +8429,7 @@ begin
             end;
           -4:
             begin
-              DScreen.AddChatBoardString('[ʧ��] Ҫȡ�µ���ý��Ʒ����ȷ', clWhite,
+              DScreen.AddChatBoardString('[失败] 要取下的灵媒物品不正确', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8450,36 +8452,36 @@ begin
       begin
         case msg.Recog of
           00:
-            DScreen.AddChatBoardString('�ƺ��Ѹı�', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('称号已改变', GetRGB(219), clWhite);
           -1:
-            FrmDlg.DMessageDlg('[ʧ��] �ƺ���������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 称号索引错误', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] �ƺŲ�����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 称号不存在', [mbOk]);
         end;
       end;
     SM_QUERYCHANGEHERO_FALI:
       begin
         case msg.Recog of
           00:
-            DScreen.AddChatBoardString('[�ɹ�] ����Ӣ�۳ɹ�����ǰӢ��Ϊ��' +
+            DScreen.AddChatBoardString('[成功] 更改英雄成功，当前英雄为：' +
               DecodeString(body), clWhite, GetRGB($38));
           -1:
-            FrmDlg.DMessageDlg('[ʧ��] �����ڴ���Ӣ���С������ܸı�Ӣ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 你正在创建英雄中……不能改变英雄', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ҫ�����Ӣ�ۺ͵�ǰӢ����ͬ���ı�ʧЧ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 将要变更的英雄和当前英雄相同，改变失效', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��] ����ʺ��²�����������ɫ����������Ӣ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 你的帐号下不存在其他角色，不能设置英雄', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��] �����������ڵ�ǰ��ɫ�����ܸı�˽�ɫΪӢ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 服务器不存在当前角色，不能改变此角色为英雄', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[ʧ��] Ҫ�������������Ӣ�ۣ����뽫��ǰӢ���������ߣ�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 要设置其他伴随的英雄，必须将当前英雄设置下线！', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] ��ǰ��ɫ��[' + DecodeString(body) +
-              ']���ߣ����ܽ��˽�ɫ����ΪӢ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 当前角色已[' + DecodeString(body) +
+              ']在线，不能将此角色设置为英雄', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[ʧ��] ��ϵͳ����δ����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 此系统功能未开放', [mbOk]);
         end;
-        FrmDlg.DListBox_Hero.ChangingHero := False; // ASP��ʱע��
+        FrmDlg.DListBox_Hero.ChangingHero := False; // ASP临时注释
         if msg.Recog = 0 then
           FrmDlg.DComboBox_Hero.Caption := g_lastHeroSel
       end;
@@ -8488,7 +8490,7 @@ begin
         Str2 := GetValidStr3(body, Str, ['/']);
         str3 := DecodeString(Str);
         DecodeBuffer(Str2, @g_heros, SizeOf(g_heros));
-        FrmDlg.DListBox_Hero.Items.Clear; // ASP��ʱע��
+        FrmDlg.DListBox_Hero.Items.Clear; // ASP临时注释
         for i := Low(g_heros) to High(g_heros) do
         begin
           if g_heros[i].chrname <> '' then
@@ -8513,7 +8515,7 @@ begin
       begin
         case msg.Recog of
           - 1:
-            DScreen.AddChatBoardString('��Ʒ�Ѱ��������ʺţ����޷���ȡ', clWhite,
+            DScreen.AddChatBoardString('物品已绑定于其他帐号，你无法捡取', clWhite,
               GetRGB($38));
         end;
       end;
@@ -8541,19 +8543,19 @@ begin
 
         case msg.Recog of
           01:
-            FrmDlg.DMessageDlg('[�ɹ�] ��Ʒ�Ѿ��󶨵�����ʺţ�', [mbOk]);
+            FrmDlg.DMessageDlg('[成功] 物品已经绑定到你的帐号！', [mbOk]);
           00:
-            FrmDlg.DMessageDlg('[�ɹ�] ��Ʒ����󶨳ɹ���', [mbOk]);
+            FrmDlg.DMessageDlg('[成功] 物品解除绑定成功！', [mbOk]);
           -1:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒδ���󶨣����ܽ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品未被绑定，不能解绑！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�Ѱ��������ʺţ��㲻�ܽ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品已绑定于其他帐号，你不能解绑！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�Ѱ������ʺţ��벻Ҫ�ظ�������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品已绑定于你帐号，请不要重复操作！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�Ѱ��������ʺţ������ٴΰ󶨣�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品已绑定于其他帐号，不能再次绑定！', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] ����Ʒ���ܽ����ʺŰ󶨣�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 此物品不能进行帐号绑定！', [mbOk]);
         end;
       end;
     SM_UPDATESTALLITEM:
@@ -8569,32 +8571,32 @@ begin
         end;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[ʧ��] ����״̬���ܸ��İ�̯��Ʒ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 交易状态不能更改摆摊物品！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] ̯λ���������ܼ���������Ʒ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 摊位已满，不能继续增加物品！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��] ��ƷID���󣬲������ӵ�̯λ�У�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品ID错误，不能增加到摊位中！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ���ۼ۸����Ͷ�����󣬲������ӵ�̯λ�У�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品出售价格类型定义错误，不能增加到摊位中！', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�����ڣ��������ӵ�̯λ�У�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品不存在，不能增加到摊位中！', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ҽ۸��峬�������ķ�Χ(1~150,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 金币价格定义超过允许的范围(1~150,000,000)', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[ʧ��] Ԫ���۸��峬�������ķ�Χ(1~8,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 元宝价格定义超过允许的范围(1~8,000,000)', [mbOk]);
           -8:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品不存在', [mbOk]);
           -9:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %s ����������', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[失败] %s 不允许出售', [DecodeString(body)]
               ), [mbOk]);
           -10:
-            FrmDlg.DMessageDlg('[ʧ��] û�п�ȡ������Ʒ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 没有可取消的物品！', [mbOk]);
           -11:
-            FrmDlg.DMessageDlg('[ʧ��] ����ȡ������Ʒ����Ʒ�Ѿ������ˣ�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 不能取消此物品，物品已经出售了！', [mbOk]);
           -12:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�����ڣ������ƶ��������У�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品不存在，不能移动到包裹中！', [mbOk]);
           -13:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %s �Ѱ��������ʺţ�����������',
+            FrmDlg.DMessageDlg(Format('[失败] %s 已绑定于其他帐号，不允许出售',
               [DecodeString(body)]), [mbOk]);
         else
           if g_WaitingStallItem.Item.S.Name <> '' then
@@ -8629,51 +8631,51 @@ begin
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�Ѿ����۳�', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品已经被售出', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %sЯ���Ľ��̫�࣬�޷�װ���㽫���׸���(��)��Ԫ��',
+            FrmDlg.DMessageDlg(Format('[失败] %s携带的金币太多，无法装下你将交易给他(她)的元宝',
               [DecodeString(body)]), [mbOk]);
           -3:
-            FrmDlg.DMessageDlg(Format('[ʧ��] ��Ľ�Ҳ����Թ���%s', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[失败] 你的金币不足以购买：%s', [DecodeString(body)]
               ), [mbOk]);
           -4:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %sЯ����Ԫ��̫�࣬�޷�װ���㽫���׸���(��)��Ԫ��',
+            FrmDlg.DMessageDlg(Format('[失败] %s携带的元宝太多，无法装下你将交易给他(她)的元宝',
               [DecodeString(body)]), [mbOk]);
           -5:
-            FrmDlg.DMessageDlg(Format('[ʧ��] ���Ԫ�������Թ��� %s', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[失败] 你的元宝不足以购买 %s', [DecodeString(body)]
               ), [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] �������Ʒ������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 购买的物品不存在', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[ʧ��] ���޷�Я���������Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 你无法携带更多的物品', [mbOk]);
         end;
       end;
     SM_OPENSTALL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[ʧ��] ��ǰ��ͼ��������̯', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 当前地图不允许摆摊', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] ����״̬���ܰ�̯', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 骑马状态不能摆摊', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��] ����Χû��λ�ð�̯', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 你周围没有位置摆摊', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��] ����״̬��������̯', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 交易状态不允许摆摊', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ���ۼ۸����Ͷ������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品出售价格类型定义错误', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ҽ۸��峬�������ķ�Χ(1~150,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 金币价格定义超过允许的范围(1~150,000,000)', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[ʧ��] Ԫ���۸��峬�������ķ�Χ(1~8,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 元宝价格定义超过允许的范围(1~8,000,000)', [mbOk]);
           -8:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品不存在', [mbOk]);
           -9:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %s ����������', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[失败] %s 不允许出售', [DecodeString(body)]
               ), [mbOk]);
           -10:
-            FrmDlg.DMessageDlg('[ʧ��] ͬһ��Ʒ���ɶ�γ���', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 同一物品不可多次出售', [mbOk]);
           -11:
-            FrmDlg.DMessageDlg(Format('[ʧ��] %s �Ѱ��������ʺţ�����������',
+            FrmDlg.DMessageDlg(Format('[失败] %s 已绑定于其他帐号，不允许出售',
               [DecodeString(body)]), [mbOk]);
         else
           begin
@@ -8818,7 +8820,7 @@ begin
             // end;
           end;
         end;
-        // FrmDlg.DMessageDlg('�������л����ƣ�', [mbOk, mbAbort])
+        // FrmDlg.DMessageDlg('请输入行会名称：', [mbOk, mbAbort])
       end;
 {$IF SERIESSKILL}
     SM_BUILDACUS:
@@ -8837,13 +8839,13 @@ begin
               g_BAFirstShape := -1;
             end;
           -1:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]: �����ڼ䲻�ܽ��ж���');
+            FrmDlg.ShowMDlg(0, '', '[失败]: 交易期间不能进行锻造');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]: û�ж����������Ʒ');
+            FrmDlg.ShowMDlg(0, '', '[失败]: 没有锻造所需的物品');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]: �������û�ж����������Ʒ');
+            FrmDlg.ShowMDlg(0, '', '[失败]: 你包裹中没有锻造所需的物品');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]: ������ϲ�һ��,�뿴����Ĳ���˵��');
+            FrmDlg.ShowMDlg(0, '', '[失败]: 锻造材料不一致,请看锻造的材料说明');
           -5:
             begin
               FillChar(g_BuildAcuses, SizeOf(g_BuildAcuses), #0);
@@ -8855,7 +8857,7 @@ begin
               g_SndMgr.PlaySound('Wav\UnionHitShield.wav');
             end;
           -6:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]: ���ڷǷ�������ϣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]: 存在非法锻造材料！');
         end;
       end;
     SM_TRAINVENATION:
@@ -8871,15 +8873,15 @@ begin
                   FrmDlg.DBV1Click(g_VLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]������ѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：脉络选择有错误');
             -2:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��%s��û�д�ͨ,��������...',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：%s还没有打通,不能修炼...',
                 [g_VaStrs[msg.param]]));
             -3:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��%s�Ѿ���������߼���...',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：%s已经修炼到最高级了...',
                 [g_VaStrs[msg.param]]));
             -4:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]�����%s�����벻��',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：你的%s级金针不够',
                 [g_VLevelStr[msg.tag]]));
           end;
         end
@@ -8894,15 +8896,15 @@ begin
                   FrmDlg.DBhV1Click(g_hVLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ����ѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 脉络选择有错误');
             -2:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��(Ӣ��) %s��û�д�ͨ,��������...',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：(英雄) %s还没有打通,不能修炼...',
                 [g_VaStrs[msg.param]]));
             -3:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��(Ӣ��) %s�Ѿ���������߼���...',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：(英雄) %s已经修炼到最高级了...',
                 [g_VaStrs[msg.param]]));
             -4:
-              FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��(Ӣ��) ���%s�����벻��',
+              FrmDlg.ShowMDlg(0, '', Format('[失败]：(英雄) 你的%s级金针不够',
                 [g_VLevelStr[msg.tag]]));
           end;
         end;
@@ -8916,28 +8918,28 @@ begin
               begin
                 DecodeBuffer(body, @g_VenationInfos, SizeOf(g_VenationInfos));
                 if msg.tag in [1 .. 5] then
-                  FrmDlg.ShowMDlg(0, '', Format('[�ɹ�]����ϲ���ͨ��%s��%sѨλ,��������һ��',
+                  FrmDlg.ShowMDlg(0, '', Format('[成功]：恭喜你打通了%s的%s穴位,修炼更进一步',
                     [g_VaStrs[msg.param], g_VPStrs[msg.param, msg.tag]]));
                 FrmDlg.PageChanged;
                 if g_VLastSender <> nil then
                   FrmDlg.DBV1Click(g_VLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]������ѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：脉络选择有错误');
             -2:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��Ѩλѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：穴位选择有错误');
             -3:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]������ڹ��ȼ�����,��Ŭ������...');
+              FrmDlg.ShowMDlg(0, '', '[失败]：你的内功等级不够,请努力修炼...');
             -4:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]����Ѩλ�Ѿ���ͨ��');
+              FrmDlg.ShowMDlg(0, '', '[失败]：此穴位已经打通了');
             -5:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]����ѨλĿǰ���ɴ�ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：此穴位目前不可打通');
             -6:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]����û���澭������,���ܴ�ͨѨλ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：你没有舒经活络丸,不能打通穴位');
             -7:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��ʹ���澭������,��Ѩλ��Ȼδ��ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：使用舒经活络丸,但穴位依然未打通');
             -8:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]����û���澭������,Ѩλ���ܴ�ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：你没有舒经活络丸,穴位不能打通');
           end;
         end
         else
@@ -8948,28 +8950,28 @@ begin
                 DecodeBuffer(body, @g_hVenationInfos, SizeOf(g_hVenationInfos));
                 if msg.tag in [1 .. 5] then
                   FrmDlg.ShowMDlg(0, '',
-                    Format('[�ɹ�]��(Ӣ��) ��ϲ���ͨ��%s��%sѨλ,��������һ��',
+                    Format('[成功]：(英雄) 恭喜你打通了%s的%s穴位,修炼更进一步',
                     [g_VaStrs[msg.param], g_VPStrs[msg.param, msg.tag]]));
                 FrmDlg.HeroPageChanged;
                 if g_hVLastSender <> nil then
                   FrmDlg.DBhV1Click(g_hVLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ����ѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 脉络选择有错误');
             -2:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) Ѩλѡ���д���');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 穴位选择有错误');
             -3:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ����ڹ��ȼ�����,��Ŭ������...');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 你的内功等级不够,请努力修炼...');
             -4:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ��Ѩλ�Ѿ���ͨ��');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 此穴位已经打通了');
             -5:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ��ѨλĿǰ���ɴ�ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 此穴位目前不可打通');
             -6:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ��û���澭������,���ܴ�ͨѨλ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 你没有舒经活络丸,不能打通穴位');
             -7:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ʹ���澭������,��Ѩλ��Ȼδ��ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 使用舒经活络丸,但穴位依然未打通');
             -8:
-              FrmDlg.ShowMDlg(0, '', '[ʧ��]��(Ӣ��) ��û���澭������,Ѩλ���ܴ�ͨ');
+              FrmDlg.ShowMDlg(0, '', '[失败]：(英雄) 你没有舒经活络丸,穴位不能打通');
           end;
         end;
       end;
@@ -8992,13 +8994,13 @@ begin
           g_boNextTimeRushHit := False;
           g_boNextTimeSmiteLongHit := False;
           g_boNextTimeSmiteWideHit := False;
-          DScreen.AddChatBoardString('��������Ѿ������ٴ�ʹ����', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('你的连击已经可以再次使用了', GetRGB(219), clWhite);
           g_SndMgr.PlaySound('Wav\warpower-up.wav');
           g_SendFireSerieSkillTick := 0;
         end
         else
         begin
-          DScreen.AddChatBoardString('(Ӣ��) ��������Ѿ������ٴ�ʹ����', GetRGB(219),
+          DScreen.AddChatBoardString('(英雄) 你的连击已经可以再次使用了', GetRGB(219),
             clWhite);
           g_SndMgr.PlaySound('Wav\warpower-up.wav');
         end;
@@ -9008,7 +9010,7 @@ begin
         if msg.Recog = 0 then
         begin
           frmMain.SeriesSkillFire();
-          DScreen.AddChatBoardString('����������', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('连击已启动', GetRGB(219), clWhite);
           // , clWhite, GetRGB(253));
           g_SeriesSkillReady := False;
         end
@@ -9021,7 +9023,7 @@ begin
           g_boNextTimeRushHit := False;
           g_boNextTimeSmiteLongHit := False;
           g_boNextTimeSmiteWideHit := False;
-          DScreen.AddChatBoardString('������ʧ', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('连击消失', GetRGB(219), clWhite);
           // frmMain.SeriesSkillFire();
         end;
       end;
@@ -9034,7 +9036,7 @@ begin
             if (msg.Recog < 0) then
             begin
               g_TempSeriesSkillArr[msg.param] := 0;
-              FrmDlg.DMessageDlg('[ʧ��]: �������˳�����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 连技编号顺序错误', [mbOk]);
             end
             else
               g_TempSeriesSkillArr[msg.param] := msg.Recog;
@@ -9044,7 +9046,7 @@ begin
             if (msg.Recog < 0) then
             begin
               g_hTempSeriesSkillArr[msg.param] := 0;
-              FrmDlg.DMessageDlg('[ʧ��]: (Ӣ��) �������˳�����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: (英雄) 连技编号顺序错误', [mbOk]);
             end
             else
               g_hTempSeriesSkillArr[msg.param] := msg.Recog;
@@ -9169,7 +9171,7 @@ begin
               if Pos('http://', body) = 0 then
                 body := 'http://' + body;
               Open(body);
-              // DebugOUTstrs('�����ڴ򿪵����Դ��ں��������'+IntTostr(kkks));
+              // DebugOUTstrs('你现在打开的是自带内核浏览器：'+IntTostr(kkks));
             end;
           end;
         end
@@ -9181,7 +9183,7 @@ begin
             PChar(string(body)), nil, SW_SHOWNORMAL) = 0 then
             ShellExecute(Handle, 'open', PChar(string(body)), nil, nil,
               SW_SHOWNORMAL);
-          // Debugoutstrs('�����ڴ򿪵���WIN10�ں��������'+IntTostr(kkks));
+          // Debugoutstrs('你现在打开的是WIN10内核浏览器：'+IntTostr(kkks));
         end;
       end;
     SM_QUERYITEMDLG:
@@ -9208,21 +9210,21 @@ begin
       begin
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[�ɹ�]: ���׳ɹ���');
+            FrmDlg.ShowMDlg(0, '', '[成功]: 交易成功！');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�����н���ʧ�ܣ����Ժ������');
+            FrmDlg.ShowMDlg(0, '', '[失败]：进行交易失败，请稍候操作！');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�������ڽ��׶���������ʧ�ܣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：不存在交易订单，交易失败！');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�����Ƚ���Ԫ����ֵ��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：请先进行元宝冲值！');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����ı�����λ���㣬���������ٽ��в���');
+            FrmDlg.ShowMDlg(0, '', '[失败]：你的背包空位不足，请整理后再进行操作');
           -5:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]���ö����ѳ�ʱ�����޷��չ���ֻ��[ȡ���չ�]��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：该订单已超时，你无法收购，只能[取消收购]！');
           -6:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�������е�Ԫ�����������չ���');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您持有的元宝数不足以收购！');
         else
-          FrmDlg.ShowMDlg(0, '', '[ʧ��]��δ֪���󣬽���ʧ�ܣ�');
+          FrmDlg.ShowMDlg(0, '', '[失败]：未知错误，交易失败！');
         end;
       end;
     SM_CANCELYBSELL_FAIL:
@@ -9230,26 +9232,26 @@ begin
         // FrmDlg.DBYbDealItemsCloseClick(nil, 0, 0);
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[�ɹ�]: ȡ�����׳ɹ���');
+            FrmDlg.ShowMDlg(0, '', '[成功]: 取消交易成功！');
           02:
-            FrmDlg.ShowMDlg(0, '', '[�ɹ�]: ȡ���չ��ɹ���');
+            FrmDlg.ShowMDlg(0, '', '[成功]: 取消收购成功！');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]��ȡ������ʧ�ܣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：取消交易失败！');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�������ڽ��׶�����ȡ��ʧ�ܣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：不存在交易订单，取消失败！');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����ı�����λ���㣬���������ٽ��в�����');
+            FrmDlg.ShowMDlg(0, '', '[失败]：你的背包空位不足，请整理后再进行操作！');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����û�п���֧����Ԫ����(�����Ʒ�ѳ��ڣ���Ҫ֧��1��Ԫ��)');
+            FrmDlg.ShowMDlg(0, '', '[失败]：你没有可以支付的元宝，(你的物品已超期，需要支付1个元宝)');
         else
-          FrmDlg.ShowMDlg(0, '', '[ʧ��]��δ֪����ȡ������ʧ�ܣ�');
+          FrmDlg.ShowMDlg(0, '', '[失败]：未知错误，取消交易失败！');
         end;
       end;
     SM_QUERYYBSELL_SELL:
       begin
         if (msg.Recog = -1) or (msg.Recog = -2) then
         begin
-          FrmDlg.ShowMDlg(0, '', '[ʧ��]: û�в�ѯ��ָ���ļ�¼��');
+          FrmDlg.ShowMDlg(0, '', '[失败]: 没有查询到指定的记录！');
         end
         else
         begin
@@ -9260,7 +9262,7 @@ begin
       begin
         if (msg.Recog = -1) or (msg.Recog = -2) then
         begin
-          FrmDlg.ShowMDlg(0, '', '[ʧ��]: û�в�ѯ��ָ���ļ�¼��');
+          FrmDlg.ShowMDlg(0, '', '[失败]: 没有查询到指定的记录！');
         end
         else
         begin
@@ -9280,61 +9282,61 @@ begin
         g_boYbDealing := False;
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[�ɹ�]: ϵͳ�Ѿ��ɹ������������룡');
+            FrmDlg.ShowMDlg(0, '', '[成功]: 系统已经成功接受您的申请！');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�������߶Է���ɫ���к��зǷ��ַ���');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您或者对方角色名中含有非法字符！');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]��������Ҫһ����Ʒ��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：至少需要一件物品！');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]���ϴμ�����Ʒ�ѳ���ʱ�����ƣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：上次寄售物品已超过时间限制！');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]������δ��ͨԪ������ϵͳ��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您尚未开通元宝交易系统！');
           -5:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�����ϴμ��۵���Ʒ��δ�ɹ����ף�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您上次寄售的物品尚未成功交易！');
           -6:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]���Է�����Ԫ�������У�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：对方已在元宝交易中！');
           -7:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����������û����Ҫ���۵���Ʒ��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您包裹中没有您要出售的物品！');
           -8:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]������ʧЧ��NPC׼��δ�����������ԣ�');
+            FrmDlg.ShowMDlg(0, '', '[失败]：定单失效，NPC准备未就绪，请重试！');
           -9:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����ͨ����״̬�²��ܽ���Ԫ��������');
+            FrmDlg.ShowMDlg(0, '', '[失败]：普通交易状态下不能进行元宝买卖！');
           -10:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]�������������Ԫ����������0~9999֮�䣡');
+            FrmDlg.ShowMDlg(0, '', '[失败]：请输入合理的元宝数量，在0~9999之间！');
           -11:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����û���㹻�Ľ��ʯ����������0~9999֮�䣡');
+            FrmDlg.ShowMDlg(0, '', '[失败]：您没有足够的金刚石，且数量在0~9999之间！');
           -12:
-            FrmDlg.ShowMDlg(0, '', '[ʧ��]����Ʒ��������ȷ��');
+            FrmDlg.ShowMDlg(0, '', '[失败]：物品数量不正确！');
           -13:
-            FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��%s ��ֹ���ۣ�',
+            FrmDlg.ShowMDlg(0, '', Format('[失败]：%s 禁止寄售！',
               [DecodeString(body)]));
           -14:
-            FrmDlg.ShowMDlg(0, '', Format('[ʧ��]��%s �Ѱ��������ʺţ���ֹ���ۣ�',
+            FrmDlg.ShowMDlg(0, '', Format('[失败]：%s 已绑定于其他帐号，禁止寄售！',
               [DecodeString(body)]));
         else
-          FrmDlg.ShowMDlg(0, '', '[ʧ��]��δ֪����');
+          FrmDlg.ShowMDlg(0, '', '[失败]：未知错误');
         end;
       end;
     SM_OPENDEAL_FAIL:
       begin
         case msg.Recog of
           00:
-            FrmDlg.DMessageDlg('[�ɹ�]���ɹ�����Ԫ������ϵͳ��', [mbOk]);
+            FrmDlg.DMessageDlg('[成功]：成功开启元宝交易系统！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��]�����Ƚ���Ԫ����ֵ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]：请先进行元宝冲值！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��]�����Ѿ�����Ԫ������ϵͳ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]：您已经开启元宝交易系统！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��]������Ԫ���������㿪������ϵͳ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]：您的元宝数量不足开启交易系统！', [mbOk]);
         else
-          FrmDlg.DMessageDlg('[ʧ��]����ͨԪ������ϵͳʧ�ܣ�', [mbOk]);
+          FrmDlg.DMessageDlg('[失败]：开通元宝交易系统失败！', [mbOk]);
         end;
       end;
     SM_CLOSEBOX:
       begin
         if msg.Recog = 0 then
         begin
-          DScreen.AddChatBoardString('������ҪԤ��������λ', clWhite, clBlue);
+          DScreen.AddChatBoardString('至少需要预留六个空位', clWhite, clBlue);
         end
         else
         begin
@@ -9381,20 +9383,20 @@ begin
       begin
         case msg.Recog of
           2:
-            DScreen.AddChatBoardString('������Կ�����Ͳ�ƥ��', clWhite, clBlue);
+            DScreen.AddChatBoardString('宝箱与钥匙类型不匹配', clWhite, clBlue);
           3:
-            DScreen.AddChatBoardString('������ҪԤ��������λ', clWhite, clBlue);
+            DScreen.AddChatBoardString('至少需要预留六个空位', clWhite, clBlue);
         end;
         if g_OpenBoxItem.Item.S.Name <> '' then
         begin
           AddItemBag(g_OpenBoxItem.Item, g_OpenBoxItem.Index);
-          DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '������');
+          DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '被发现');
           g_OpenBoxItem.Item.S.Name := '';
         end;
         if g_WaitingUseItem.Item.S.Name <> '' then
         begin
           AddItemBag(g_WaitingUseItem.Item, g_WaitingUseItem.Index);
-          DScreen.AddSysMsg(g_WaitingUseItem.Item.S.Name + '������');
+          DScreen.AddSysMsg(g_WaitingUseItem.Item.S.Name + '被发现');
           g_WaitingUseItem.Item.S.Name := '';
         end;
         g_RareBoxWindow.m_boKeyAvail := False;
@@ -9440,9 +9442,9 @@ begin
         begin
           case msg.param of // reture type
             0 .. 3:
-              FrmDlg.DMessageDlg('[��ʾ]: ���ڸð�û������', [mbOk]);
+              FrmDlg.DMessageDlg('[提示]: 你在该版没有排名', [mbOk]);
             4 .. 7:
-              FrmDlg.DMessageDlg('[��ʾ]: ���Ӣ���ڸð�û������', [mbOk]);
+              FrmDlg.DMessageDlg('[提示]: 你的英雄在该版没有排名', [mbOk]);
           end;
         end;
       end;
@@ -9480,21 +9482,21 @@ begin
       begin
         case msg.Recog of
           00:
-            FrmDlg.DMessageDlg('[ʧ��]: �Ƿ���Ʒ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 非法物品名', [mbOk]);
           -1:
-            FrmDlg.DMessageDlg('[ʧ��]: ���������빺�����Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 不存在你想购买的物品', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��]: ���Ƚ���Ԫ����ֵ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 请先进行元宝冲值', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��]: ���ʺ��е�Ԫ��������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 你帐号中的元宝数不够', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��]�����޷�Я���������Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]：你无法携带更多的物品', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[ʧ��]��������Ʒ�����̳���', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]：购买物品不在商城中', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��]: ���Ĺ����ٶȹ���', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 您的购买速度过快', [mbOk]);
         else
-          FrmDlg.DMessageDlg('[ʧ��]: ���޷�����', [mbOk]);
+          FrmDlg.DMessageDlg('[失败]: 你无法购买', [mbOk]);
         end;
       end;
     SM_PRESENDITEMFAIL:
@@ -9503,58 +9505,58 @@ begin
         begin
           case msg.Recog of
             01:
-              FrmDlg.DMessageDlg('[�ɹ�]: �Է��Ѿ��յ��������', [mbOk]);
+              FrmDlg.DMessageDlg('[成功]: 对方已经收到你的礼物', [mbOk]);
             00:
-              FrmDlg.DMessageDlg('[ʧ��]: �Ƿ�����Ʒ����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 非法的物品名称', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('[ʧ��]: ��Ǹ, ���������������빺�����͵���Ʒ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 抱歉, 服务器不存在你想购买赠送的物品', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('[ʧ��]: ���Ƚ���Ԫ����ֵ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 请先进行元宝冲值', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('[ʧ��]: ���ʺ��е�Ԫ��������', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 你帐号中的元宝数不够', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('[ʧ��]���������޷�Я���������Ʒ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]：赠送人无法携带更多的物品', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('[ʧ��]�����빺����Ʒ�����̳���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]：你想购买物品不在商城中', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('[ʧ��]: ���Ĺ����ٶȹ���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 您的购买速度过快', [mbOk]);
             -7:
-              FrmDlg.DMessageDlg('[ʧ��]: �����˲����ڻ�����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 赠送人不存在或不在线', [mbOk]);
             -8:
-              FrmDlg.DMessageDlg('[ʧ��]: �����˲������Լ�', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 赠送人不能是自己', [mbOk]);
             -9:
-              FrmDlg.DMessageDlg('[ʧ��]: ������δ�������͹���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 服务器未开启赠送功能', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[ʧ��]: ���޷�����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 你无法购买', [mbOk]);
           end;
         end
         else
         begin
           case msg.Recog of
             01:
-              FrmDlg.DMessageDlg('[�ɹ�]: �Է��Ѿ��յ��������', [mbOk]);
+              FrmDlg.DMessageDlg('[成功]: 对方已经收到你的礼物', [mbOk]);
             00:
-              FrmDlg.DMessageDlg('[ʧ��]: �Ƿ�����Ʒ����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 非法的物品名称', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('[ʧ��]: ��Ǹ, ���������������빺�����͵���Ʒ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 抱歉, 服务器不存在你想购买赠送的物品', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('[ʧ��]: ��û�н��', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 你没有金币', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('[ʧ��]: ���ʵĽ��������', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 你帐的金币数不够', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('[ʧ��]���������޷�Я���������Ʒ', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]：赠送人无法携带更多的物品', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('[ʧ��]�����빺����Ʒ�����̳���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]：你想购买物品不在商城中', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('[ʧ��]: ���Ĺ����ٶȹ���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 您的购买速度过快', [mbOk]);
             -7:
-              FrmDlg.DMessageDlg('[ʧ��]: �����˲����ڻ�����', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 赠送人不存在或不在线', [mbOk]);
             -8:
-              FrmDlg.DMessageDlg('[ʧ��]: �����˲������Լ�', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 赠送人不能是自己', [mbOk]);
             -9:
-              FrmDlg.DMessageDlg('[ʧ��]: ������δ�������͹���', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 服务器未开启赠送功能', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[ʧ��]: ���޷�����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 你无法购买', [mbOk]);
           end;
         end;
       end;
@@ -9587,19 +9589,19 @@ begin
         end;
         if g_wAvailIDDay > 0 then
         begin
-          DScreen.AddChatBoardString('����ǰͨ�������ʺų�ֵ', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('您当前通过包月帐号充值', GetRGB(219), clWhite)
         end
         else if g_wAvailIPDay > 0 then
         begin
-          DScreen.AddChatBoardString('����ǰͨ������IP ��ֵ', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('您当前通过包月IP 充值', GetRGB(219), clWhite)
         end
         else if g_wAvailIPHour > 0 then
         begin
-          DScreen.AddChatBoardString('����ǰͨ����ʱIP ��ֵ', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('您当前通过计时IP 充值', GetRGB(219), clWhite)
         end
         else if g_wAvailIDHour > 0 then
         begin
-          DScreen.AddChatBoardString('����ǰͨ����ʱ�ʺų�ֵ', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('您当前通过计时帐号充值', GetRGB(219), clWhite)
         end;
         LoadUserConfig(m_sCharName);
         FrmDlg.LoadMySelfConfig();
@@ -9612,7 +9614,7 @@ begin
 
         if not g_gcGeneral[11] then
         begin
-          DScreen.AddChatBoardString('[��Ϸ�����ѹر�]', clWhite, clblack);
+          DScreen.AddChatBoardString('[游戏声音已关闭]', clWhite, clblack);
         end;
         // g_ModuleDetect.FCheckTick
       end;
@@ -9952,7 +9954,7 @@ begin
           begin
             Actor.SendMsg(SM_SITDOWN, msg.param { x } , msg.tag { y } ,
               msg.series { dir } , 0, 0, '', 0);
-//            if msg.ident = SM_SITDOWN then      ȡ��������²�ֹͣ
+//            if msg.ident = SM_SITDOWN then      取消挖肉蹲下不停止
 //              if body <> '' then
 //                Actor.m_boDigFragment := True;
           end;
@@ -10012,7 +10014,7 @@ begin
         begin
           Actor.SendMsg(msg.ident, msg.param { x } , msg.tag { y } ,
             msg.series { dir } , 0, 0, '', 0);
-          Actor.m_nTargetX := mbw.Param1; // x ������ ��ǥ
+          Actor.m_nTargetX := mbw.Param1; // x 带瘤绰 格钎
           Actor.m_nTargetY := mbw.Param2; // y
           Actor.m_nTargetRecog := Makelong(mbw.Tag1, mbw.Tag2);
         end;
@@ -10026,10 +10028,10 @@ begin
         begin
           Actor.SendMsg(msg.ident, msg.param { x } , msg.tag { y } ,
             msg.series { dir } , 0, 0, '', 0);
-          Actor.m_nTargetX := wl.lParam1; // x ������ ��ǥ
+          Actor.m_nTargetX := wl.lParam1; // x 带瘤绰 格钎
           Actor.m_nTargetY := wl.lParam2; // y
           Actor.m_nTargetRecog := wl.lTag1;
-          Actor.m_nMagicNum := wl.lTag2; // ���� ��ȣ
+          Actor.m_nMagicNum := wl.lTag2; // 付过 锅龋
         end;
       end;
 
@@ -10052,7 +10054,7 @@ begin
         g_boDoFastFadeOut := False;
         g_boDoFadeIn := False;
         g_boDoFadeOut := False;
-        FrmDlg.DMessageDlg('���������ӱ�ǿ���жϡ�\����ʱ����ܳ�������', [mbOk]);
+        FrmDlg.DMessageDlg('服务器连接被强行中断。\连接时间可能超过限制', [mbOk]);
         Close;
       end;
     SM_DEATH, SM_NOWDEATH:
@@ -10144,14 +10146,14 @@ begin
           if not g_gcGeneral[3] or
             (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
             DScreen.AddSysMsgBottom
-              (Format('����ֵ +%d', [LongWord(Makelong(msg.param, msg.tag))]));
+              (Format('经验值 +%d', [LongWord(Makelong(msg.param, msg.tag))]));
         end
         else
         begin
           if not g_gcGeneral[3] or
             (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
             DScreen.AddChatBoardString
-              (Format('%d����ֵ����', [LongWord(Makelong(msg.param, msg.tag))]),
+              (Format('%d经验值增加', [LongWord(Makelong(msg.param, msg.tag))]),
               clWhite, clRed);
         end;
       end;
@@ -10164,7 +10166,7 @@ begin
           begin
             if not g_gcGeneral[3] or
               (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
-              DScreen.AddSysMsgBottom(Format('(Ӣ��)����ֵ +%d',
+              DScreen.AddSysMsgBottom(Format('(英雄)经验值 +%d',
                 [LongWord(Makelong(msg.param, msg.tag))]));
           end
           else
@@ -10172,7 +10174,7 @@ begin
             if not g_gcGeneral[3] or
               (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
               DScreen.AddChatBoardString
-                (Format('%dӢ�۾���ֵ����', [LongWord(Makelong(msg.param, msg.tag))]),
+                (Format('%d英雄经验值增加', [LongWord(Makelong(msg.param, msg.tag))]),
                 clWhite, clRed);
           end;
         end;
@@ -10180,19 +10182,19 @@ begin
     SM_WINNIMBUSEXP:
       begin
         if msg.Recog > 0 then
-          DScreen.AddSysMsgBottom(Format('��ǰ����ֵ %d', [msg.Recog]));
+          DScreen.AddSysMsgBottom(Format('当前灵气值 %d', [msg.Recog]));
       end;
     SM_HEROWINNIMBUSEXP:
       begin
         if msg.Recog > 0 then
-          DScreen.AddSysMsgBottom(Format('(Ӣ��)��ǰ����ֵ %d', [msg.Recog]));
+          DScreen.AddSysMsgBottom(Format('(英雄)当前灵气值 %d', [msg.Recog]));
       end;
     SM_WINIPEXP:
       begin
         g_MySelf.m_nIPowerExp := msg.Recog;
         ipExp := LongWord(Makelong(msg.param, msg.tag));
         if ipExp > 0 then
-          DScreen.AddSysMsgBottom(Format('%d���ڹ���������', [ipExp]));
+          DScreen.AddSysMsgBottom(Format('%d点内功经验增加', [ipExp]));
         if msg.series in [3 .. 28] then
           g_nMagicRange := msg.series;
       end;
@@ -10203,13 +10205,13 @@ begin
           g_MySelf.m_HeroObject.m_nIPowerExp := msg.Recog;
           ipExp := LongWord(Makelong(msg.param, msg.tag));
           if ipExp > 0 then
-            DScreen.AddSysMsgBottom(Format('(Ӣ��)%d���ڹ���������', [ipExp]));
+            DScreen.AddSysMsgBottom(Format('(英雄)%d点内功经验增加', [ipExp]));
         end;
       end;
     SM_LEVELUP:
       begin
         g_MySelf.m_Abil.level := msg.param;
-        DScreen.AddSysMsg('���ĵȼ���������');
+        DScreen.AddSysMsg('您的等级已升级！');
       end;
     SM_HEALTHSPELLCHANGED:
       begin
@@ -10250,9 +10252,9 @@ begin
           end;
 
           if g_IgnoreStruck then
-          begin // ����̩ɽ
+          begin // 稳如泰山
             if (Actor <> g_MySelf) and (Actor <> g_MySelf.m_HeroObject) then
-              // �������Լ��Ҳ����ҵ�Ӣ�ۣ���ִ��
+              // 对象不是自己且不是我的英雄，则执行
               Actor.UpdateMsg(SM_STRUCK, wl.lTag2, 0, msg.series { damage } ,
                 wl.lParam1, wl.lParam2, '', wl.lTag1);
           end
@@ -10268,7 +10270,7 @@ begin
           Actor.m_Abil.MaxHP := msg.tag;
 {$IFEND}
           if g_boOpenAutoPlay and TimerAutoPlay.Enabled then
-          begin // 0613 �Լ����˹���,С��
+          begin // 0613 自己受人攻击,小退
             Actor2 := g_PlayScene.FindActor(wl.lTag1);
             if (Actor2 = nil) or
               ((Actor2.m_btRace <> 0) and (Actor2.m_btIsHero <> 1)) then
@@ -10277,14 +10279,14 @@ begin
             if (g_MySelf <> nil) then
             begin
               if (Actor = g_MySelf.m_HeroObject) then
-              begin // Ӣ�����˹���
+              begin // 英雄受人攻击
                 //
                 FrmDlg.ClientCallHero();
 
               end
               else if (Actor = g_MySelf) then
-              begin // �Լ����˹���,С��
-                g_nAPReLogon := 1; // ����״̬
+              begin // 自己受人攻击,小退
+                g_nAPReLogon := 1; // 保存状态
                 g_nAPrlRecallHero := (g_MySelf.m_HeroObject <> nil);
                 g_nOverAPZone2 := g_nOverAPZone;
                 g_APGoBack2 := g_APGoBack;
@@ -10694,7 +10696,7 @@ begin
     SM_OPENDOOR_OK:
       Map.OpenDoor(msg.param, msg.tag);
     SM_OPENDOOR_LOCK:
-      DScreen.AddSysMsg('���ű�����');
+      DScreen.AddSysMsg('此门被锁定');
     SM_CLOSEDOOR:
       Map.CloseDoor(msg.param, msg.tag);
 
@@ -10712,18 +10714,18 @@ begin
         begin
           AddItemBag(g_WaitingUseItem.Item);
           g_WaitingUseItem.Item.S.Name := '';
-          DScreen.AddChatBoardString('(Ӣ��) ��������������������в���', clWhite, clRed);
+          DScreen.AddChatBoardString('(英雄) 背包已满，请整理后进行操作', clWhite, clRed);
         end
         else if msg.Recog = 1 then
         begin
           HeroAddItemBag(g_WaitingUseItem.Item);
           g_WaitingUseItem.Item.S.Name := '';
-          DScreen.AddChatBoardString('��ı�������������������в���', clWhite, clRed);
+          DScreen.AddChatBoardString('你的背包已满，请整理后进行操作', clWhite, clRed);
         end
         else if msg.Recog = 2 then
         begin
           AddItemBag(g_WaitingUseItem.Item);
-          DScreen.AddChatBoardString(g_WaitingUseItem.Item.S.Name + '���ܷŵ�Ӣ�۰�����',
+          DScreen.AddChatBoardString(g_WaitingUseItem.Item.S.Name + '不能放到英雄包裹中',
             clWhite, clRed);
           g_WaitingUseItem.Item.S.Name := '';
         end;
@@ -10817,7 +10819,7 @@ begin
       begin
         g_SndMgr.PlaySound(s_money);
         if msg.Recog > g_MySelf.m_nGold then
-          DScreen.AddSysMsg('��� ' + IntToStr(msg.Recog - g_MySelf.m_nGold) +
+          DScreen.AddSysMsg('获得 ' + IntToStr(msg.Recog - g_MySelf.m_nGold) +
             g_sGoldName);
         g_MySelf.m_nGold := msg.Recog;
         g_MySelf.m_nGameGold := Makelong(msg.param, msg.tag);
@@ -10898,13 +10900,13 @@ begin
         m_boSupplyItem := False;
         case msg.series of
           1:
-            DScreen.AddChatBoardString('[ʧ��] ��Ľ�Ҳ��㣬�����ͷŻ����飡', clRed, clWhite);
+            DScreen.AddChatBoardString('[失败] 你的金币不足，不能释放积灵珠！', clRed, clWhite);
           2:
-            DScreen.AddChatBoardString('[ʧ��] ���Ԫ�����㣬�����ͷŻ����飡', clRed, clWhite);
+            DScreen.AddChatBoardString('[失败] 你的元宝不足，不能释放积灵珠！', clRed, clWhite);
           3:
-            DScreen.AddChatBoardString('[ʧ��] ��Ľ��ʯ���㣬�����ͷŻ����飡', clRed, clWhite);
+            DScreen.AddChatBoardString('[失败] 你的金刚石不足，不能释放积灵珠！', clRed, clWhite);
           4:
-            DScreen.AddChatBoardString('[ʧ��] ���������㣬�����ͷŻ����飡', clRed, clWhite);
+            DScreen.AddChatBoardString('[失败] 你的灵符不足，不能释放积灵珠！', clRed, clWhite);
         end;
       end;
     SM_HEROEAT_FAIL:
@@ -10915,16 +10917,16 @@ begin
         g_EatingItem.S.Name := '';
         case msg.series of
           1:
-            DScreen.AddChatBoardString('[ʧ��] ��Ľ�Ҳ��㣬Ӣ�۲����ͷŻ����飡', clRed,
+            DScreen.AddChatBoardString('[失败] 你的金币不足，英雄不能释放积灵珠！', clRed,
               clWhite);
           2:
-            DScreen.AddChatBoardString('[ʧ��] ���Ԫ�����㣬Ӣ�۲����ͷŻ����飡', clRed,
+            DScreen.AddChatBoardString('[失败] 你的元宝不足，英雄不能释放积灵珠！', clRed,
               clWhite);
           3:
-            DScreen.AddChatBoardString('[ʧ��] ��Ľ��ʯ���㣬Ӣ�۲����ͷŻ����飡',
+            DScreen.AddChatBoardString('[失败] 你的金刚石不足，英雄不能释放积灵珠！',
               clRed, clWhite);
           4:
-            DScreen.AddChatBoardString('[ʧ��] ���������㣬Ӣ�۲����ͷŻ����飡', clRed,
+            DScreen.AddChatBoardString('[失败] 你的灵符不足，英雄不能释放积灵珠！', clRed,
               clWhite);
         end;
       end;
@@ -11005,7 +11007,7 @@ begin
               g_sSellPriceStr := IntToStr(msg.Recog) + g_sGoldName;
           end
           else
-            g_sSellPriceStr := '???? ' + g_sGoldName { ���' };
+            g_sSellPriceStr := '???? ' + g_sGoldName { 金币' };
         end;
       end;
     SM_SENDBOOKCNT:
@@ -11015,22 +11017,22 @@ begin
           if msg.Recog > 0 then
           begin
             if g_SellDlgItem.S.Overlap > 0 then
-              g_sSellPriceStr := '��: ' +
-                IntToStr(msg.Recog * g_SellDlgItem.Dura) + '������Ƭ'
+              g_sSellPriceStr := '换: ' +
+                IntToStr(msg.Recog * g_SellDlgItem.Dura) + '卷轴碎片'
             else
-              g_sSellPriceStr := '��: ' + IntToStr(msg.Recog) + '������Ƭ';
+              g_sSellPriceStr := '换: ' + IntToStr(msg.Recog) + '卷轴碎片';
           end
           else
           begin
             case msg.Recog of
               00:
-                g_sSellPriceStr := '�����Զһ�';
+                g_sSellPriceStr := '不可以兑换';
               -1:
-                g_sSellPriceStr := '����װ����';
+                g_sSellPriceStr := '不是装备类';
               -2:
-                g_sSellPriceStr := 'װ������̫��';
+                g_sSellPriceStr := '装备级别太低';
               -3:
-                g_sSellPriceStr := 'װ������̫��';
+                g_sSellPriceStr := '装备级别太高';
             end;
           end;
         end;
@@ -11047,7 +11049,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('����Ʒ���ܳ���', [mbOk]);
+        FrmDlg.DMessageDlg('此物品不能出售', [mbOk]);
       end;
     SM_USEREXCHGITEM_FAIL:
       begin
@@ -11056,19 +11058,19 @@ begin
         g_SellDlgItemSellWait.Item.S.Name := '';
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[ʧ��] ��̯�У����ܲ���', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 摆摊中，不能操作', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[ʧ��] ��Ʒ�Ѿ�������', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 物品已经绑定他人', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[ʧ��] ��ֹ���۵���Ʒ��Ҳ���ܸ���������Ƭ', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 禁止出售的物品，也不能更换卷轴碎片', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[ʧ��] ����������Ƭʧ��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 更换卷轴碎片失败', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[ʧ��] �ò���װ����', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 该不是装备类', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[ʧ��] ��װ������̫��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 该装备级别太低', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[ʧ��] ��װ������̫��', [mbOk]);
+            FrmDlg.DMessageDlg('[失败] 该装备级别太高', [mbOk]);
         end;
 
       end;
@@ -11086,7 +11088,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('����Ʒ���ܳ���', [mbOk]);
+        FrmDlg.DMessageDlg('此物品不能出售', [mbOk]);
       end;
 
     SM_SENDREPAIRCOST:
@@ -11094,9 +11096,9 @@ begin
         if g_SellDlgItem.S.Name <> '' then
         begin
           if msg.Recog >= 0 then
-            g_sSellPriceStr := IntToStr(msg.Recog) + ' ' + g_sGoldName { ��� }
+            g_sSellPriceStr := IntToStr(msg.Recog) + ' ' + g_sGoldName { 金币 }
           else
-            g_sSellPriceStr := '???? ' + g_sGoldName { ��� };
+            g_sSellPriceStr := '???? ' + g_sGoldName { 金币 };
         end;
       end;
     SM_USERREPAIRITEM_OK:
@@ -11116,7 +11118,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('��������������Ʒ', [mbOk]);
+        FrmDlg.DMessageDlg('您不能修理此物品', [mbOk]);
       end;
     SM_ITEMSUMCOUNT_FAIL:
       begin
@@ -11128,7 +11130,7 @@ begin
             begin
               HeroAddItemBag(g_WaitingUseItem.Item);
               g_WaitingUseItem.Item.S.Name := '';
-              DScreen.AddChatBoardString('(Ӣ��)�ص�ʧ��,��Ʒ��������� ' +
+              DScreen.AddChatBoardString('(英雄)重叠失败,物品最高数量是 ' +
                 IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
             end
             else
@@ -11144,7 +11146,7 @@ begin
             begin
               AddItemBag(g_WaitingUseItem.Item, g_WaitingUseItem.Index);
               g_WaitingUseItem.Item.S.Name := '';
-              DScreen.AddChatBoardString('�ص�ʧ��,��Ʒ��������� ' +
+              DScreen.AddChatBoardString('重叠失败,物品最高数量是 ' +
                 IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
             end
             else
@@ -11162,22 +11164,22 @@ begin
         if msg.ident <> SM_STORAGE_OK then
         begin
           if msg.ident = SM_STORAGE_FULL then
-            FrmDlg.DMessageDlg('���ĸ��˲ֿ��Ѿ����ˣ������ٱ����κζ�����', [mbOk])
+            FrmDlg.DMessageDlg('您的个人仓库已经满了，不能再保管任何东西了', [mbOk])
           else
           begin
             if msg.Recog = 2 then
-              FrmDlg.DMessageDlg('�Ĵ���Ʒʧ��,ͬ�൥����Ʒ����ص������� ' +
+              FrmDlg.DMessageDlg('寄存物品失败,同类单个物品最高重叠数量是 ' +
                 IntToStr(MAX_OVERLAPITEM), [mbOk])
             else if msg.Recog = 3 then
             begin
               g_SellDlgItemSellWait.Item.Dura := g_SellDlgItemSellWait.Item.Dura
                 - msg.param;
-              DScreen.AddChatBoardString(Format('�ɹ��Ĵ� %s %d��',
+              DScreen.AddChatBoardString(Format('成功寄存 %s %d个',
                 [g_SellDlgItemSellWait.Item.S.Name, msg.param]),
                 clBlue, clWhite);
             end
             else
-              FrmDlg.DMessageDlg('�����ܼĴ���Ʒ', [mbOk]);
+              FrmDlg.DMessageDlg('您不能寄存物品', [mbOk]);
           end;
           AddItemBag(g_SellDlgItemSellWait.Item);
         end
@@ -11198,9 +11200,9 @@ begin
         if msg.ident <> SM_TAKEBACKSTORAGEITEM_OK then
         begin
           if msg.ident = SM_TAKEBACKSTORAGEITEM_FULLBAG then
-            FrmDlg.DMessageDlg('���޷�Я��������Ʒ��', [mbOk])
+            FrmDlg.DMessageDlg('您无法携带更多物品了', [mbOk])
           else
-            FrmDlg.DMessageDlg('���޷�ȡ����Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('您无法取回物品', [mbOk]);
         end
         else
         begin
@@ -11219,31 +11221,31 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('����Ʒ������', [mbOk]);
+            FrmDlg.DMessageDlg('此物品被卖出', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('���޷�Я��������Ʒ��', [mbOk]);
+            FrmDlg.DMessageDlg('您无法携带更多物品了', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('��û���㹻��Ǯ���������Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('您没有足够的钱来购买此物品', [mbOk]);
         end;
       end;
     SM_MAKEDRUG_SUCCESS:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         g_MySelf.m_nGold := msg.Recog;
-        FrmDlg.DMessageDlg('��Ҫ����Ʒ�Ѿ��㶨��', [mbOk]);
+        FrmDlg.DMessageDlg('您要的物品已经搞定了', [mbOk]);
       end;
     SM_MAKEDRUG_FAIL:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('δ֪����', [mbOk]);
+            FrmDlg.DMessageDlg('未知错误', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('�����˴���', [mbOk]);
+            FrmDlg.DMessageDlg('发生了错误', [mbOk]);
           3:
-            FrmDlg.DMessageDlg(g_sGoldName { '���' } + '����', [mbOk]);
+            FrmDlg.DMessageDlg(g_sGoldName { '金币' } + '不足', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('��ȱ�����������Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('你缺乏所必需的物品', [mbOk]);
         end;
       end;
     SM_NORMALEFFECT:
@@ -11261,12 +11263,12 @@ begin
         if msg.param > 0 then
         begin
           g_boAllowGroup := True;
-          DScreen.AddChatBoardString('[������ӿ���]', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('[开启组队开关]', GetRGB(219), clWhite);
         end
         else
         begin
           g_boAllowGroup := False;
-          DScreen.AddChatBoardString('[�ر���ӿ���]', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('[关闭组队开关]', GetRGB(219), clWhite);
         end;
         g_dwChangeGroupModeTick := GetTickCount;
       end;
@@ -11280,13 +11282,13 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('���黹δ���������㻹�����ȼ�������', [mbOk]);
+            FrmDlg.DMessageDlg('编组还未成立或者你还不够等级创建！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('������������Ʋ���ȷ��', [mbOk]);
+            FrmDlg.DMessageDlg('输入的人物名称不正确！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('������������������Ѿ������������飡', [mbOk]);
+            FrmDlg.DMessageDlg('您想邀请加入编组的人已经加入了其它组！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('�Է����������飡', [mbOk]);
+            FrmDlg.DMessageDlg('对方不允许编组！', [mbOk]);
         end;
       end;
     SM_GROUPADDMEM_OK:
@@ -11299,15 +11301,15 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('���黹δ���������㻹�����ȼ�������', [mbOk]);
+            FrmDlg.DMessageDlg('编组还未成立或者你还不够等级创建！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('������������Ʋ���ȷ��', [mbOk]);
+            FrmDlg.DMessageDlg('输入的人物名称不正确！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('�Ѿ�������飡', [mbOk]);
+            FrmDlg.DMessageDlg('已经加入编组！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('�Է����������飡', [mbOk]);
+            FrmDlg.DMessageDlg('对方不允许编组！', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('������������������Ѿ������������飡', [mbOk]);
+            FrmDlg.DMessageDlg('您想邀请加入编组的人已经加入了其它组！', [mbOk]);
         end;
       end;
     SM_GROUPDELMEM_OK:
@@ -11317,11 +11319,11 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('���黹δ�����������������ȼ�����', [mbOk]);
+            FrmDlg.DMessageDlg('编组还未成立或者您还不够等级创建', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('������������Ʋ���ȷ��', [mbOk]);
+            FrmDlg.DMessageDlg('输入的人物名称不正确！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('���˲��ڱ����У�', [mbOk]);
+            FrmDlg.DMessageDlg('此人不在本组中！', [mbOk]);
         end;
       end;
     SM_GROUPCANCEL:
@@ -11342,12 +11344,12 @@ begin
     SM_OPENGUILDDLG_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        FrmDlg.DMessageDlg('����û�м����лᣡ', [mbOk]);
+        FrmDlg.DMessageDlg('您还没有加入行会！', [mbOk]);
       end;
     SM_DEALTRY_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        FrmDlg.DMessageDlg('ֻ�ж����������ܽ��н���', [mbOk]);
+        FrmDlg.DMessageDlg('只有二人面对面才能进行交易', [mbOk]);
       end;
     SM_DEALMENU:
       begin
@@ -11388,7 +11390,7 @@ begin
           g_DealDlgItem.S.Name := '';
         end;
         if msg.Recog <> 0 then
-          DScreen.AddChatBoardString('�ص�ʧ��,��Ʒ��������� ' +
+          DScreen.AddChatBoardString('重叠失败,物品最高数量是 ' +
             IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
       end;
     SM_DEALDELITEM_OK:
@@ -11446,7 +11448,7 @@ begin
     SM_READMINIMAP_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        DScreen.AddChatBoardString('û��С��ͼ', clWhite, clRed);
+        DScreen.AddChatBoardString('没有小地图', clWhite, clRed);
         g_nMiniMapIndex := -1;
       end;
     SM_CHANGEGUILDNAME:
@@ -11465,15 +11467,15 @@ begin
       begin
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('��û��Ȩ��ʹ���������', [mbOk]);
+            FrmDlg.DMessageDlg('你没有权利使用这个命令', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('���������ĳ�ԱӦ�������������', [mbOk]);
+            FrmDlg.DMessageDlg('想加入进来的成员应该来面对掌门人', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('�Է��Ѿ��������ǵ��л�', [mbOk]);
+            FrmDlg.DMessageDlg('对方已经加入我们的行会', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('�Է��Ѿ����������л�', [mbOk]);
+            FrmDlg.DMessageDlg('对方已经加入其他行会', [mbOk]);
           5:
-            FrmDlg.DMessageDlg('�Է������������л�', [mbOk]);
+            FrmDlg.DMessageDlg('对方不允许加入行会', [mbOk]);
         end;
       end;
     SM_GUILDDELMEMBER_OK:
@@ -11484,73 +11486,73 @@ begin
       begin
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('����ʹ�����', [mbOk]);
+            FrmDlg.DMessageDlg('不能使用命令！', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('���˷Ǳ��л��Ա��', [mbOk]);
+            FrmDlg.DMessageDlg('此人非本行会成员！', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('�л������˲��ܿ����Լ���', [mbOk]);
+            FrmDlg.DMessageDlg('行会掌门人不能开除自己！', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('����ʹ�����', [mbOk]);
+            FrmDlg.DMessageDlg('不能使用命令！', [mbOk]);
         end;
       end;
     SM_GUILDRANKUPDATE_FAIL:
       begin
         case msg.Recog of
           - 2:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] ������λ�ò���Ϊ��', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 掌门人位置不能为空', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] �µ��л��������Ѿ�����λ', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 新的行会掌门人已经被传位', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] һ���л����ֻ���ж���������', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 一个行会最多只能有二个掌门人', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] ������λ�ò���Ϊ��', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 掌门人位置不能为空', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] �������ӳ�Ա/ɾ����Ա', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 不能添加成员/删除成员', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[��ʾ��Ϣ] ְλ�ظ����߳���', [mbOk]);
+            FrmDlg.DMessageDlg('[提示信息] 职位重复或者出错', [mbOk]);
         end;
       end;
     SM_GUILDMAKEALLY_OK, SM_GUILDMAKEALLY_FAIL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('���޴�Ȩ�ޣ�', [mbOk]);
+            FrmDlg.DMessageDlg('您无此权限！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('����ʧ�ܣ�', [mbOk]);
+            FrmDlg.DMessageDlg('结盟失败！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('�л���˱���˫������������棡', [mbOk]);
+            FrmDlg.DMessageDlg('行会结盟必须双方掌门人面对面！', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('�Է��л������˲��������ˣ�', [mbOk]);
+            FrmDlg.DMessageDlg('对方行会掌门人不允许结盟！', [mbOk]);
         end;
       end;
     SM_GUILDBREAKALLY_OK, SM_GUILDBREAKALLY_FAIL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('������ˣ�', [mbOk]);
+            FrmDlg.DMessageDlg('解除结盟！', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('���л᲻�����л�Ľ����лᣡ', [mbOk]);
+            FrmDlg.DMessageDlg('此行会不是您行会的结盟行会！', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('û�д��лᣡ', [mbOk]);
+            FrmDlg.DMessageDlg('没有此行会！', [mbOk]);
         end;
       end;
     SM_BUILDGUILD_OK:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
-        FrmDlg.DMessageDlg('�лὨ���ɹ�', [mbOk]);
+        FrmDlg.DMessageDlg('行会建立成功', [mbOk]);
       end;
     SM_BUILDGUILD_FAIL:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('���Ѿ����������л�', [mbOk]);
+            FrmDlg.DMessageDlg('您已经加入其它行会', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('ȱ�ٴ�������', [mbOk]);
+            FrmDlg.DMessageDlg('缺少创建费用', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('��û��׼������Ҫ��ȫ����Ʒ', [mbOk]);
+            FrmDlg.DMessageDlg('你没有准备好需要的全部物品', [mbOk]);
         else
-          FrmDlg.DMessageDlg('�����л�ʧ�ܣ�����', [mbOk]);
+          FrmDlg.DMessageDlg('创建行会失败！！！', [mbOk]);
         end;
       end;
     SM_MENU_OK:
@@ -11628,59 +11630,59 @@ begin
           UMResult_Success:
             ;
           UMResult_Fail:
-            FrmDlg.DMessageDlg('[ʧ��]: ʹ�ý����г�����, ���֪����Ա.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 使用交易市场出错, 请告知管理员.', [mbOk]);
           UMResult_ReadFail:
-            FrmDlg.DMessageDlg('[ʧ��]: ��ȡ������Ʒ�б�����, ���֪����Ա.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 读取寄售物品列表出错, 请告知管理员.', [mbOk]);
           UMResult_WriteFail:
-            FrmDlg.DMessageDlg('[ʧ��]: �洢������Ʒ����, ���֪����Ա.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 存储寄售物品出错, 请告知管理员.', [mbOk]);
           UMResult_ReadyToSell:
             ClientGetSendUserMaketSell(msg.Recog);
           UMResult_OverSellCount:
-            FrmDlg.DMessageDlg('[ʧ��]: ������Ʒ��������. �����Լ��� ' +
-              IntToStr(MARKET_MAX_SELL_COUNT) + ' ����Ʒ.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 寄售物品超过限制. 最多可以寄售 ' +
+              IntToStr(MARKET_MAX_SELL_COUNT) + ' 个物品.', [mbOk]);
           UMResult_LessMoney:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               if g_SellDlgItemSellWait.Item.S.Name <> '' then
                 AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[ʧ��]: ��Я���Ľ�Ҳ�����֧�����۵ķ���.', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 你携带的金币不足以支付寄售的费用.', [mbOk]);
             end;
           UMResult_LessLevel:
-            FrmDlg.DMessageDlg('[ʧ��]: ��Ҫ ' + IntToStr(MARKET_ALLOW_LEVEL) +
-              ' �����ϲ���ʹ�ý����г�.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 需要 ' + IntToStr(MARKET_ALLOW_LEVEL) +
+              ' 级以上才能使用交易市场.', [mbOk]);
           UMResult_MaxBagItemCount:
-            FrmDlg.DMessageDlg('[ʧ��]: ������λ����.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 背包空位不足.', [mbOk]);
           UMResult_NoItem:
-            FrmDlg.DMessageDlg('[ʧ��]: ��Ʒ������.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 物品不存在.', [mbOk]);
           UMResult_DontSell:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[ʧ��]: ����Ʒ���ܼ���.', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 该物品不能寄售.', [mbOk]);
             end;
           UMResult_DontBuy:
-            FrmDlg.DMessageDlg('[ʧ��]: ���ܹ����Լ�����Ʒ.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 不能购买自己的物品.', [mbOk]);
           // UMResult_DontGetMoney: ;
           UMResult_MarketNotReady:
-            FrmDlg.DMessageDlg('[ʧ��]: �����г�δ׼������.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 交易市场未准备就绪.', [mbOk]);
           UMResult_LessTrustMoney:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               if g_SellDlgItemSellWait.Item.S.Name <> '' then
                 AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[ʧ��]: ������Ʒ�۸����� ' +
-                IntToStr(MARKET_CHARGE_MONEY) + ' ���.', [mbOk]);
+              FrmDlg.DMessageDlg('[失败]: 寄售物品价格至少 ' +
+                IntToStr(MARKET_CHARGE_MONEY) + ' 金币.', [mbOk]);
             end;
           UMResult_MaxTrustMoney:
-            FrmDlg.DMessageDlg('[ʧ��]: ������Ʒ�۸��ܴ��� ' +
-              IntToStr(MARKET_MAX_TRUST_MONEY) + ' ���.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 寄售物品价格不能大于 ' +
+              IntToStr(MARKET_MAX_TRUST_MONEY) + ' 金币.', [mbOk]);
           UMResult_CancelFail:
-            FrmDlg.DMessageDlg('[ʧ��]: ����Ʒ��������.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 该物品不属于你.', [mbOk]);
           UMResult_OverMoney:
-            FrmDlg.DMessageDlg('[ʧ��]: �ﵽ��Ҵ�ŵ��޶�.', [mbOk]);
+            FrmDlg.DMessageDlg('[失败]: 达到金币存放的限额.', [mbOk]);
           UMResult_SellOK:
             begin
               FrmDlg.DSellDlg.Visible := False;
@@ -11778,26 +11780,26 @@ begin
   if g_wAvailIDDay > 0 then
   begin
     if g_wAvailIDDay = 1 then
-      FrmDlg.DMessageDlg('����ǰID���õ�����Ϊֹ', [mbOk])
+      FrmDlg.DMessageDlg('您当前ID费用到今天为止', [mbOk])
     else if g_wAvailIDDay <= 3 then
-      FrmDlg.DMessageDlg('����ǰIP���û�ʣ ' + IntToStr(g_wAvailIDDay) + ' ��', [mbOk]);
+      FrmDlg.DMessageDlg('您当前IP费用还剩 ' + IntToStr(g_wAvailIDDay) + ' 天', [mbOk]);
   end
   else if g_wAvailIPDay > 0 then
   begin
     if g_wAvailIPDay = 1 then
-      FrmDlg.DMessageDlg('����ǰIP���õ�����Ϊֹ', [mbOk])
+      FrmDlg.DMessageDlg('您当前IP费用到今天为止', [mbOk])
     else if g_wAvailIPDay <= 3 then
-      FrmDlg.DMessageDlg('����ǰIP���û�ʣ ' + IntToStr(g_wAvailIPDay) + ' ��', [mbOk]);
+      FrmDlg.DMessageDlg('您当前IP费用还剩 ' + IntToStr(g_wAvailIPDay) + ' 天', [mbOk]);
   end
   else if g_wAvailIPHour > 0 then
   begin
     if g_wAvailIPHour <= 100 then
-      FrmDlg.DMessageDlg('����ǰIP���û�ʣ ' + IntToStr(g_wAvailIPHour) +
-        ' Сʱ', [mbOk]);
+      FrmDlg.DMessageDlg('您当前IP费用还剩 ' + IntToStr(g_wAvailIPHour) +
+        ' 小时', [mbOk]);
   end
   else if g_wAvailIDHour > 0 then
   begin
-    FrmDlg.DMessageDlg('����ǰID���û�ʣ ' + IntToStr(g_wAvailIDHour) + ' Сʱ',
+    FrmDlg.DMessageDlg('您当前ID费用还剩 ' + IntToStr(g_wAvailIDHour) + ' 小时',
       [mbOk]);;
   end;
 
@@ -11858,8 +11860,10 @@ begin
       g_ReSelChr := True;
       // FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images[FrmDlg.DscStart.FaceIndex].Height;
     {$IF Var_UI = Var_185}
-      FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images
-        [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height; // ASP��ʱע��
+      if (FrmDlg.DscStart.WLib <> nil) and
+        (FrmDlg.DscStart.WLib.Images[g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)] <> nil) then
+        FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images
+          [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height; // ASP临时注释
     {$IFEND}
       if not g_Logined then
       begin
@@ -12035,7 +12039,7 @@ begin
     DecodeBuffer(body, @cu, SizeOf(TClientItem));
     AddItemBag(cu);
     if Hint <> 0 then
-      DScreen.AddSysMsg(cu.S.Name + ' ������');
+      DScreen.AddSysMsg(cu.S.Name + ' 被发现');
   end;
 end;
 
@@ -12047,7 +12051,7 @@ begin
   begin
     DecodeBuffer(body, @cu, SizeOf(TClientItem));
     HeroAddItemBag(cu);
-    DScreen.AddSysMsg(cu.S.Name + ' ��Ӣ�۰����ڱ�����');
+    DScreen.AddSysMsg(cu.S.Name + ' 在英雄包裹内被发现');
   end;
 end;
 
@@ -12436,7 +12440,7 @@ begin
     g_APMapPath2 := nil;
     GetNearPoint();
     frmMain.TimerAutoPlay.Enabled := g_gcAss[0];
-    DScreen.AddChatBoardString('[�һ�] ��ʼ�Զ��һ�...', clWhite, clRed);
+    DScreen.AddChatBoardString('[挂机] 开始自动挂机...', clWhite, clRed);
     SaveWayPoint;
     if g_nAPrlRecallHero or (g_MySelf.m_HeroObject = nil) then
     begin // := (g_MySelf.m_HeroObject <> nil);
@@ -13692,7 +13696,7 @@ begin
     Str := GetValidStr3(Str, data, [#13]);
     if data = '<Notice>' then
     begin
-      FrmDlg.GuildStrs.AddObject(Char(7) + '�лṫ��', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + '行会公告', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 1;
       Continue;
@@ -13700,7 +13704,7 @@ begin
     if data = '<KillGuilds>' then
     begin
       FrmDlg.GuildStrs.Add(' ');
-      FrmDlg.GuildStrs.AddObject(Char(7) + '�ж��л�', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + '敌对行会', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 2;
       linestr := '';
@@ -13712,7 +13716,7 @@ begin
         FrmDlg.GuildStrs.Add(linestr);
       linestr := '';
       FrmDlg.GuildStrs.Add(' ');
-      FrmDlg.GuildStrs.AddObject(Char(7) + '�����л�', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + '联盟行会', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 3;
       Continue;
@@ -13834,7 +13838,7 @@ end;
 procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
 // const
 // busy: boolean = FALSE;
-// ������ع���
+// 检测隐藏工具
   function CheckHideToolz(sCaption: string): Boolean;
   const
     SE_Shell_TrayWnd_NAME = 'Shell_TrayWnd';
@@ -13889,7 +13893,7 @@ procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
     CloseHandle(hProc);
   end;
 
-// ������
+// 检测调试
   function IsSlefRemoteDebuggerPresent(): Boolean;
   var
     Func_Addr: Pointer;
@@ -13920,7 +13924,7 @@ procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
     end;
   end;
 
-// ����Ƿ�HOOK
+// 检测是否被HOOK
   function IsSlefApiHook(): Boolean;
   const
     wsock32 = 'wsock32.dll';
@@ -13955,7 +13959,7 @@ begin
   if CheckHideToolz(FileName) or IsSlefRemoteDebuggerPresent or IsSlefApiHook
   then
   begin
-    FrmDlg.DMessageDlg('������ʹ�÷Ƿ���ң���ر���Һ��ٽ�����Ϸ.', [mbOk]);
+    FrmDlg.DMessageDlg('你正在使用非法外挂，请关闭外挂后再进入游戏.', [mbOk]);
     frmMain.Close;
   end;
 end;
@@ -14300,7 +14304,7 @@ begin
   end;
   if idx < 30000 then
   begin
-    Result := g_ShineDnItems.Images[idx - 20000]; //����
+    Result := g_ShineDnItems.Images[idx - 20000]; //地面
     Exit;
   end;
 end;
@@ -14327,7 +14331,7 @@ begin
   end;
   if idx < 30000 then
   begin
-    Result := g_ShineDnItems.GetCachedImage(idx - 20000, ax, ay);//����
+    Result := g_ShineDnItems.GetCachedImage(idx - 20000, ax, ay);//地面
     Exit;
   end;
 end;
@@ -14735,10 +14739,10 @@ begin
       Result := g_WHumEffect2.GetCachedImage(13200 + HUMANFRAME * (m_btSex) +
         nFrame, ax, ay);
   end;
-  //20200913�����ⷢ��
+  //20200913武器外发光
   if Weapon > 99  then begin
   for i := 0 to WeaponeffectImageList.count - 1 do
-  begin // ע��
+  begin // 注释
     WMImage := TWMImages(WeaponeffectImageList.Items[i]);
     if WMImage.Appr = Weapon then
     begin
@@ -14755,7 +14759,7 @@ begin
   end;
 end;
 
-//��ȡ�������
+//读取武器外观
 function TfrmMain.GetWWeaponImg(Weapon, m_btSex, nFrame: Integer;
   var ax, ay: Integer; boUseCboLib: Boolean): TCustomLockableTexture;
 var
@@ -14810,7 +14814,7 @@ begin
   end;
 
   for i := 0 to WeaponImageList.count - 1 do
-  begin // ע��
+  begin // 注释
     WMImage := TWMImages(WeaponImageList.Items[i]);
     if WMImage.Appr = FileIdx then
     begin
@@ -14828,7 +14832,7 @@ begin
   Result := WMImage.GetCachedImage(HUMANFRAME * m_btSex + nFrame, ax, ay);
 end;
 
-//��ȡ�·����
+//读取衣服外观
 function TfrmMain.GetWHumImg(Dress, m_btSex, nFrame: Integer;
   var ax, ay: Integer; boUseCboLib: Boolean): TCustomLockableTexture;
 var
@@ -14886,7 +14890,7 @@ begin
   end;
 
   for i := 0 to HumImageList.count - 1 do
-  begin // ASPע��
+  begin // ASP注释
     WMImage := TWMImages(HumImageList.Items[i]);
     if WMImage.Appr = FileIdx then
     begin
@@ -15022,22 +15026,22 @@ begin
   g_boDuraAlert := ClientConf.boDuraAlert;
   g_boMagicLock := ClientConf.boMagicLock;
 
-  // 20200726���ؼ���
-  g_Button_DetectBox := ClientConf.Button_DetectBox; // ��ý����
-  FrmDlg.DBDetectBox.Visible := g_Button_DetectBox; // ��ý����
-  g_Button_Mission := ClientConf.Button_Mission; // ����
-  FrmDlg.DBMissionOpen.Visible := g_Button_Mission; // ����ť
-  g_Button_Shop := ClientConf.Button_Shop; // ����
-  FrmDlg.DButtonShop.Visible := g_Button_Shop; // ���̰�ť
+  // 20200726开关集合
+  g_Button_DetectBox := ClientConf.Button_DetectBox; // 灵媒窗体
+  FrmDlg.DBDetectBox.Visible := g_Button_DetectBox; // 灵媒窗体
+  g_Button_Mission := ClientConf.Button_Mission; // 任务
+  FrmDlg.DBMissionOpen.Visible := g_Button_Mission; // 任务按钮
+  g_Button_Shop := ClientConf.Button_Shop; // 商铺
+  FrmDlg.DButtonShop.Visible := g_Button_Shop; // 商铺按钮
 
   g_Button_Friend := ClientConf.Button_Friend;
-  FrmDlg.DBotFriend.Visible := g_Button_Friend; // ��ϵ��ť
+  FrmDlg.DBotFriend.Visible := g_Button_Friend; // 关系按钮
   g_Button_PlusAbil := ClientConf.Button_PlusAbil;
-  FrmDlg.DBotPlusAbil.Visible := g_Button_PlusAbil; // ����
+  FrmDlg.DBotPlusAbil.Visible := g_Button_PlusAbil; // 属性
   g_Button_baoguo := ClientConf.Button_baoguo;
-  FrmDlg.DRefurbishItem.Visible := g_Button_baoguo; // ����
-  g_ShowWinExpMode := ClientConf.ShowWinExpMode; // ����ģʽ��ʾ
-  g_IgnoreStruck := ClientConf.IgnoreStruck; // ����̩ɽ
+  FrmDlg.DRefurbishItem.Visible := g_Button_baoguo; // 包裹
+  g_ShowWinExpMode := ClientConf.ShowWinExpMode; // 经验模式显示
+  g_IgnoreStruck := ClientConf.IgnoreStruck; // 稳如泰山
 
 end;
 
@@ -15078,7 +15082,7 @@ begin
     ShowMsgActor := g_PlayScene.FindActor(sHumanName);
     if ShowMsgActor = nil then
     begin
-      DScreen.AddChatBoardString(Format('%sû�ҵ�', [sHumanName]), clWhite, clRed);
+      DScreen.AddChatBoardString(Format('%s没找到', [sHumanName]), clWhite, clRed);
       Exit;
     end;
   end;
@@ -15099,7 +15103,7 @@ begin
   end;
 
   if { not frmWebBrowser.Showing and } not g_DlgInitialize and
-    ((g_MySelf = nil) or (mrOk = FrmDlg.DMessageDlg('ȷ���˳���Ϸ��',
+    ((g_MySelf = nil) or (mrOk = FrmDlg.DMessageDlg('确认退出游戏吗？',
     [mbOk, mbCancel]))) then
   begin
     if g_MySelf <> nil then
@@ -15261,25 +15265,25 @@ begin
   g_MySelf.m_btPoisonDecHealth := 0;
   if pcm.Def.wMagicid in [13 .. 19, 30, 43, 55, 57] then
   begin
-    Str := '��';
-    cStr := '��';
+    Str := '符';
+    cStr := '符';
   end
   else if pcm.Def.wMagicid in [6, 38] then
   begin
     if (g_MagicTarget <> nil) then
     begin
-      Str := 'ҩ';
+      Str := '药';
       g_boExchgPoison := not g_boExchgPoison;
       if g_boExchgPoison then
       begin
         // dec health
         g_MySelf.m_btPoisonDecHealth := 1;
-        cStr := '��';
+        cStr := '灰';
       end
       else
       begin
         g_MySelf.m_btPoisonDecHealth := 2;
-        cStr := '��';
+        cStr := '黄';
       end;
     end
     else
@@ -15313,12 +15317,12 @@ begin
       Exit;
     end;
   end;
-  if Str = '��' then
-    DScreen.AddChatBoardString('���[������]�Ѿ�����', clWhite, clBlue)
+  if Str = '符' then
+    DScreen.AddChatBoardString('你的[护身符]已经用完', clWhite, clBlue)
   else if g_boExchgPoison then
-    DScreen.AddChatBoardString('���[��ɫҩ��]�Ѿ�����', clWhite, clBlue)
+    DScreen.AddChatBoardString('你的[灰色药粉]已经用完', clWhite, clBlue)
   else
-    DScreen.AddChatBoardString('���[��ɫҩ��]�Ѿ�����', clWhite, clBlue)
+    DScreen.AddChatBoardString('你的[黄色药粉]已经用完', clWhite, clBlue)
 end;
 
 procedure TfrmMain.ClientOpenBook(msg: TDefaultMessage; sBody: string);
@@ -15435,7 +15439,7 @@ begin
           Inc(ChatBoardTop, _MIN(3, ChatStrs.count - 1 - ChatBoardTop));
       end;
     end;
-    // FrmDlg.DMBChat.UpdatePos(ChatBoardTop);      //ASPע��
+    // FrmDlg.DMBChat.UpdatePos(ChatBoardTop);      //ASP注释
   end;
 end;
 
@@ -15604,7 +15608,7 @@ begin
       (g_MySelf.m_nCurrY = g_MySelf.m_nTagY)) then
     begin
       TimerAutoMove.Enabled := False;
-      DScreen.AddChatBoardString('�Ѿ������յ�', GetRGB(5), clWhite);
+      DScreen.AddChatBoardString('已经到达终点', GetRGB(5), clWhite);
       SetLength(g_MapPath, 0);
       g_MapPath := nil;
       g_MySelf.m_nTagX := 0;
@@ -15664,7 +15668,7 @@ begin
 
         if (abs(g_MySelf.m_nCurrX - g_nTargetX) <= 1) and
           (abs(g_MySelf.m_nCurrY - g_nTargetY) <= 1) then
-        begin // Ŀ������
+        begin // 目标座标
           g_ChrAction := caWalk;
           g_MoveBusy := True;
         end
@@ -15813,11 +15817,11 @@ begin
   case GetAutoPalyStation() of
     0:
       begin
-        if not EatItemName('�سǾ�') and not EatItemName('�سǾ���') and
-          not EatItemName('���ش���ʯ') and not EatItemName('���洫��ʯ') then
-          DScreen.AddChatBoardString('[�һ�] ��ĻسǾ�������,�ѹһ�ֹͣ!!!', clWhite, clRed)
+        if not EatItemName('回城卷') and not EatItemName('回城卷包') and
+          not EatItemName('盟重传送石') and not EatItemName('比奇传送石') then
+          DScreen.AddChatBoardString('[挂机] 你的回城卷已用完,已挂机停止!!!', clWhite, clRed)
         else
-          DScreen.AddChatBoardString('[�һ�] �سǲ��һ�ֹͣ!!!', clWhite, clRed);
+          DScreen.AddChatBoardString('[挂机] 回城并挂机停止!!!', clWhite, clRed);
         g_gcAss[0] := False;
         g_APTagget := nil;
         g_AutoPicupItem := nil;
@@ -15828,7 +15832,7 @@ begin
         Exit;
       end;
     1:
-      begin // ��ʱΪ�ù����״α����֣��Զ�Ѱ��·��
+      begin // 此时为该怪物首次被发现，自动寻找路径
         if HeroAttackTagget(g_APTagget) then
         begin
           Exit;
@@ -15845,7 +15849,7 @@ begin
         g_boAPAutoMove := True;
       end;
     2:
-      begin // ��ʱ����ƷΪ�״η��֣��Զ�Ѱ��·��
+      begin // 此时该物品为首次发现，自动寻找路径
         if (g_AutoPicupItem <> nil) and
           ((g_nAPStatus <> 2) or (g_APPathList.count = 0)) then
         begin
@@ -15854,7 +15858,7 @@ begin
           AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
             g_nTargetY);
           g_nTargetX := -1;
-          g_sAPStr := Format('[�һ�] ��ƷĿ�꣺%s(%d,%d) ����ȥʰȡ',
+          g_sAPStr := Format('[挂机] 物品目标：%s(%d,%d) 正在去拾取',
             [g_AutoPicupItem.Name, g_AutoPicupItem.X, g_AutoPicupItem.Y])
         end
         else if (g_AutoPicupItem <> nil) then
@@ -15864,7 +15868,7 @@ begin
           AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
             g_nTargetY);
           g_nTargetX := -1;
-          g_sAPStr := Format('[�һ�] ��ƷĿ�꣺%s(%d,%d) ����ȥʰȡ',
+          g_sAPStr := Format('[挂机] 物品目标：%s(%d,%d) 正在去拾取',
             [g_AutoPicupItem.Name, g_AutoPicupItem.X, g_AutoPicupItem.Y])
         end;
         g_nAPStatus := 2;
@@ -15881,7 +15885,7 @@ begin
             g_nTargetY := g_APMapPath[g_APStep].Y;
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
-            g_sAPStr := Format('[�һ�] ѭ·��ѰĿ��(%d,%d)', [g_nTargetX, g_nTargetY]);
+            g_sAPStr := Format('[挂机] 循路搜寻目标(%d,%d)', [g_nTargetX, g_nTargetY]);
             g_nTargetX := -1;
           end
           else
@@ -15905,7 +15909,7 @@ begin
               if b then
                 AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
                   g_nTargetY); // memory leak !!!
-              g_sAPStr := Format('[�һ�] ���������ѰĿ��(%d,%d)',
+              g_sAPStr := Format('[挂机] 定点随机搜寻目标(%d,%d)',
                 [g_APMapPath[g_APStep].X, g_APMapPath[g_APStep].Y]);
               g_nTargetX := -1;
             end;
@@ -15930,8 +15934,8 @@ begin
           if b then
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY); // memory leak !!!
-          // g_sAPStr := format('[�һ�] �����ѰĿ��(%d,%d)', [g_nTargetX, g_nTargetY]);
-          g_sAPStr := '[�һ�] �����ѰĿ��...';
+          // g_sAPStr := format('[挂机] 随机搜寻目标(%d,%d)', [g_nTargetX, g_nTargetY]);
+          g_sAPStr := '[挂机] 随机搜寻目标...';
           g_nTargetX := -1;
         end;
         g_nAPStatus := 3;
@@ -15956,7 +15960,7 @@ begin
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
           end;
-          g_sAPStr := Format('[�һ�] ������Ѱ��Χ,����(%d,%d)', [g_nTargetX, g_nTargetY]);
+          g_sAPStr := Format('[挂机] 超出搜寻范围,返回(%d,%d)', [g_nTargetX, g_nTargetY]);
           g_nTargetX := -1;
         end
         else if (g_nTargetX = -1) or (g_APPathList.count = 0) then
@@ -15978,7 +15982,7 @@ begin
           if b then
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
-          g_sAPStr := Format('[�һ�] ������Ѱ��Χ,�����ѰĿ��(%d,%d)',
+          g_sAPStr := Format('[挂机] 超出搜寻范围,随机搜寻目标(%d,%d)',
             [g_nTargetX, g_nTargetY]);
           g_nTargetX := -1;
         end;
@@ -16279,11 +16283,11 @@ begin
       // end;
       // cltime := GetTickCount - g_dwFirstClientTime;
       // svtime := rtime - g_dwFirstServerTime;
-      // //DScreen.AddChatBoardString('[�ٶȼ��] ʱ��' + IntToStr(cltime - svtime), GetRGB(219), clWhite);
+      // //DScreen.AddChatBoardString('[速度检测] 时间差：' + IntToStr(cltime - svtime), GetRGB(219), clWhite);
       // if cltime > svtime + 4500 then begin
       // Inc(g_nTimeFakeDetectCount);
       // if g_nTimeFakeDetectCount >= 3 then begin
-      // //FrmDlg.DMessageDlg('ϵͳ���ȶ�������״̬�����Ϸ����ֹ��\������������ϵ��Ϸ����Ա��', [mbOk]);
+      // //FrmDlg.DMessageDlg('系统不稳定或网络状态极差，游戏被中止！\如有问题请联系游戏管理员！', [mbOk]);
       // ExitProcess(0);
       // DScreen.Finalize;
       // g_PlayScene.Finalize;
@@ -16335,18 +16339,18 @@ begin
   else if tagstr = 'CRS' then
   begin
     g_boCanCrsHit := True;
-    DScreen.AddChatBoardString('˫��ն����', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('双龙斩开启', GetRGB(219), clWhite);
   end
   else if tagstr = 'UCRS' then
   begin
     g_boCanCrsHit := False;
-    DScreen.AddChatBoardString('˫��ն�ر�', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('双龙斩关闭', GetRGB(219), clWhite);
   end
   else if tagstr = 'TWN' then
   begin
     g_boNextTimeTwinHit := True;
     g_dwLatestTwinHitTick := GetTickCount;
-    DScreen.AddChatBoardString('�ټ��׵������ɹ�', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('召集雷电力量成功', GetRGB(219), clWhite);
     meff := TCharEffect.Create(210, 6, g_MySelf);
     meff.NextFrameTime := 80;
     meff.ImgLib := g_WMagic2Images;
@@ -16356,12 +16360,12 @@ begin
   else if tagstr = 'UTWN' then
   begin
     g_boNextTimeTwinHit := False;
-    DScreen.AddChatBoardString('�׵�������ʧ', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('雷电力量消失', GetRGB(219), clWhite);
   end
   else if tagstr = 'SQU' then
   begin
     g_boCanSquHit := True;
-    DScreen.AddChatBoardString('[��Ӱ����] ����', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[龙影剑法] 开启', GetRGB(219), clWhite);
   end
   else if tagstr = 'FIR' then
   begin
@@ -16383,25 +16387,25 @@ begin
   begin
     g_boNextTimeSmiteHit := True;
     g_dwLatestSmiteHitTick := GetTickCount;
-    // DScreen.AddChatBoardString('����ɱ get ready...', clWhite, clRed);
+    // DScreen.AddChatBoardString('三绝杀 get ready...', clWhite, clRed);
   end
   else if tagstr = 'SMIL3' then
   begin
     g_boNextTimeSmiteLongHit3 := True;
     g_dwLatestSmiteLongHitTick3 := GetTickCount;
-    DScreen.AddChatBoardString('[Ѫ��һ��] ��׼��...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[血魂一击] 已准备...', GetRGB(219), clWhite);
   end
   else if tagstr = 'SMIL' then
   begin
     g_boNextTimeSmiteLongHit := True;
     g_dwLatestSmiteLongHitTick := GetTickCount;
-    // DScreen.AddChatBoardString('����ն get ready...', clWhite, clRed);
+    // DScreen.AddChatBoardString('断岳斩 get ready...', clWhite, clRed);
   end
   else if tagstr = 'SMIL2' then
   begin
     g_boNextTimeSmiteLongHit2 := True;
     g_dwLatestSmiteLongHitTick2 := GetTickCount;
-    DScreen.AddChatBoardString('[�Ͽ�ն] ��׼��...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[断空斩] 已准备...', GetRGB(219), clWhite);
   end
   else if tagstr = 'SMIW' then
   begin
@@ -16412,12 +16416,12 @@ begin
   begin
     g_boNextTimeSmiteWideHit2 := True;
     g_dwLatestSmiteWideHitTick2 := GetTickCount;
-    DScreen.AddChatBoardString('[����ٵ�] ��׼��', clBlue, clWhite);
+    DScreen.AddChatBoardString('[倚天辟地] 已准备', clBlue, clWhite);
     g_SndMgr.PlaySound('Wav\S6-1.wav');
   end
   else if tagstr = 'MDS' then
   begin
-    DScreen.AddChatBoardString('[����ɯ֮ͫ] ���ܿ�ʩչ', clBlue, clWhite);
+    DScreen.AddChatBoardString('[美杜莎之瞳] 技能可施展', clBlue, clWhite);
     meff := TCharEffect.Create(1110, 10, g_MySelf);
     meff.NextFrameTime := 80;
     meff.ImgLib := g_WMagic2Images;
@@ -16439,7 +16443,7 @@ begin
   else if tagstr = 'USML2' then
   begin
     g_boNextTimeSmiteLongHit2 := False;
-    // DScreen.AddChatBoardString('[�Ͽ�ն] ������ʧ...', clWhite, clRed);
+    // DScreen.AddChatBoardString('[断空斩] 力量消失...', clWhite, clRed);
   end
   else if tagstr = 'USMIW' then
     g_boNextTimeSmiteWideHit := False
@@ -16448,18 +16452,18 @@ begin
   else if tagstr = 'USQU' then
   begin
     g_boCanSquHit := False;
-    DScreen.AddChatBoardString('[��Ӱ����] �ر�', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[龙影剑法] 关闭', GetRGB(219), clWhite);
   end
   else if tagstr = 'SLON' then
   begin
     g_boCanSLonHit := True;
     g_dwLatestSLonHitTick := GetTickCount;
-    DScreen.AddChatBoardString('[����ն] ��������...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[开天斩] 力量凝聚...', GetRGB(219), clWhite);
   end
   else if tagstr = 'USLON' then
   begin
     g_boCanSLonHit := False;
-    DScreen.AddChatBoardString('[����ն] ������ʧ', clWhite, clRed);
+    DScreen.AddChatBoardString('[开天斩] 力量消失', clWhite, clRed);
   end;
 end;
 
@@ -16522,7 +16526,7 @@ begin
             dMsg := MakeDefaultMsg(CM_QUERYDYNCODE, 0, 0, 0, 0);
             if g_LoginKey <> '' then
               SendSocket(EncodeMessage(dMsg) + EncodeString(g_LoginKey));
-            ConsoleDebug('����������֤��Կ��Ϣ�ɹ�');
+            ConsoleDebug('发送网关验证秘钥信息成功');
           end;
         end;
     end; // case
@@ -16620,7 +16624,7 @@ begin
           // if b then
           // begin
           // sCPU:= 'CPU:' + FormatFloat('0.##', ProcessCpuUsage.Current) + '%';
-          // ATexture := FontManager.GetFont('����', 9, []).TextOut('�ڴ�ʹ���� : '+IntToStr(pmc.WorkingSetSize div 1024 div 1024)+'MB  '+sCPU);
+          // ATexture := FontManager.GetFont('宋体', 9, []).TextOut('内存使用量 : '+IntToStr(pmc.WorkingSetSize div 1024 div 1024)+'MB  '+sCPU);
           // if ATexture <> nil then
           // begin
           // g_GameCanvas.DrawBoldText(100,10, ATexture, $0093F4F2, $08080808)

@@ -14,6 +14,7 @@ build_out.txt
 *.drc
 *.map
 *.log
+.vscode/
 
 # Delphi IDE 临时文件
 *.dsk
@@ -39,7 +40,7 @@ debug_*.py
 test_*.py
 gui_test.py
 
-# 生成的预览图片
+# 生成的预览图�?
 minmap_preview/
 *.preview/
 
