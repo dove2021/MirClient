@@ -276,7 +276,7 @@ begin
   //  MSurface.Draw((SCREENWIDTH - d.Width) div 2, (SCREENHEIGHT - d.Height) div 2, d.ClientRect, d, True);
 
   MSurface.FillRectAlpha(IntRectBDS(0,0,SCREENWIDTH,SCREENHEIGHT),clWhite,255);
-  d := FontManager.GetFont('é»‘ä½“', 145, [fsBold]).TextOut(COPYRIGHTNAME);
+  d := FontManager.GetFont('ºÚÌå', 145, [fsBold]).TextOut(COPYRIGHTNAME);
   if d <> nil then
   begin
       MSurface.DrawBoldText((SCREENWIDTH - d.WIDTH) div 2,
@@ -287,7 +287,7 @@ begin
 //  n := MSurface.Canvas.Font.Size;
 //  MSurface.Canvas.Font.Size := 145;
 //  s := MSurface.Canvas.Font.Name;
-//  MSurface.Canvas.Font.Name := 'é»‘ä½“';
+//  MSurface.Canvas.Font.Name := 'ºÚÌå';
 //  MSurface.Canvas.Font.Style := [fsBold];
 //  try
 //    BoldTextOut(MSurface,
@@ -728,7 +728,7 @@ begin
   Result := True;
   m_EdNewId.Text := Trim(m_EdNewId.Text);
   if Length(m_EdNewId.Text) < 3 then begin
-    FrmDlg.DMessageDlg('ç™»å½•å¸å·çš„é•¿åº¦å¿…é¡»å¤§äº3ä½.', [mbOk]);
+    FrmDlg.DMessageDlg('µÇÂ¼ÕÊºÅµÄ³¤¶È±ØĞë´óÓÚ3Î».', [mbOk]);
     Beep;
     m_EdNewId.SetFocus;
     Result := False;
@@ -804,7 +804,7 @@ begin
     end;
     if Sender = m_EdNewPasswd then begin
       if Length(m_EdNewPasswd.Text) < 4 then begin
-        FrmDlg.DMessageDlg('å¯†ç é•¿åº¦å¿…é¡»å¤§äº 4ä½.', [mbOk]);
+        FrmDlg.DMessageDlg('ÃÜÂë³¤¶È±ØĞë´óÓÚ 4Î».', [mbOk]);
         Beep;
         m_EdNewPasswd.SetFocus;
         Exit;
@@ -812,7 +812,7 @@ begin
     end;
     if Sender = m_EdConfirm then begin
       if m_EdNewPasswd.Text <> m_EdConfirm.Text then begin
-        FrmDlg.DMessageDlg('äºŒæ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡³ï¼ï¼ï¼', [mbOk]);
+        FrmDlg.DMessageDlg('¶ş´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÁ£¡£¡£¡', [mbOk]);
         Beep;
         m_EdConfirm.SetFocus;
         Exit;
@@ -828,7 +828,7 @@ begin
         Exit;
       end;
     end;
-    if (Sender = m_EdSSNo) and (not EnglishVersion) then begin //èŒ„æƒ«ç‰¢ ç‰ˆå¿«.. æ—åˆ®æ®¿åºŸé”…é¾‹ åŸƒå¸† ç›²å†œ
+    if (Sender = m_EdSSNo) and (not EnglishVersion) then begin //ÇÑ±¹ÀÎ °æ¿ì.. ÁÖ¹Îµî·Ï¹øÈ£ °£·« Ã¤Å©
       if not NewIdCheckSSno then
         Exit;
     end;
@@ -870,25 +870,25 @@ begin
   hx := TEdit(Sender).Left + TEdit(Sender).Width + 10;
   hy := TEdit(Sender).Top + TEdit(Sender).Height - 18;
   if Sender = m_EdNewId then begin
-    FrmDlg.NAHelps.Add('æ‚¨çš„å¸å·åç§°å¯ä»¥åŒ…æ‹¬ï¼š');
-    FrmDlg.NAHelps.Add('å­—ç¬¦ã€æ•°å­—çš„ç»„åˆã€‚');
-    FrmDlg.NAHelps.Add('å¸å·åç§°é•¿åº¦å¿…é¡»ä¸º4æˆ–ä»¥ä¸Šã€‚');
-    FrmDlg.NAHelps.Add('ç™»é™†å¸å·å¹¶æ¸¸æˆä¸­çš„äººç‰©åç§°ã€‚');
-    FrmDlg.NAHelps.Add('è¯·ä»”ç»†è¾“å…¥åˆ›å»ºå¸å·æ‰€éœ€ä¿¡æ¯ã€‚');
-    FrmDlg.NAHelps.Add('æ‚¨çš„ç™»é™†å¸å·å¯ä»¥ç™»é™†æ¸¸æˆ');
-    FrmDlg.NAHelps.Add('åŠæˆ‘ä»¬ç½‘ç«™ï¼Œä»¥å–å¾—ä¸€äº›ç›¸å…³ä¿¡æ¯ã€‚');
+    FrmDlg.NAHelps.Add('ÄúµÄÕÊºÅÃû³Æ¿ÉÒÔ°üÀ¨£º');
+    FrmDlg.NAHelps.Add('×Ö·û¡¢Êı×ÖµÄ×éºÏ¡£');
+    FrmDlg.NAHelps.Add('ÕÊºÅÃû³Æ³¤¶È±ØĞëÎª4»òÒÔÉÏ¡£');
+    FrmDlg.NAHelps.Add('µÇÂ½ÕÊºÅ²¢ÓÎÏ·ÖĞµÄÈËÎïÃû³Æ¡£');
+    FrmDlg.NAHelps.Add('Çë×ĞÏ¸ÊäÈë´´½¨ÕÊºÅËùĞèĞÅÏ¢¡£');
+    FrmDlg.NAHelps.Add('ÄúµÄµÇÂ½ÕÊºÅ¿ÉÒÔµÇÂ½ÓÎÏ·');
+    FrmDlg.NAHelps.Add('¼°ÎÒÃÇÍøÕ¾£¬ÒÔÈ¡µÃÒ»Ğ©Ïà¹ØĞÅÏ¢¡£');
     FrmDlg.NAHelps.Add('');
-    FrmDlg.NAHelps.Add('å»ºè®®æ‚¨çš„ç™»é™†å¸å·ä¸è¦ä¸æ¸¸æˆä¸­çš„è§’');
-    FrmDlg.NAHelps.Add('è‰²åç›¸åŒï¼Œ');
-    FrmDlg.NAHelps.Add('ä»¥ç¡®ä¿ä½ çš„å¯†ç ä¸ä¼šè¢«çˆ†åŠ›ç ´è§£ã€‚');
+    FrmDlg.NAHelps.Add('½¨ÒéÄúµÄµÇÂ½ÕÊºÅ²»ÒªÓëÓÎÏ·ÖĞµÄ½Ç');
+    FrmDlg.NAHelps.Add('É«ÃûÏàÍ¬£¬');
+    FrmDlg.NAHelps.Add('ÒÔÈ·±£ÄãµÄÃÜÂë²»»á±»±¬Á¦ÆÆ½â¡£');
   end;
   if Sender = m_EdNewPasswd then begin
-    FrmDlg.NAHelps.Add('æ‚¨çš„å¯†ç å¯ä»¥æ˜¯å­—ç¬¦åŠæ•°å­—çš„ç»„åˆï¼Œ');
-    FrmDlg.NAHelps.Add('ä½†å¯†ç é•¿åº¦å¿…é¡»è‡³å°‘4ä½ã€‚');
-    FrmDlg.NAHelps.Add('å»ºè®®æ‚¨çš„å¯†ç å†…å®¹ä¸è¦è¿‡äºç®€å•ï¼Œ');
-    FrmDlg.NAHelps.Add('ä»¥é˜²è¢«äººçŒœåˆ°ã€‚');
-    FrmDlg.NAHelps.Add('è¯·è®°ä½æ‚¨è¾“å…¥çš„å¯†ç ï¼Œå¦‚æœä¸¢å¤±å¯†ç ');
-    FrmDlg.NAHelps.Add('å°†æ— æ³•ç™»å½•æ¸¸æˆã€‚');
+    FrmDlg.NAHelps.Add('ÄúµÄÃÜÂë¿ÉÒÔÊÇ×Ö·û¼°Êı×ÖµÄ×éºÏ£¬');
+    FrmDlg.NAHelps.Add('µ«ÃÜÂë³¤¶È±ØĞëÖÁÉÙ4Î»¡£');
+    FrmDlg.NAHelps.Add('½¨ÒéÄúµÄÃÜÂëÄÚÈİ²»Òª¹ıÓÚ¼òµ¥£¬');
+    FrmDlg.NAHelps.Add('ÒÔ·À±»ÈË²Âµ½¡£');
+    FrmDlg.NAHelps.Add('Çë¼Ç×¡ÄúÊäÈëµÄÃÜÂë£¬Èç¹û¶ªÊ§ÃÜÂë');
+    FrmDlg.NAHelps.Add('½«ÎŞ·¨µÇÂ¼ÓÎÏ·¡£');
     FrmDlg.NAHelps.Add('');
     FrmDlg.NAHelps.Add('');
     FrmDlg.NAHelps.Add('');
@@ -896,65 +896,65 @@ begin
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdConfirm then begin
-    FrmDlg.NAHelps.Add('å†æ¬¡è¾“å…¥å¯†ç ');
-    FrmDlg.NAHelps.Add('ä»¥ç¡®è®¤ã€‚');
+    FrmDlg.NAHelps.Add('ÔÙ´ÎÊäÈëÃÜÂë');
+    FrmDlg.NAHelps.Add('ÒÔÈ·ÈÏ¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdYourName then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥æ‚¨çš„å…¨å.');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄúµÄÈ«Ãû.');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdSSNo then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥ä½ çš„èº«ä»½è¯å·');
-    FrmDlg.NAHelps.Add('ä¾‹å¦‚ï¼š 720101-146720');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄãµÄÉí·İÖ¤ºÅ');
+    FrmDlg.NAHelps.Add('ÀıÈç£º 720101-146720');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdBirthDay then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥æ‚¨çš„ç”Ÿæ—¥');
-    FrmDlg.NAHelps.Add('ä¾‹å¦‚ï¼š1977/10/15');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄúµÄÉúÈÕ');
+    FrmDlg.NAHelps.Add('ÀıÈç£º1977/10/15');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdQuiz1 then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥ç¬¬ä¸€ä¸ªå¯†ç æç¤ºé—®é¢˜');
-    FrmDlg.NAHelps.Add('è¿™ä¸ªæç¤ºå°†ç”¨äºå¯†ç ä¸¢å¤±åæ‰¾');
-    FrmDlg.NAHelps.Add('å›å¯†ç ç”¨ã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëµÚÒ»¸öÃÜÂëÌáÊ¾ÎÊÌâ');
+    FrmDlg.NAHelps.Add('Õâ¸öÌáÊ¾½«ÓÃÓÚÃÜÂë¶ªÊ§ºóÕÒ');
+    FrmDlg.NAHelps.Add('»ØÃÜÂëÓÃ¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdAnswer1 then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥ä¸Šé¢é—®é¢˜çš„');
-    FrmDlg.NAHelps.Add('ç­”æ¡ˆã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÉÏÃæÎÊÌâµÄ');
+    FrmDlg.NAHelps.Add('´ğ°¸¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdQuiz2 then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥ç¬¬äºŒä¸ªå¯†ç æç¤ºé—®é¢˜');
-    FrmDlg.NAHelps.Add('è¿™ä¸ªæç¤ºå°†ç”¨äºå¯†ç ä¸¢å¤±åæ‰¾');
-    FrmDlg.NAHelps.Add('å›å¯†ç ç”¨ã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëµÚ¶ş¸öÃÜÂëÌáÊ¾ÎÊÌâ');
+    FrmDlg.NAHelps.Add('Õâ¸öÌáÊ¾½«ÓÃÓÚÃÜÂë¶ªÊ§ºóÕÒ');
+    FrmDlg.NAHelps.Add('»ØÃÜÂëÓÃ¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdAnswer2 then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥ä¸Šé¢é—®é¢˜çš„');
-    FrmDlg.NAHelps.Add('ç­”æ¡ˆã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÉÏÃæÎÊÌâµÄ');
+    FrmDlg.NAHelps.Add('´ğ°¸¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if (Sender = m_EdYourName) or (Sender = m_EdSSNo) or (Sender = m_EdQuiz1) or (Sender = m_EdQuiz2) or (Sender = m_EdAnswer1) or (Sender = m_EdAnswer2) then begin
-    FrmDlg.NAHelps.Add('æ‚¨è¾“å…¥çš„ä¿¡æ¯å¿…é¡»çœŸå®æ­£ç¡®çš„ä¿¡æ¯');
-    FrmDlg.NAHelps.Add('å¦‚æœä½¿ç”¨äº†è™šå‡çš„æ³¨å†Œä¿¡æ¯');
-    FrmDlg.NAHelps.Add('æ‚¨çš„å¸å·å°†è¢«å–æ¶ˆã€‚');
+    FrmDlg.NAHelps.Add('ÄúÊäÈëµÄĞÅÏ¢±ØĞëÕæÊµÕıÈ·µÄĞÅÏ¢');
+    FrmDlg.NAHelps.Add('Èç¹ûÊ¹ÓÃÁËĞé¼ÙµÄ×¢²áĞÅÏ¢');
+    FrmDlg.NAHelps.Add('ÄúµÄÕÊºÅ½«±»È¡Ïû¡£');
     FrmDlg.NAHelps.Add('');
   end;
 
   if Sender = m_EdPhone then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥æ‚¨çš„ç”µè¯');
-    FrmDlg.NAHelps.Add('å·ç ã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄúµÄµç»°');
+    FrmDlg.NAHelps.Add('ºÅÂë¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdMobPhone then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥æ‚¨çš„æ‰‹æœºå·ç ã€‚');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄúµÄÊÖ»úºÅÂë¡£');
     FrmDlg.NAHelps.Add('');
   end;
   if Sender = m_EdEMail then begin
-    FrmDlg.NAHelps.Add('è¯·è¾“å…¥æ‚¨çš„é‚®ä»¶åœ°å€ã€‚æ‚¨çš„é‚®ä»¶å°†è¢«');
-    FrmDlg.NAHelps.Add('æ¥æ”¶æœ€è¿‘æ›´æ–°çš„ä¸€äº›ä¿¡æ¯');
+    FrmDlg.NAHelps.Add('ÇëÊäÈëÄúµÄÓÊ¼şµØÖ·¡£ÄúµÄÓÊ¼ş½«±»');
+    FrmDlg.NAHelps.Add('½ÓÊÕ×î½ü¸üĞÂµÄÒ»Ğ©ĞÅÏ¢');
     FrmDlg.NAHelps.Add('');
   end;
 end;
@@ -1005,7 +1005,7 @@ begin
       if g_nFadeIndex <= 1 then begin
         g_WMainImages.ClearCache;
         g_WChrSelImages.ClearCache;
-        //if g_Logined then FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images[FrmDlg.DscStart.FaceIndex].Height;        //ASPæ³¨é‡Š
+        //if g_Logined then FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images[FrmDlg.DscStart.FaceIndex].Height;        //ASP×¢ÊÍ
         if g_Logined and (FrmDlg.DscStart.WLib <> nil) and
           (FrmDlg.DscStart.WLib.Images[g_sDscStart0 + byte(FrmDlg.DscStart.Downed)] <> nil) then
           FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images[g_sDscStart0 + byte(FrmDlg.DscStart.Downed)].Height;
@@ -1120,7 +1120,7 @@ begin
   FillChar(m_NewIdRetryUE, SizeOf(TUserEntryA), #0);
   //m_boUpdateAccountMode := True;
   NewIdRetry(True);
-  FrmDlg.NewAccountTitle := '(è¯·å¡«å†™å¸å·ç›¸å…³ä¿¡æ¯)';
+  FrmDlg.NewAccountTitle := '(ÇëÌîĞ´ÕÊºÅÏà¹ØĞÅÏ¢)';
 end;
 
 procedure TLoginScene.OkClick;
@@ -1246,7 +1246,7 @@ begin
     frmMain.SendChgPw(uid, passwd, newpasswd);
     ChgpwCancel;
   end else begin
-    FrmDlg.DMessageDlg('äºŒæ¬¡è¾“å…¥çš„å¯†ç ä¸åŒ¹é…ï¼ï¼ï¼ã€‚', [mbOk]);
+    FrmDlg.DMessageDlg('¶ş´ÎÊäÈëµÄÃÜÂë²»Æ¥Åä£¡£¡£¡¡£', [mbOk]);
     m_EdChgNewPw.SetFocus;
   end;
 end;
@@ -1351,7 +1351,7 @@ begin
     end;
     frmMain.SendSelChr(chrname);
   end else
-    FrmDlg.DMessageDlg('å¼€å§‹æ¸¸æˆå‰ä½ åº”è¯¥å…ˆåˆ›å»ºä¸€ä¸ªæ–°è§’è‰²ï¼\ç‚¹å‡»<åˆ›å»ºè§’è‰²>æŒ‰é’®åˆ›å»ºä¸€ä¸ªæ¸¸æˆè§’è‰²ã€‚', [mbOk]);
+    FrmDlg.DMessageDlg('¿ªÊ¼ÓÎÏ·Ç°ÄãÓ¦¸ÃÏÈ´´½¨Ò»¸öĞÂ½ÇÉ«£¡\µã»÷<´´½¨½ÇÉ«>°´Å¥´´½¨Ò»¸öÓÎÏ·½ÇÉ«¡£', [mbOk]);
 end;
 
 procedure TSelectChrScene.SelChrNewChrClick;
@@ -1362,7 +1362,7 @@ begin
     else
       MakeNewChar(1);
   end else
-    FrmDlg.DMessageDlg('ä¸€ä¸ªå¸å·æœ€å¤šåªèƒ½åˆ›å»º 2 ä¸ªæ¸¸æˆè§’è‰²ï¼', [mbOk]);
+    FrmDlg.DMessageDlg('Ò»¸öÕÊºÅ×î¶àÖ»ÄÜ´´½¨ 2 ¸öÓÎÏ·½ÇÉ«£¡', [mbOk]);
 end;
 
 procedure TSelectChrScene.SelChrEraseChrClick;
@@ -1373,7 +1373,7 @@ begin
   if ChrArr[0].Valid and ChrArr[0].Selected then n := 0;
   if ChrArr[1].Valid and ChrArr[1].Selected then n := 1;
   if (ChrArr[n].Valid) and (not ChrArr[n].FreezeState) and (ChrArr[n].UserChr.Name <> '') then begin
-    if mrYes = FrmDlg.DMessageDlg('"' + ChrArr[n].UserChr.Name + '" æ˜¯å¦ç¡®è®¤åˆ é™¤æ­¤æ¸¸æˆè§’è‰²ï¼Ÿ', [mbYes, mbNo]) then
+    if mrYes = FrmDlg.DMessageDlg('"' + ChrArr[n].UserChr.Name + '" ÊÇ·ñÈ·ÈÏÉ¾³ı´ËÓÎÏ·½ÇÉ«£¿', [mbYes, mbNo]) then
       frmMain.SendDelChr(ChrArr[n].UserChr.Name);
   end;
 end;
@@ -1381,19 +1381,19 @@ end;
 procedure TSelectChrScene.SelChrCreditsClick;
 begin
 
-  //[å¤±è´¥] æ²¡æœ‰æ‰¾åˆ°è¢«åˆ é™¤çš„è§’è‰²ã€‚
-  //[å¤±è´¥] å®¢æˆ·ç«¯ç‰ˆæœ¬é”™è¯¯ã€‚
-  //[å¤±è´¥] ä½ æ²¡æœ‰è¿™ä¸ªè§’è‰²ã€‚
-  //[å¤±è´¥] è§’è‰²å·²è¢«åˆ é™¤ã€‚
-  //[å¤±è´¥] è§’è‰²æ•°æ®è¯»å–å¤±è´¥ï¼Œè¯·ç¨å€™å†è¯•ã€‚
-  //[å¤±è´¥] ä½ é€‰æ‹©çš„æœåŠ¡å™¨ç”¨æˆ·æ»¡å‘˜ã€‚
+  //[Ê§°Ü] Ã»ÓĞÕÒµ½±»É¾³ıµÄ½ÇÉ«¡£
+  //[Ê§°Ü] ¿Í»§¶Ë°æ±¾´íÎó¡£
+  //[Ê§°Ü] ÄãÃ»ÓĞÕâ¸ö½ÇÉ«¡£
+  //[Ê§°Ü] ½ÇÉ«ÒÑ±»É¾³ı¡£
+  //[Ê§°Ü] ½ÇÉ«Êı¾İ¶ÁÈ¡Ê§°Ü£¬ÇëÉÔºòÔÙÊÔ¡£
+  //[Ê§°Ü] ÄãÑ¡ÔñµÄ·şÎñÆ÷ÓÃ»§ÂúÔ±¡£
   {if not ChrArr[0].Valid or not ChrArr[1].Valid then begin
     if not ChrArr[0].Valid then
       MakeNewChar(0)
     else
       MakeNewChar(1);
   end else
-    FrmDlg.DMessageDlg('ä¸€ä¸ªå¸å·æœ€å¤šåªèƒ½åˆ›å»ºäºŒä¸ªæ¸¸æˆè§’è‰²ï¼', [mbOk]);}
+    FrmDlg.DMessageDlg('Ò»¸öÕÊºÅ×î¶àÖ»ÄÜ´´½¨¶ş¸öÓÎÏ·½ÇÉ«£¡', [mbOk]);}
 end;
 
 procedure TSelectChrScene.SelChrExitClick;
@@ -1405,7 +1405,7 @@ procedure TSelectChrScene.ClearChrs;
 begin
   FillChar(ChrArr, SizeOf(TSelChar) * 2, #0);
   ChrArr[0].FreezeState := False;
-  ChrArr[1].FreezeState := True; //æ‰å¤¯æ å€”ç»¢ ä¹ç»° æƒ‘æ€•
+  ChrArr[1].FreezeState := True; //±âº»ÀÌ ¾ó¾î ÀÖ´Â »óÅÂ
   ChrArr[0].Selected := True;
   ChrArr[1].Selected := False;
   ChrArr[0].UserChr.Name := '';
@@ -1434,10 +1434,10 @@ procedure TSelectChrScene.MakeNewChar(Index: Integer);
 var
   nx, ny: Integer;
 begin
-  //ä»¥ä¸‹æ–°å¢  20200712
+  //ÒÔÏÂĞÂÔö  20200712
   nx := (SCREENWIDTH - 800) div 2;
   ny := (SCREENHEIGHT - 600) div 2;
-  //ä»¥ä¸Šæ–°å¢
+  //ÒÔÉÏĞÂÔö
   CreateChrMode := True;
   NewIndex := Index;
   if Index = 0 then begin
@@ -1500,7 +1500,7 @@ begin
     shair := IntToStr(1 + Random(5)); //////****IntToStr(ChrArr[NewIndex].UserChr.Hair);
     sjob := IntToStr(ChrArr[NewIndex].UserChr.job);
     ssex := IntToStr(ChrArr[NewIndex].UserChr.sex);
-    frmMain.SendNewChr(frmMain.LoginID, chrname, shair, sjob, ssex); //è´§ æŸè…ç£ç”« çˆ¶ç”µä¿ƒ.
+    frmMain.SendNewChr(frmMain.LoginID, chrname, shair, sjob, ssex); //»õ Ä³¸¯ÅÍ¸¦ ¸¸µç´Ù.
   end;
   
 end;
@@ -1532,7 +1532,7 @@ end;
 procedure TSelectChrScene.PlayScene(MSurface: TCustomCanvas);
 var
   n, bx, by, fx, fy, img: Integer;
-  ex, ey: Integer; //é€‰æ‹©äººç‰©æ—¶æ˜¾ç¤ºçš„æ•ˆæœå…‰ä½ç½®
+  ex, ey: Integer; //Ñ¡ÔñÈËÎïÊ±ÏÔÊ¾µÄĞ§¹û¹âÎ»ÖÃ
   d, E, dd: TCustomLockableTexture;
   svname: string;
   AspFont : TCustomTextureFont;
@@ -1691,7 +1691,7 @@ begin
           end;
         end;
       end;
-      //æ˜¾ç¤ºé€‰æ‹©è§’è‰²æ—¶äººç‰©åç§°ç­‰çº§
+      //ÏÔÊ¾Ñ¡Ôñ½ÇÉ«Ê±ÈËÎïÃû³ÆµÈ¼¶
       if n = 0 then begin
         if ChrArr[n].UserChr.Name <> '' then begin
           with MSurface do begin
@@ -1710,7 +1710,7 @@ begin
         end;
       end;
       with MSurface do begin
-        AspFont := FontManager.GetFont('å®‹ä½“',9,[]);
+        AspFont := FontManager.GetFont('ËÎÌå',9,[]);
         svname := g_sServerName;
         BoldText(SCREENWIDTH div 2 {405} - AspFont.TextWidth(svname) div 2, (SCREENHEIGHT - 600) div 2 + 8 {8}, svname, clWhite, clblack);
       end;

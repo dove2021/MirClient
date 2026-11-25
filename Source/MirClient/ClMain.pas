@@ -1,7 +1,7 @@
 // ******************************************************************************
 // *                                                                            *
-// *                         AsphyreSphinxç»˜å›¾ä¿®æ”¹                              *
-// *                         ä½œè€…ï¼šç›¼ç›¼ QQ117594672                             *
+// *                         AsphyreSphinx»æÍ¼ĞŞ¸Ä                              *
+// *                         ×÷Õß£ºÅÎÅÎ QQ117594672                             *
 // *                                                                            *
 // ******************************************************************************
 unit ClMain;
@@ -114,7 +114,7 @@ type
     procedure RunTimerTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
-    FailureHandled: Boolean; // ASPå¢åŠ 
+    FailureHandled: Boolean; // ASPÔö¼Ó
     FAppTerminated: Boolean;
     FPrintScreenNow: Boolean;
 
@@ -290,7 +290,7 @@ type
   public
     CSocket: TClientSocket;
     DCP_mars: TDCP_mars;
-    // DDClipper: TDirectDrawClipper;  //ASPä¿®æ”¹
+    // DDClipper: TDirectDrawClipper;  //ASPĞŞ¸Ä
     ActionFailLock: Boolean;
     ActionFailLockTime: LongWord;
     LastHitTick: LongWord;
@@ -570,7 +570,7 @@ begin
       ((ATimer < g_AspeederTime) or (CTimer < g_AspeederTime)) then
     begin
       frmMain.CSocket.Close;
-      FrmDlg.DMessageDlg('è¯·ç¡®è®¤æ‚¨æ˜¯å¦è¿è¡Œäº†åŠ é€Ÿè½¯ä»¶\' + 'æ—¢å°†å…³é—­æ¸¸æˆå®¢æˆ·ç«¯', [mbOk]);
+      FrmDlg.DMessageDlg('ÇëÈ·ÈÏÄúÊÇ·ñÔËĞĞÁË¼ÓËÙÈí¼ş\' + '¼È½«¹Ø±ÕÓÎÏ·¿Í»§¶Ë', [mbOk]);
       frmMain.Close;
       PostMessage(frmMain.Handle, WM_CLOSE, 0, 0);
     end;
@@ -713,7 +713,7 @@ begin
   end;
 end;
 
-function DecrypStr(Src, Key: string): string; // å­—ç¬¦ä¸²è§£å¯†å‡½æ•°
+function DecrypStr(Src, Key: string): string; // ×Ö·û´®½âÃÜº¯Êı
 var
   KeyLen: Integer;
   KeyPos: Integer;
@@ -881,7 +881,7 @@ var
   sStr:string;
 begin
 
-  stdItem.Name:='å“ˆå“ˆå“ˆ';
+  stdItem.Name:='¹ş¹ş¹ş';
   stdItem.looks:=100;
 
   sStr:= EncodeBuffer(@stdItem,sizeof(TClientStdItem));
@@ -906,7 +906,7 @@ begin
     FreeLibrary(0);
   end;
 
-  Color := clWhite; // èƒŒæ™¯é¢œè‰²  clWhite    clblack
+  Color := clWhite; // ±³¾°ÑÕÉ«  clWhite    clblack
   Canvas.Font.Assign(Font);
 
   ALogoLoaded := False;
@@ -930,7 +930,7 @@ begin
   begin
     with g_MirStartupInfo do
     begin
-      sServerName := 'çƒ­è¡€ä¼ å¥‡';
+      sServerName := 'ÈÈÑª´«Ææ';
       sServeraddr := '127.0.0.1';
       sServerKey := '6aFuoeTrZZMvjqulNzzFgseeLaPLlCN2';
       sUIPakKey := '';
@@ -961,12 +961,12 @@ begin
 
   FboDisplayChange := False;
   FDDrawHandle := 0;
-  // //è®¾ç½®ç§˜é’¥
+  // //ÉèÖÃÃØÔ¿
   // SetNetPassWord(g_MirStartupInfo.sServerKey);
-  // //è®¾ç½®LoginGataç§˜é’¥
+  // //ÉèÖÃLoginGataÃØÔ¿
   // SetLoginGateKey(g_MirStartupInfo.sServerKey);
 
-  ConsoleDebug(Format('è®¾ç½®æœåŠ¡ç«¯é€šä¿¡ç§˜é’¥:%s', [g_MirStartupInfo.sServerKey]));
+  ConsoleDebug(Format('ÉèÖÃ·şÎñ¶ËÍ¨ĞÅÃØÔ¿:%s', [g_MirStartupInfo.sServerKey]));
 
   InitScreenConfig();
   ScreenChanged();
@@ -991,13 +991,13 @@ begin
 
   UserCfgDir := ResourceDir + 'Users\';
   FAppTerminated := False;
-  // è·å–å®¢æˆ·ç«¯æ‰€æœ‰èµ„æºæ–‡ä»¶ç›®å½•
+  // »ñÈ¡¿Í»§¶ËËùÓĞ×ÊÔ´ÎÄ¼şÄ¿Â¼
   WIL.GetClientLibFile(ResourceDir);
 
-  // å¦‚æœåŠ è½½å¾®ç«¯ç‰ˆæœ¬æ–‡ä»¶æ²¡æœ‰æˆåŠŸé‚£ä¹ˆç›´æ¥å…³é—­å¾®ç«¯ã€‚
+  // Èç¹û¼ÓÔØÎ¢¶Ë°æ±¾ÎÄ¼şÃ»ÓĞ³É¹¦ÄÇÃ´Ö±½Ó¹Ø±ÕÎ¢¶Ë¡£
   if not LibManager.LoadMiniImageFile(WIL.ResDir + 'MiniVer.dat') then
   begin
-    ConsoleDebug(Format('å› ä¸ºæ²¡æœ‰åœ¨èµ„æºç›®å½•ä¸‹:%s,å‘ç°æœ‰å¾®ç«¯æ§åˆ¶ä¿¡æ¯,æ‰€ä»¥è®¾ç½®å¾®ç«¯å…³é—­', [WIL.ResDir]));
+    ConsoleDebug(Format('ÒòÎªÃ»ÓĞÔÚ×ÊÔ´Ä¿Â¼ÏÂ:%s,·¢ÏÖÓĞÎ¢¶Ë¿ØÖÆĞÅÏ¢,ËùÒÔÉèÖÃÎ¢¶Ë¹Ø±Õ', [WIL.ResDir]));
     g_MirStartupInfo.boMini := False;
   end;
   g_SndMgr := TSoundMgr.Create(Self.Handle);
@@ -1011,13 +1011,13 @@ begin
   begin
     g_LocalMessager.SetPort(g_MirStartupInfo.nLocalMiniPort);
     g_LocalMessager.Open;
-    ConsoleDebug(Format('è®¾ç½®æœ¬åœ°é€šä¿¡:%d', [g_MirStartupInfo.nLocalMiniPort]));
+    ConsoleDebug(Format('ÉèÖÃ±¾µØÍ¨ĞÅ:%d', [g_MirStartupInfo.nLocalMiniPort]));
   end;
 
   Randomize;
   // ini := TIniFile.Create('.\lscfg.ini');
   // g_sCurFontName := ini.ReadString('Setup', 'FontName', g_sCurFontName);
-  g_sCurFontName := 'å®‹ä½“';
+  g_sCurFontName := 'ËÎÌå';
   // g_boFullScreen := ini.ReadBool('Setup', 'FullScreen', g_boFullScreen);
   // g_gcGeneral[11] := ini.ReadBool('Setup', 'EffectSound', True);
   // g_gcGeneral[12] := ini.ReadBool('Setup', 'EffectBKGSound', g_gcGeneral[12]);
@@ -1028,9 +1028,9 @@ begin
 
   SSE_AVAILABLE := True;
 
-  // åå¤–æŒ‚å¼€å¯
+  // ·´Íâ¹Ò¿ªÆô
   {$IFNDEF DEBUG}
-   CheckHackTimer.Enabled := true;    //è¿™å¥æ˜¯å¼€å¯ å—
+   CheckHackTimer.Enabled := true;    //Õâ¾äÊÇ¿ªÆô Âğ
    g_dwSHGetTime := GetTickCount();
    QueryPerformanceFrequency(Frequency);
    QueryPerformanceCounter(OldCounter);
@@ -1222,8 +1222,8 @@ begin
 
   MouseTimer.Enabled := True;
   TimerPacket.Enabled := True;
-  Self.Color := clblack; // 20200703LOGOèƒŒæ™¯è‰²
-  // 20200703ä¼˜åŒ–å…¨å±æ¨¡å¼
+  Self.Color := clblack; // 20200703LOGO±³¾°É«
+  // 20200703ÓÅ»¯È«ÆÁÄ£Ê½
   ImageLogo.Left := (ClientWidth - ImageLogo.Width) div 2;
   ImageLogo.Top := (ClientHeight - ImageLogo.Height) div 2;
 
@@ -1674,7 +1674,7 @@ begin
             g_GameCanvas.DrawBlend(P.X - (d.Width div 2),
               P.Y - (d.Height div 2), d, 1);
         end
-        else if g_MovingItem.Item.S.reserve[3] in [100 .. 249] then     //20200927èƒŒåŒ…ç‰¹æ•ˆç§»åŠ¨
+        else if g_MovingItem.Item.S.reserve[3] in [100 .. 249] then     //20200927±³°üÌØĞ§ÒÆ¶¯
         begin
           if GetTickCount - g_MovingItemShine.tick > 200 then
           begin
@@ -1731,7 +1731,7 @@ begin
 end;
 
 const
-  g_sChgWindowMsg = 'ALT + ENTER åˆ‡æ¢çª—å£æ¨¡å¼';
+  g_sChgWindowMsg = 'ALT + ENTER ÇĞ»»´°¿ÚÄ£Ê½';
 
 procedure TfrmMain.DrawGameNotice();
 begin
@@ -1756,7 +1756,7 @@ end;
 
 procedure TfrmMain.AppLogout;
 begin
-  if mrOk = FrmDlg.DMessageDlg('ç¡®è®¤é€€å‡ºåˆ°é€‰æ‹©è§’è‰²ç•Œé¢å—ï¼Ÿ', [mbOk, mbCancel]) then
+  if mrOk = FrmDlg.DMessageDlg('È·ÈÏÍË³öµ½Ñ¡Ôñ½ÇÉ«½çÃæÂğ£¿', [mbOk, mbCancel]) then
   begin
     AppLogoutEx;
   end;
@@ -1865,7 +1865,7 @@ begin
   bmp.SaveToFile(flname);
   bmp.Free;
 
-  DScreen.AddChatBoardString('[å±å¹•æˆªå›¾ï¼š' + g_sServerName + '_Images' +
+  DScreen.AddChatBoardString('[ÆÁÄ»½ØÍ¼£º' + g_sServerName + '_Images' +
     IntToStr2(g_nCaptureSerial) + '.bmp' + ']', clGreen, clWhite)
 end;
 
@@ -2003,21 +2003,21 @@ begin
         (abs(g_APMapPath[g_APStep].Y - g_MySelf.m_nCurrY) <= 3) then
       begin
         if High(g_APMapPath) >= 2 then
-        begin // 3ç‚¹ä»¥ä¸Š
+        begin // 3µãÒÔÉÏ
 
           if g_APStep >= High(g_APMapPath) then
-          begin // å½“å‰ç‚¹åœ¨ç»ˆç‚¹...
-            // ç»ˆç‚¹ <-> èµ·ç‚¹ è·ç¦»è¿‡è¿œ...
+          begin // µ±Ç°µãÔÚÖÕµã...
+            // ÖÕµã <-> Æğµã ¾àÀë¹ıÔ¶...
             if (abs(g_APMapPath[High(g_APMapPath)].X - g_APMapPath[0].X) >= 36)
               or (abs(g_APMapPath[High(g_APMapPath)].Y - g_APMapPath[0].Y) >= 36)
             then
             begin
-              g_APGoBack := True; // åŸè·¯è¿”å›
+              g_APGoBack := True; // Ô­Â··µ»Ø
               g_APLastPoint := g_APMapPath[g_APStep];
               Dec(g_APStep);
             end
             else
-            begin // å¾ªç¯åˆ°èµ·ç‚¹...
+            begin // Ñ­»·µ½Æğµã...
               g_APGoBack := False;
               g_APLastPoint := g_APMapPath[g_APStep];
               g_APStep := 0;
@@ -2026,24 +2026,24 @@ begin
           else
           begin
             if g_APGoBack then
-            begin // åŸè·¯è¿”å›
+            begin // Ô­Â··µ»Ø
               g_APLastPoint := g_APMapPath[g_APStep];
               Dec(g_APStep);
               if g_APStep <= 0 then
-              begin // å·²å›åˆ°èµ·ç‚¹
+              begin // ÒÑ»Øµ½Æğµã
                 g_APStep := 0;
                 g_APGoBack := False;
               end;
             end
             else
-            begin // å¾ªç¯...
+            begin // Ñ­»·...
               g_APLastPoint := g_APMapPath[g_APStep];
               Inc(g_APStep);
             end;
           end;
         end
         else
-        begin // 2ç‚¹,å¾ªç¯...
+        begin // 2µã,Ñ­»·...
           g_APLastPoint := g_APMapPath[g_APStep];
           Inc(g_APStep);
           if g_APStep > High(g_APMapPath) then
@@ -2092,7 +2092,7 @@ begin
                 begin
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
-                  DScreen.AddChatBoardString('è‡ªåŠ¨ç§»åŠ¨å‡ºé”™ï¼Œåœæ­¢ç§»åŠ¨', GetRGB(5), clWhite);
+                  DScreen.AddChatBoardString('×Ô¶¯ÒÆ¶¯³ö´í£¬Í£Ö¹ÒÆ¶¯', GetRGB(5), clWhite);
                 end;
               finally
                 g_PathBusy := False;
@@ -2189,11 +2189,11 @@ begin
           end;
         caRun:
           begin
-            // å…åŠ©è·‘
+            // ÃâÖúÅÜ
             if g_boCanStartRun or (g_nRunReadyCount >= 1) then
             begin
               crun := g_MySelf.CanRun;
-              // éª‘é©¬å¼€å§‹
+              // ÆïÂí¿ªÊ¼
               if (g_MySelf.m_btHorse <> 0) and
                 (GetDistance(mx, my, dx, dy) >= 3) and (crun > 0) and
                 IsUnLockAction() then
@@ -2208,7 +2208,7 @@ begin
                     Dec(g_nOverAPZone);
                 end
                 else
-                begin // å¦‚æœè·‘å¤±è´¥åˆ™è·³å›å»èµ°
+                begin // Èç¹ûÅÜÊ§°ÜÔòÌø»ØÈ¥×ß
                   g_ChrAction := caWalk;
                   goto TTTT;
                 end;
@@ -2229,7 +2229,7 @@ begin
                         Dec(g_nOverAPZone);
                     end
                     else
-                    begin // å¦‚æœè·‘å¤±è´¥åˆ™è·³å›å»èµ°
+                    begin // Èç¹ûÅÜÊ§°ÜÔòÌø»ØÈ¥×ß
                       { if TimerAutoPlay.Enabled and (g_APTagget <> nil) then begin
                         if (abs(g_MySelf.m_nCurrX - g_APTagget.m_nCurrX) <= 1) and (abs(g_MySelf.m_nCurrY - g_APTagget.m_nCurrY) <= 1) and (not g_APTagget.m_boDeath) then
                         g_ChrAction := caWalk
@@ -2255,7 +2255,7 @@ begin
                   g_nTargetX := -1;
                   goto LB_WALK;
                 end;
-              end; // éª‘é©¬ç»“æŸ
+              end; // ÆïÂí½áÊø
             end
             else
             begin
@@ -2269,7 +2269,7 @@ begin
     then
     begin
       frmMain.SendPickup;
-      g_sAPStr := 'æ‹¾å–ç‰©å“';
+      g_sAPStr := 'Ê°È¡ÎïÆ·';
       if g_boAPAutoMove and (g_APPathList.count > 0) then
       begin
         Init_Queue2();
@@ -2444,7 +2444,7 @@ begin
         end;
         if not g_DlgInitialize then
         begin
-          Key := 0; // å–æ¶ˆå¿«æ·åˆ‡æ¢
+          Key := 0; // È¡Ïû¿ì½İÇĞ»»
           FullScreen(not g_boFullScreen);
           Exit;
         end;
@@ -2461,7 +2461,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASPä¿®æ”¹
+        // ASPĞŞ¸Ä
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end;
@@ -2474,7 +2474,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASPä¿®æ”¹
+        // ASPĞŞ¸Ä
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end;
@@ -2646,9 +2646,9 @@ begin
       begin
         g_gcGeneral[4] := not g_gcGeneral[4];
         if g_gcGeneral[4] then
-          DScreen.AddChatBoardString('[ç‰©å“æ˜¾ç¤ºæ‰“å¼€]', clWhite, clblack)
+          DScreen.AddChatBoardString('[ÎïÆ·ÏÔÊ¾´ò¿ª]', clWhite, clblack)
         else
-          DScreen.AddChatBoardString('[ç‰©å“æ˜¾ç¤ºå…³é—­]', clWhite, clblack);
+          DScreen.AddChatBoardString('[ÎïÆ·ÏÔÊ¾¹Ø±Õ]', clWhite, clblack);
       end;
     Word('B'):
       if ssCtrl in Shift then
@@ -2707,15 +2707,15 @@ begin
           begin
             FrmDlg.m_BlockList.Delete(wc);
             FrmDlg.DFrdSave();
-            DScreen.AddChatBoardString('æ‚¨å·²ç»å°†' + g_FocusCret.m_sUserName +
-              'ä»é»‘åå•æ¸…é™¤', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('ÄúÒÑ¾­½«' + g_FocusCret.m_sUserName +
+              '´ÓºÚÃûµ¥Çå³ı', GetRGB(219), clWhite);
           end
           else
           begin
             FrmDlg.m_BlockList.Add(g_FocusCret.m_sUserName);
             FrmDlg.DFrdSave();
-            DScreen.AddChatBoardString('æ‚¨å·²ç»å°†' + g_FocusCret.m_sUserName +
-              'æ”¾å…¥é»‘åå•', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('ÄúÒÑ¾­½«' + g_FocusCret.m_sUserName +
+              '·ÅÈëºÚÃûµ¥', GetRGB(219), clWhite);
           end;
         end;
       end;
@@ -2769,7 +2769,7 @@ begin
             g_nAPStatus := -1;
             g_nTargetX := -1;
             g_APGoBack := False;
-            DScreen.AddChatBoardString('[æŒ‚æœº] å¼€å§‹è‡ªåŠ¨æŒ‚æœº...', clWhite, clRed);
+            DScreen.AddChatBoardString('[¹Ò»ú] ¿ªÊ¼×Ô¶¯¹Ò»ú...', clWhite, clRed);
             SaveWayPoint;
             if (g_APMapPath <> nil) then
             begin
@@ -2788,7 +2788,7 @@ begin
             // SetLength(g_APMapPath2, 0);
             // g_APStep := -1;
             // g_APLastPoint.X := -1;
-            DScreen.AddChatBoardString('[æŒ‚æœº] åœæ­¢è‡ªåŠ¨æŒ‚æœº...', clWhite, clRed);
+            DScreen.AddChatBoardString('[¹Ò»ú] Í£Ö¹×Ô¶¯¹Ò»ú...', clWhite, clRed);
           end;
           Exit;
         end;
@@ -2797,9 +2797,9 @@ begin
           // if CanNextAction and ServerAcceptNextAction then
           g_gcGeneral[0] := not g_gcGeneral[0];
           if g_gcGeneral[0] then
-            DScreen.AddChatBoardString('[æ˜¾ç¤ºäººç‰©åå­—]', clWhite, clblack)
+            DScreen.AddChatBoardString('[ÏÔÊ¾ÈËÎïÃû×Ö]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[éšè—äººç‰©åå­—]', clWhite, clblack);
+            DScreen.AddChatBoardString('[Òş²ØÈËÎïÃû×Ö]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'ShowActorName', g_gcGeneral[0]);
@@ -2821,7 +2821,7 @@ begin
             g_nAPStatus := -1;
             g_nTargetX := -1;
             g_APGoBack := False;
-            DScreen.AddChatBoardString('[æŒ‚æœº] å¼€å§‹è‡ªåŠ¨æŒ‚æœº...', clWhite, clRed);
+            DScreen.AddChatBoardString('[¹Ò»ú] ¿ªÊ¼×Ô¶¯¹Ò»ú...', clWhite, clRed);
             SaveWayPoint;
             if (g_APMapPath <> nil) then
             begin
@@ -2840,7 +2840,7 @@ begin
             // SetLength(g_APMapPath2, 0);
             // g_APStep := -1;
             // g_APLastPoint.X := -1;
-            DScreen.AddChatBoardString('[æŒ‚æœº] åœæ­¢è‡ªåŠ¨æŒ‚æœº...', clWhite, clRed);
+            DScreen.AddChatBoardString('[¹Ò»ú] Í£Ö¹×Ô¶¯¹Ò»ú...', clWhite, clRed);
           end;
           Exit;
         end;
@@ -2866,9 +2866,9 @@ begin
         begin
           g_gcGeneral[2] := not g_gcGeneral[2];
           if g_gcGeneral[2] then
-            DScreen.AddChatBoardString('[å…Shift å¼€]', clWhite, clblack)
+            DScreen.AddChatBoardString('[ÃâShift ¿ª]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[å…Shift å…³]', clWhite, clblack);
+            DScreen.AddChatBoardString('[ÃâShift ¹Ø]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'AutoAttack', g_gcGeneral[2]);
@@ -2885,9 +2885,9 @@ begin
         begin
           g_gcGeneral[8] := not g_gcGeneral[8];
           if g_gcGeneral[8] then
-            DScreen.AddChatBoardString('[éšè—æ€ªç‰©å°¸ä½“]', clWhite, clblack)
+            DScreen.AddChatBoardString('[Òş²Ø¹ÖÎïÊ¬Ìå]', clWhite, clblack)
           else
-            DScreen.AddChatBoardString('[æ˜¾ç¤ºæ€ªç‰©å°¸ä½“]', clWhite, clblack);
+            DScreen.AddChatBoardString('[ÏÔÊ¾¹ÖÎïÊ¬Ìå]', clWhite, clblack);
           ini := TIniFile.Create('.\Config\' + g_sServerName + '.' +
             frmMain.m_sCharName + '.Set');
           ini.WriteBool('Basic', 'HideDeathBody', g_gcGeneral[2]);
@@ -2960,7 +2960,7 @@ begin
         if g_SendSayListIdx < g_SendSayList.count then
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
-        // FrmDlg.DEdChat.ChangeCurPos(Length(FrmDlg.DEdChat.Text), True);  //ASPä¿®æ”¹
+        // FrmDlg.DEdChat.ChangeCurPos(Length(FrmDlg.DEdChat.Text), True);  //ASPĞŞ¸Ä
         FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end
@@ -2981,7 +2981,7 @@ begin
           FrmDlg.DEdChat.Text := g_SendSayList[g_SendSayListIdx];
         Key := 0;
         FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text), True);
-        // ASPä¿®æ”¹
+        // ASPĞŞ¸Ä
         FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
         FrmDlg.DEdChat.SelLength := 0;
       end
@@ -3034,7 +3034,7 @@ begin
   begin
     IntroScene.m_boOnClick := True;
     IntroScene.m_dwStartTime := GetTickCount + 100;
-    // Exit;  //20200905ä¿®å¤è¾“å…¥è´¦å·éœ€è¦2æ¬¡çš„é—®é¢˜
+    // Exit;  //20200905ĞŞ¸´ÊäÈëÕËºÅĞèÒª2´ÎµÄÎÊÌâ
   end;
   if g_DWinMan.KeyPress(Key) then
     Exit;
@@ -3069,7 +3069,7 @@ begin
           begin
             FrmDlg.DEdChat.Text := '!~';
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASPä¿®æ”¹
+              True); // ASPĞŞ¸Ä
             FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end
@@ -3092,7 +3092,7 @@ begin
             else
               FrmDlg.DEdChat.Text := Key;
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASPä¿®æ”¹
+              True); // ASPĞŞ¸Ä
             FrmDlg.DEdChat.SelStart := AnsiTextLength(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end
@@ -3101,7 +3101,7 @@ begin
             FrmDlg.DEdChat.Text := Key;
             // FrmDlg.DEdChat.SelStart := 1;
             FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-              True); // ASPä¿®æ”¹
+              True); // ASPĞŞ¸Ä
             FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
             FrmDlg.DEdChat.SelLength := 0;
           end;
@@ -3192,7 +3192,7 @@ begin
       end;
 
       if pcm.Def.wMagicid = 26 then
-      begin // çƒˆç«æ—¶é—´é—´éš”
+      begin // ÁÒ»ğÊ±¼ä¼ä¸ô
         if g_boNextTimeFireHit or (GetTickCount - g_dwLatestFireHitTick <= 10 *
           1000) then
           Exit;
@@ -3216,7 +3216,7 @@ begin
           Exit;
       end;
       if (pcm.Def.wMagicid in [27]) then
-      begin // é‡è›®æ—¶é—´é—´éš”
+      begin // Ò°ÂùÊ±¼ä¼ä¸ô
         if (GetTickCount - g_dwLatestRushRushTick <= 3 * 1000) then
           Exit;
       end;
@@ -3377,7 +3377,7 @@ begin
           if GetTickCount - g_dwOverSpaceWarningTick > 1000 then
           begin
             g_dwOverSpaceWarningTick := GetTickCount;
-            DScreen.AddSysMsg('ç›®æ ‡å¤ªè¿œäº†ï¼Œæ–½å±•é­”æ³•å¤±è´¥ï¼ï¼ï¼');
+            DScreen.AddSysMsg('Ä¿±êÌ«Ô¶ÁË£¬Ê©Õ¹Ä§·¨Ê§°Ü£¡£¡£¡');
           end;
           g_PlayScene.ProcMagic.nTargetX := -1;
         end;
@@ -3420,14 +3420,14 @@ begin
       if GetTickCount - g_IPointLessHintTick > 5000 then
       begin
         g_IPointLessHintTick := GetTickCount;
-        DScreen.AddSysMsg(Format('éœ€è¦ %d å†…åŠ›å€¼æ‰èƒ½é‡Šæ”¾ %s',
+        DScreen.AddSysMsg(Format('ĞèÒª %d ÄÚÁ¦Öµ²ÅÄÜÊÍ·Å %s',
           [SpellSpend, pcm.Def.sMagicName]));
       end;
     end
     else if GetTickCount - g_MPLessHintTick > 1000 then
     begin
       g_MPLessHintTick := GetTickCount;
-      DScreen.AddSysMsg(Format('éœ€è¦ %d é­”æ³•å€¼æ‰èƒ½é‡Šæ”¾ %s',
+      DScreen.AddSysMsg(Format('ĞèÒª %d Ä§·¨Öµ²ÅÄÜÊÍ·Å %s',
         [SpellSpend, pcm.Def.sMagicName]));
     end;
   end;
@@ -3541,7 +3541,7 @@ begin
         00:
           case g_ItemArr[i].S.Shape of
             0:
-              begin // æ™®é€šè¯
+              begin // ÆÕÍ¨Ò©
                 if g_gcProtect[0] and (g_ItemArr[i].S.AC > 0) and
                   (g_ItemArr[i].S.AC < MaxHP) then
                 begin
@@ -3556,7 +3556,7 @@ begin
                 end;
               end;
             1:
-              begin // é€Ÿæ•ˆè¯
+              begin // ËÙĞ§Ò©
                 if g_gcProtect[3] and (g_ItemArr[i].S.AC > 0) and
                   (g_ItemArr[i].S.AC < MaxSP) then
                 begin
@@ -3586,7 +3586,7 @@ begin
           else
             if g_gcProtect[5] and
               (CompareText(g_ItemArr[i].S.Name,
-              g_sRenewBooks[g_gnProtectPercent[6]] + 'åŒ…') = 0) then
+              g_sRenewBooks[g_gnProtectPercent[6]] + '°ü') = 0) then
               ubidx := i;
           end;
       end;
@@ -3626,8 +3626,8 @@ begin
           bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString('ä½ çš„é‡‘åˆ›è¯å·²ç»ç”¨å®Œï¼', clWhite, clBlue);
-            DScreen.AddSysMsgCenter('ä½ çš„é‡‘åˆ›è¯å·²ç»ç”¨å®Œï¼', clLime, clblack, 10);
+            // DScreen.AddChatBoardString('ÄãµÄ½ğ´´Ò©ÒÑ¾­ÓÃÍê£¡', clWhite, clBlue);
+            DScreen.AddSysMsgCenter('ÄãµÄ½ğ´´Ò©ÒÑ¾­ÓÃÍê£¡', clLime, clblack, 10);
           bEatOK := False;
         end;
       end;
@@ -3657,8 +3657,8 @@ begin
             bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString('ä½ çš„é­”æ³•è¯å·²ç»ç”¨å®Œï¼', clWhite, clBlue);
-            DScreen.AddSysMsgCenter('ä½ çš„é­”æ³•è¯å·²ç»ç”¨å®Œï¼', clLime, clblack, 10);
+            // DScreen.AddChatBoardString('ÄãµÄÄ§·¨Ò©ÒÑ¾­ÓÃÍê£¡', clWhite, clBlue);
+            DScreen.AddSysMsgCenter('ÄãµÄÄ§·¨Ò©ÒÑ¾­ÓÃÍê£¡', clLime, clblack, 10);
           bEatOK := False;
         end;
       end;
@@ -3678,8 +3678,8 @@ begin
         else if (nCount > 4) and (usidx > -1) then
           EatItem(usidx)
         else if bHint { and not bSH } then
-          // DScreen.AddChatBoardString('ä½ çš„ç‰¹æ®Šè¯å“å·²ç»ç”¨å®Œï¼', clWhite, clBlue);
-          DScreen.AddSysMsgCenter('ä½ çš„ç‰¹æ®Šè¯å“å·²ç»ç”¨å®Œï¼', clLime, clblack, 10);
+          // DScreen.AddChatBoardString('ÄãµÄÌØÊâÒ©Æ·ÒÑ¾­ÓÃÍê£¡', clWhite, clBlue);
+          DScreen.AddSysMsgCenter('ÄãµÄÌØÊâÒ©Æ·ÒÑ¾­ÓÃÍê£¡', clLime, clblack, 10);
       end;
     end;
   end;
@@ -3694,9 +3694,9 @@ begin
       else if (nCount > 4) and (ubidx > -1) then
         EatItem(ubidx)
       else if bHint { and not bSH } then
-        // DScreen.AddChatBoardString('ä½ çš„' + g_sRenewBooks[g_gnProtectPercent[6]] + 'å·²ç»ç”¨å®Œï¼', clWhite, clBlue);
-        DScreen.AddSysMsgCenter('ä½ çš„' + g_sRenewBooks[g_gnProtectPercent[6]] +
-          'å·²ç»ç”¨å®Œï¼', clLime, clblack, 10);
+        // DScreen.AddChatBoardString('ÄãµÄ' + g_sRenewBooks[g_gnProtectPercent[6]] + 'ÒÑ¾­ÓÃÍê£¡', clWhite, clBlue);
+        DScreen.AddSysMsgCenter('ÄãµÄ' + g_sRenewBooks[g_gnProtectPercent[6]] +
+          'ÒÑ¾­ÓÃÍê£¡', clLime, clblack, 10);
     end;
   end;
 end;
@@ -3727,7 +3727,7 @@ begin
         00:
           case g_HeroItemArr[i].S.Shape of
             0:
-              begin // æ™®é€šè¯
+              begin // ÆÕÍ¨Ò©
                 if (g_HeroItemArr[i].S.AC > 0) and
                   (g_HeroItemArr[i].S.AC < MaxHP) then
                 begin
@@ -3742,7 +3742,7 @@ begin
                 end;
               end;
             1:
-              begin // é€Ÿæ•ˆè¯
+              begin // ËÙĞ§Ò©
                 if (g_HeroItemArr[i].S.AC > 0) and
                   (g_HeroItemArr[i].S.AC < MaxSP) then
                 begin
@@ -3798,8 +3798,8 @@ begin
           bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString(Format('è‹±é›„[%s]çš„é‡‘åˆ›è¯å·²ç»ç”¨å®Œï¼', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-            DScreen.AddSysMsgCenter(Format('è‹±é›„[%s]çš„é‡‘åˆ›è¯å·²ç»ç”¨å®Œï¼',
+            // DScreen.AddChatBoardString(Format('Ó¢ĞÛ[%s]µÄ½ğ´´Ò©ÒÑ¾­ÓÃÍê£¡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+            DScreen.AddSysMsgCenter(Format('Ó¢ĞÛ[%s]µÄ½ğ´´Ò©ÒÑ¾­ÓÃÍê£¡',
               [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
           bEatOK := False;
         end;
@@ -3831,8 +3831,8 @@ begin
             bEatSp := True;
           bSH := True;
           if bHint then
-            // DScreen.AddChatBoardString(Format('è‹±é›„[%s]çš„é­”æ³•è¯å·²ç»ç”¨å®Œï¼', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-            DScreen.AddSysMsgCenter(Format('è‹±é›„[%s]çš„é­”æ³•è¯å·²ç»ç”¨å®Œï¼',
+            // DScreen.AddChatBoardString(Format('Ó¢ĞÛ[%s]µÄÄ§·¨Ò©ÒÑ¾­ÓÃÍê£¡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+            DScreen.AddSysMsgCenter(Format('Ó¢ĞÛ[%s]µÄÄ§·¨Ò©ÒÑ¾­ÓÃÍê£¡',
               [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
           bEatOK := False;
         end;
@@ -3855,8 +3855,8 @@ begin
         else if (nCount > 4) and (usidx > -1) then
           HeroEatItem(usidx)
         else if bHint { and not bSH } then
-          // DScreen.AddChatBoardString(Format('è‹±é›„[%s]çš„ç‰¹æ®Šè¯å“å·²ç»ç”¨å®Œï¼', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
-          DScreen.AddSysMsgCenter(Format('è‹±é›„[%s]çš„ç‰¹æ®Šè¯å“å·²ç»ç”¨å®Œï¼',
+          // DScreen.AddChatBoardString(Format('Ó¢ĞÛ[%s]µÄÌØÊâÒ©Æ·ÒÑ¾­ÓÃÍê£¡', [g_MySelf.m_HeroObject.m_sUserName]), clWhite, clBlue);
+          DScreen.AddSysMsgCenter(Format('Ó¢ĞÛ[%s]µÄÌØÊâÒ©Æ·ÒÑ¾­ÓÃÍê£¡',
             [g_MySelf.m_HeroObject.m_sUserName]), clLime, clblack, 10);
       end;
     end;
@@ -3895,7 +3895,7 @@ begin
   AutoUnBindItem(nType, sItem);
 end;
 
-procedure TfrmMain.AutoUnBindItem(nType: Integer; sItem: string);  //20201003åƒè¯BUG
+procedure TfrmMain.AutoUnBindItem(nType: Integer; sItem: string);  //20201003³ÔÒ©BUG
 var
   i, n, idx: Integer;
   boUnBindAble: Boolean;
@@ -3975,12 +3975,12 @@ var
   i: Integer;
 begin
   Result := False;
-  if (Str = 'å°é€€') and (g_MySelf.m_nHiterCode > 0) then
+  if (Str = 'Ğ¡ÍË') and (g_MySelf.m_nHiterCode > 0) then
   begin
     AppLogoutEx();
     Exit;
   end;
-  if (Str = 'å¤§é€€') and (g_MySelf.m_nHiterCode > 0) then
+  if (Str = '´óÍË') and (g_MySelf.m_nHiterCode > 0) then
   begin
     DScreen.ClearHint;
     Application.Terminate;
@@ -4147,8 +4147,8 @@ begin
       end;
       if (g_EatingItem.S.StdMode = 4) and (g_EatingItem.S.Shape < 50) then
       begin
-        if mrYes <> FrmDlg.DMessageDlg('æ˜¯å¦ç¡®è®¤å¼€å§‹ç»ƒä¹  "' + g_EatingItem.S.Name +
-          '"ï¼Ÿ', [mbYes, mbNo]) then
+        if mrYes <> FrmDlg.DMessageDlg('ÊÇ·ñÈ·ÈÏ¿ªÊ¼Á·Ï° "' + g_EatingItem.S.Name +
+          '"£¿', [mbYes, mbNo]) then
         begin
           AddItemBag(g_EatingItem);
           Exit;
@@ -4349,7 +4349,7 @@ begin
       if (g_EatingItem.S.StdMode = 4) and (g_EatingItem.S.Shape < 50) then
       begin
         if mrYes <> FrmDlg.DMessageDlg
-          (Format('è‹±é›„[%s]æ˜¯å¦ç¡®è®¤å¼€å§‹ç»ƒä¹  "' + g_EatingItem.S.Name + '"ï¼Ÿ',
+          (Format('Ó¢ĞÛ[%s]ÊÇ·ñÈ·ÈÏ¿ªÊ¼Á·Ï° "' + g_EatingItem.S.Name + '"£¿',
           [g_MySelf.m_HeroObject.m_sUserName]), [mbYes, mbNo]) then
         begin
           HeroAddItemBag(g_EatingItem);
@@ -4978,7 +4978,7 @@ begin
     begin
       g_boAPAutoMove := False;
       if g_APTagget <> nil then
-        g_sAPStr := Format('[æŒ‚æœº] æ€ªç‰©ç›®æ ‡ï¼š%s (%d,%d) æ­£åœ¨ä½¿ç”¨æ™®é€šæ”»å‡»',
+        g_sAPStr := Format('[¹Ò»ú] ¹ÖÎïÄ¿±ê£º%s (%d,%d) ÕıÔÚÊ¹ÓÃÆÕÍ¨¹¥»÷',
           [g_APTagget.m_sUserName, g_APTagget.m_nCurrX, g_APTagget.m_nCurrY]);
     end;
 
@@ -5190,7 +5190,7 @@ begin
         g_dwLastAttackTick := GetTickCount;
       end
       else if g_boAutoLongAttack and g_gcTec[10] and TimerAutoPlay.Enabled then
-      begin // èµ°åˆºæ€ä½
+      begin // ×ß´ÌÉ±Î»
         Result := True;
         Exit;
       end;
@@ -5218,7 +5218,7 @@ begin
     begin
       g_boAPAutoMove := True;
       if target <> nil then
-        g_sAPStr := Format('[æŒ‚æœº] æ€ªç‰©ç›®æ ‡ï¼š%s (%d,%d) æ­£åœ¨è·‘å‘',
+        g_sAPStr := Format('[¹Ò»ú] ¹ÖÎïÄ¿±ê£º%s (%d,%d) ÕıÔÚÅÜÏò',
           [target.m_sUserName, target.m_nCurrX, target.m_nCurrY]);
     end;
   end;
@@ -5251,16 +5251,16 @@ begin
       not g_RareBoxWindow.m_boRareBoxShow and (FrmDlg.DWBoxBKGnd.Visible) then
     begin
       AddItemBag(g_OpenBoxItem.Item, g_OpenBoxItem.Index);
-      DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + 'è¢«å‘ç°');
+      DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '±»·¢ÏÖ');
       g_OpenBoxItem.Item.S.Name := '';
       FrmDlg.DWBoxBKGnd.Visible := False;
     end;
     if (Button = mbRight) and g_boItemMoving then
-    begin // å½“å‰æ˜¯å¦åœ¨ç§»åŠ¨ç‰©å“
+    begin // µ±Ç°ÊÇ·ñÔÚÒÆ¶¯ÎïÆ·
       FrmDlg.CancelItemMoving;
       Exit;
     end;
-    if g_DWinMan.MouseDown(Button, Shift, X, Y) then // é¼ æ ‡ç§»åˆ°çª—å£ä¸Šäº†åˆ™è·³è¿‡
+    if g_DWinMan.MouseDown(Button, Shift, X, Y) then // Êó±êÒÆµ½´°¿ÚÉÏÁËÔòÌø¹ı
       Exit;
   end;
   if (g_MySelf = nil) or (DScreen.CurrentScene <> g_PlayScene) then
@@ -5319,13 +5319,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('è‡ªåŠ¨ç§»åŠ¨è‡³åæ ‡(%d:%d)ï¼Œç‚¹å‡»é¼ æ ‡ä»»æ„é”®åœæ­¢â€¦â€¦', [g_MySelf.m_nTagX,
+                    (Format('×Ô¶¯ÒÆ¶¯ÖÁ×ø±ê(%d:%d)£¬µã»÷Êó±êÈÎÒâ¼üÍ£Ö¹¡­¡­', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('è‡ªåŠ¨ç§»åŠ¨åæ ‡ç‚¹(%d:%d)ä¸å¯åˆ°è¾¾',
+                  DScreen.AddChatBoardString(Format('×Ô¶¯ÒÆ¶¯×ø±êµã(%d:%d)²»¿Éµ½´ï',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -5379,7 +5379,7 @@ begin
           TimerAutoMove.Enabled := False;
           SetLength(g_MapPath, 0);
           g_MapPath := nil;
-          DScreen.AddChatBoardString('åœæ­¢è‡ªåŠ¨ç§»åŠ¨', GetRGB(5), clWhite);
+          DScreen.AddChatBoardString('Í£Ö¹×Ô¶¯ÒÆ¶¯', GetRGB(5), clWhite);
         end;
       end;
       if Shift = [ssRight] then
@@ -5413,7 +5413,7 @@ begin
               FrmDlg.DEdChat.SetFocus;
               FrmDlg.DEdChat.Text := '/' + target.m_sUserName + ' ';
               FrmDlg.DEdChat.ChangeCurPos(AnsiTextLength(FrmDlg.DEdChat.Text),
-                True); // ASPä¿®æ”¹
+                True); // ASPĞŞ¸Ä
               FrmDlg.DEdChat.SelStart := Length(FrmDlg.DEdChat.Text);
               FrmDlg.DEdChat.SelLength := 0;
               Exit;
@@ -5441,11 +5441,11 @@ begin
       end;
     end;
     g_PlayScene.CXYfromMouseXY(X, Y, g_nMouseCurrX, g_nMouseCurrY);
-    // æŒ‰é¼ æ ‡å³é”®ï¼Œå¹¶ä¸”é¼ æ ‡æŒ‡å‘ç©ºä½ç½®
+    // °´Êó±êÓÒ¼ü£¬²¢ÇÒÊó±êÖ¸Ïò¿ÕÎ»ÖÃ
 
     if (abs(g_MySelf.m_nCurrX - g_nMouseCurrX) <= 1) and
       (abs(g_MySelf.m_nCurrY - g_nMouseCurrY) <= 1) then
-    begin // ç›®æ ‡åº§æ ‡
+    begin // Ä¿±ê×ù±ê
       if boClick then
       begin
         tdir := GetNextDirection(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY,
@@ -5519,7 +5519,7 @@ begin
         TimerAutoMove.Enabled := False;
         SetLength(g_MapPath, 0);
         g_MapPath := nil;
-        DScreen.AddChatBoardString('åœæ­¢è‡ªåŠ¨ç§»åŠ¨', GetRGB(5), clWhite);
+        DScreen.AddChatBoardString('Í£Ö¹×Ô¶¯ÒÆ¶¯', GetRGB(5), clWhite);
       end;
     end;
     target := nil;
@@ -5617,7 +5617,7 @@ begin
           end;
         end
         else
-        begin // éª‘é©¬ä¸å…è®¸æ“ä½œ
+        begin // ÆïÂí²»ÔÊĞí²Ù×÷
           if (g_MySelf.m_btHorse = 0) then
           begin
             tdir := GetNextDirection(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY,
@@ -5708,7 +5708,7 @@ begin
           end;
         end
         else if GetTickCount - g_dwLastAttackTick > 900 then
-        begin // æœ€åæ”»å‡»æ“ä½œåœç•™æŒ‡å®šæ—¶é—´æ‰èƒ½ç§»åŠ¨
+        begin // ×îºó¹¥»÷²Ù×÷Í£ÁôÖ¸¶¨Ê±¼ä²ÅÄÜÒÆ¶¯
           if ssCtrl in Shift then
           begin
             //
@@ -5746,13 +5746,13 @@ procedure TfrmMain.FormActivate(Sender: TObject);
 begin
   if not g_UIInitialized then
   begin
-    ConsoleDebug('InitWMImagesLibåˆå§‹åŒ–æˆåŠŸ');
+    ConsoleDebug('InitWMImagesLib³õÊ¼»¯³É¹¦');
     DScreen.Initialize;
-    ConsoleDebug('DScreenåˆå§‹åŒ–æˆåŠŸ');
+    ConsoleDebug('DScreen³õÊ¼»¯³É¹¦');
     FrmDlg.Initialize(True);
-    ConsoleDebug('FrmDlgåˆå§‹åŒ–æˆåŠŸ');
+    ConsoleDebug('FrmDlg³õÊ¼»¯³É¹¦');
     g_PlayScene.Initialize;
-    ConsoleDebug('PlaySceneåˆå§‹åŒ–æˆåŠŸ');
+    ConsoleDebug('PlayScene³õÊ¼»¯³É¹¦');
     FrmDlg.InitializeNext();
 
     g_UIInitialized := True;
@@ -5799,7 +5799,7 @@ begin
           if g_UseItems[i].Dura < 1500 then
           begin
             if g_gcGeneral[1] then
-              DScreen.AddSysMsgCenter(Format('ä½ çš„[%s]æŒä¹…å·²åˆ°åº•é™ï¼Œè¯·åŠæ—¶ä¿®ç†ï¼',
+              DScreen.AddSysMsgCenter(Format('ÄãµÄ[%s]³Ö¾ÃÒÑµ½µ×ÏŞ£¬Çë¼°Ê±ĞŞÀí£¡',
                 [g_UseItems[i].S.Name]), clLime, clblack, 10);
             if g_gcGeneral[9] then
             begin
@@ -5821,7 +5821,7 @@ begin
               end
               else
               begin
-                DScreen.AddSysMsgCenter(Format('ä½ çš„ä¿®å¤ç¥æ°´å·²ç»ç”¨å®Œï¼Œè¯·åŠæ—¶è¡¥å……ï¼',
+                DScreen.AddSysMsgCenter(Format('ÄãµÄĞŞ¸´ÉñË®ÒÑ¾­ÓÃÍê£¬Çë¼°Ê±²¹³ä£¡',
                   [g_UseItems[i].S.Name]), clLime, clblack, 10);
               end;
             end;
@@ -5842,7 +5842,7 @@ begin
           if g_HeroUseItems[i].Dura < 1500 then
           begin
             if g_gcGeneral[1] then
-              DScreen.AddSysMsgCenter(Format('(è‹±é›„) ä½ çš„[%s]æŒä¹…å·²åˆ°åº•é™ï¼Œè¯·åŠæ—¶ä¿®ç†ï¼',
+              DScreen.AddSysMsgCenter(Format('(Ó¢ĞÛ) ÄãµÄ[%s]³Ö¾ÃÒÑµ½µ×ÏŞ£¬Çë¼°Ê±ĞŞÀí£¡',
                 [g_HeroUseItems[i].S.Name]), clLime, clblack, 10);
             if g_gcGeneral[9] then
             begin
@@ -5864,7 +5864,7 @@ begin
               end
               else
               begin
-                DScreen.AddSysMsgCenter(Format('(è‹±é›„) ä½ çš„ä¿®å¤ç¥æ°´å·²ç»ç”¨å®Œï¼Œè¯·åŠæ—¶è¡¥å……ï¼',
+                DScreen.AddSysMsgCenter(Format('(Ó¢ĞÛ) ÄãµÄĞŞ¸´ÉñË®ÒÑ¾­ÓÃÍê£¬Çë¼°Ê±²¹³ä£¡',
                   [g_HeroUseItems[i].S.Name]), clLime, clblack, 10);
               end;
             end;
@@ -5983,7 +5983,7 @@ begin
     end;
   end;
 
-  // åŠ¨è‡ªæ¡å–
+  // ¶¯×Ô¼ñÈ¡
   if g_boAutoPickUp and (g_MySelf <> nil) and
     (((GetTickCount() - g_dwAutoPickupTick) > g_dwAutoPickupTime)
     { or g_boQuickPickup } ) then
@@ -6517,7 +6517,7 @@ end;
 procedure TfrmMain.CSocketConnect(Sender: TObject; Socket: TCustomWinSocket);
 begin
   g_boServerConnected := True;
-  ConsoleDebug('CSocketè¿æ¥æˆåŠŸ');
+  ConsoleDebug('CSocketÁ¬½Ó³É¹¦');
   if g_ConnectionStep = cnsLogin { cnsIntro } then
   begin
     DScreen.ChangeScene(stLogin);
@@ -6571,11 +6571,11 @@ end;
 
 procedure TfrmMain.CSocketDisconnect(Sender: TObject; Socket: TCustomWinSocket);
 begin
-  ConsoleDebug('CSocketè¿æ¥æ–­å¼€');
+  ConsoleDebug('CSocketÁ¬½Ó¶Ï¿ª');
   g_boServerConnected := False;
   if (DScreen.CurrentScene = LoginScene) and not g_boSendLogin then
   begin
-    FrmDlg.DMessageDlg('æ¸¸æˆè¿æ¥å·²å…³é—­...', [mbOk]);
+    FrmDlg.DMessageDlg('ÓÎÏ·Á¬½ÓÒÑ¹Ø±Õ...', [mbOk]);
     Close;
   end;
 end;
@@ -6583,7 +6583,7 @@ end;
 procedure TfrmMain.CSocketError(Sender: TObject; Socket: TCustomWinSocket;
   ErrorEvent: TErrorEvent; var ErrorCode: Integer);
 begin
-  ConsoleDebug('CSocketè¿æ¥é”™è¯¯');
+  ConsoleDebug('CSocketÁ¬½Ó´íÎó');
   ErrorCode := 0;
   Socket.Close;
 end;
@@ -6665,7 +6665,7 @@ begin
   SendSocket(EncodeMessage(msg) + EncodeString(sPlayer + '/' + sItemName));
 end;
 
-// å‘é€è´¦å·ä¸å¯†ç 
+// ·¢ËÍÕËºÅÓëÃÜÂë
 procedure TfrmMain.SendLogin(uid, passwd: string);
 var
   ss: string;
@@ -6676,11 +6676,11 @@ begin
   LoginPasswd := passwd;
   msg := MakeDefaultMsg(CM_IDPASSWORD, 0, 0, 0, 0);
   SendSocket(EncodeMessage(msg) + EncodeString(uid + '/' + passwd));
-  // 20090309 å¢åŠ æœåŠ¡å
+  // 20090309 Ôö¼Ó·şÎñÃû
   g_boSendLogin := True;
 end;
 
-procedure TfrmMain.SendNewAccount(ue: TUserEntryA); // åˆ›å»ºå¸å·
+procedure TfrmMain.SendNewAccount(ue: TUserEntryA); // ´´½¨ÕÊºÅ
 var
   msg: TDefaultMessage;
 begin
@@ -6698,7 +6698,7 @@ begin
     SizeOf(TClientBuildAcus)));
 end;
 
-procedure TfrmMain.SendSelectServer(svname: string); // ç‚¹æœåŠ¡å™¨å
+procedure TfrmMain.SendSelectServer(svname: string); // µã·şÎñÆ÷Ãû
 var
   msg: TDefaultMessage;
 begin
@@ -6706,7 +6706,7 @@ begin
   SendSocket(EncodeMessage(msg) + EncodeString(svname));
 end;
 
-procedure TfrmMain.SendChgPw(ID, passwd, newpasswd: string); // ä¿®æ”¹å¯†ç 
+procedure TfrmMain.SendChgPw(ID, passwd, newpasswd: string); // ĞŞ¸ÄÃÜÂë
 var
   msg: TDefaultMessage;
 begin
@@ -6855,13 +6855,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('è‡ªåŠ¨ç§»åŠ¨è‡³åæ ‡(%d:%d)ï¼Œç‚¹å‡»é¼ æ ‡ä»»æ„é”®åœæ­¢â€¦â€¦', [g_MySelf.m_nTagX,
+                    (Format('×Ô¶¯ÒÆ¶¯ÖÁ×ø±ê(%d:%d)£¬µã»÷Êó±êÈÎÒâ¼üÍ£Ö¹¡­¡­', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('è‡ªåŠ¨ç§»åŠ¨åæ ‡ç‚¹(%d:%d)ä¸å¯åˆ°è¾¾',
+                  DScreen.AddChatBoardString(Format('×Ô¶¯ÒÆ¶¯×ø±êµã(%d:%d)²»¿Éµ½´ï',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -7151,8 +7151,8 @@ begin
         begin
           if (sM <> '') and (CompareText(g_sMapTitle, sM) <> 0) then
           begin
-            // è‡ªåŠ¨ç§»åŠ¨
-            DScreen.AddChatBoardString(Format('åˆ°è¾¾ %s ä¹‹åæ‰èƒ½ä½¿ç”¨è‡ªåŠ¨èµ°è·¯', [sM]),
+            // ×Ô¶¯ÒÆ¶¯
+            DScreen.AddChatBoardString(Format('µ½´ï %s Ö®ºó²ÅÄÜÊ¹ÓÃ×Ô¶¯×ßÂ·', [sM]),
               clBlue, clWhite);
             Exit;
           end;
@@ -7177,13 +7177,13 @@ begin
                   g_MoveStep := 1;
                   TimerAutoMove.Enabled := True;
                   DScreen.AddChatBoardString
-                    (Format('è‡ªåŠ¨ç§»åŠ¨è‡³åæ ‡(%d:%d)ï¼Œç‚¹å‡»é¼ æ ‡ä»»æ„é”®åœæ­¢â€¦â€¦', [g_MySelf.m_nTagX,
+                    (Format('×Ô¶¯ÒÆ¶¯ÖÁ×ø±ê(%d:%d)£¬µã»÷Êó±êÈÎÒâ¼üÍ£Ö¹¡­¡­', [g_MySelf.m_nTagX,
                     g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                 end
                 else
                 begin
                   TimerAutoMove.Enabled := False;
-                  DScreen.AddChatBoardString(Format('è‡ªåŠ¨ç§»åŠ¨åæ ‡ç‚¹(%d:%d)ä¸å¯åˆ°è¾¾',
+                  DScreen.AddChatBoardString(Format('×Ô¶¯ÒÆ¶¯×ø±êµã(%d:%d)²»¿Éµ½´ï',
                     [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
                   g_MySelf.m_nTagX := 0;
                   g_MySelf.m_nTagY := 0;
@@ -7200,23 +7200,23 @@ begin
     if (rstr[1] = '@') and (rstr[2] = '@') then
     begin
       if CompareText(rstr, '@@buildguildnow') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥è¡Œä¼šåç§°ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëĞĞ»áÃû³Æ£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@ybbuylf') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥è¦å…‘æ¢çš„çµç¬¦æ•°é‡(1~1000)ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÒª¶Ò»»µÄÁé·ûÊıÁ¿(1~1000)£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@givezhh') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥ä½ æƒ³èµ ç»™çš„è§’è‰²åå­—ä»¥åŠæ•°é‡ï¼Œä¸­é—´ç”¨ç©ºæ ¼åˆ†éš”ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÄãÏëÔù¸øµÄ½ÇÉ«Ãû×ÖÒÔ¼°ÊıÁ¿£¬ÖĞ¼äÓÃ¿Õ¸ñ·Ö¸ô£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@kachu_M2') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥ä½ è¦å¼€é™¤çš„å¾’å¼Ÿçš„è§’è‰²åï¼ˆè‹¥å«æœ‰è‹±æ–‡å­—ç¬¦è¯·åŒºåˆ†å¤§å°å†™ï¼‰ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÄãÒª¿ª³ıµÄÍ½µÜµÄ½ÇÉ«Ãû£¨Èôº¬ÓĞÓ¢ÎÄ×Ö·ûÇëÇø·Ö´óĞ¡Ğ´£©£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@sdmarry') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥ä½ æ±‚å©šå¯¹è±¡çš„è§’è‰²åï¼ˆè‹¥å«æœ‰è‹±æ–‡å­—ç¬¦è¯·åŒºåˆ†å¤§å°å†™ï¼‰ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÄãÇó»é¶ÔÏóµÄ½ÇÉ«Ãû£¨Èôº¬ÓĞÓ¢ÎÄ×Ö·ûÇëÇø·Ö´óĞ¡Ğ´£©£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@dealybme') = 0 then
         FrmDlg.QueryYbSell()
       else if CompareText(rstr, '@@BuHero') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥è‹±é›„çš„åå­—ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÓ¢ĞÛµÄÃû×Ö£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@BuHeroEx') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥è‹±é›„çš„åå­—ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÓ¢ĞÛµÄÃû×Ö£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@BuHeroEx') = 0 then
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥è‹±é›„çš„åå­—ï¼š', [mbOk, mbAbort])
+        FrmDlg.DMessageDlg('ÇëÊäÈëÓ¢ĞÛµÄÃû×Ö£º', [mbOk, mbAbort])
       else if CompareText(rstr, '@@TreasureIdentify') = 0 then
       begin
         FrmDlg.OpenDBTI();
@@ -7224,7 +7224,7 @@ begin
       else if CompareText(rstr, '@@ExchangeBook') = 0 then
       begin
         FrmDlg.ShowMDlg(0, '',
-          'è¯·æŠŠä½ è¦æ¢æˆå·è½´ç¢ç‰‡çš„è£…å¤‡æ”¾åœ¨ä¸‹é¢çš„ç‰©å“æ ä¸­ï¼Œæˆ‘ä¼šå¸®ä½ è®¡ç®—\ä½ å¯ä»¥æ¢å–å¤šå°‘ä¸ªå·è½´ç¢ç‰‡ã€‚\ \<è¿”å›/@back>\<å…³é—­/@exit>');
+          'Çë°ÑÄãÒª»»³É¾íÖáËéÆ¬µÄ×°±¸·ÅÔÚÏÂÃæµÄÎïÆ·À¸ÖĞ£¬ÎÒ»á°ïÄã¼ÆËã\Äã¿ÉÒÔ»»È¡¶àÉÙ¸ö¾íÖáËéÆ¬¡£\ \<·µ»Ø/@back>\<¹Ø±Õ/@exit>');
         frmMain.ClientGetSendUserExchgBook(g_nCurMerchant);
       end
       else if CompareText(rstr, '@@SecretProperty') = 0 then
@@ -7232,7 +7232,7 @@ begin
         FrmDlg.OpenDBSP();
       end
       else
-        FrmDlg.DMessageDlg('è¯·è¾“å…¥ä¿¡æ¯ï¼š', [mbOk, mbAbort]);
+        FrmDlg.DMessageDlg('ÇëÊäÈëĞÅÏ¢£º', [mbOk, mbAbort]);
       param := Trim(FrmDlg.DlgEditText);
       rstr := rstr + #13 + param;
     end;
@@ -7651,7 +7651,7 @@ begin
     if GetTickCount - g_IPointLessHintTick > 10000 then
     begin
       g_IPointLessHintTick := GetTickCount;
-      DScreen.AddSysMsg('å†…åŠ›å€¼ä¸è¶³...');
+      DScreen.AddSysMsg('ÄÚÁ¦Öµ²»×ã...');
     end;
     Exit;
   end;
@@ -7703,7 +7703,7 @@ begin
   else
     Result := False;
 end;
-// æ˜¯å¦å¯ä»¥æ”»å‡»ï¼Œæ§åˆ¶æ”»å‡»é€Ÿåº¦
+// ÊÇ·ñ¿ÉÒÔ¹¥»÷£¬¿ØÖÆ¹¥»÷ËÙ¶È
 
 function TfrmMain.CanNextHit(settime: Boolean): Boolean;
 var
@@ -7722,7 +7722,7 @@ begin
   begin
     if g_MySelf.m_boAttackSlow then
       NextHitTime := g_nHitTime { 1400 } - LevelFastTime + 1500 - g_HitSpeedRate
-        * 20 // è…•åŠ›è¶…è¿‡æ—¶ï¼Œå‡æ…¢æ”»å‡»é€Ÿåº¦
+        * 20 // ÍóÁ¦³¬¹ıÊ±£¬¼õÂı¹¥»÷ËÙ¶È
     else
       NextHitTime := g_nHitTime { 1400 } - LevelFastTime - g_HitSpeedRate * 20;
   end
@@ -7759,7 +7759,7 @@ end;
 
 function TfrmMain.IsUnLockAction( { Action, adir: Integer } ): Boolean;
 begin
-  if ActionFailLock then // å¦‚æœæ“ä½œè¢«é”å®šï¼Œåˆ™åœ¨æŒ‡å®šæ—¶é—´åè§£é”
+  if ActionFailLock then // Èç¹û²Ù×÷±»Ëø¶¨£¬ÔòÔÚÖ¸¶¨Ê±¼äºó½âËø
     if Integer(GetTickCount - ActionFailLockTime) >= 1000 then // blue 1000
       ActionFailLock := False;
   if (ActionFailLock) or (g_boMapMoving) or (g_boServerChanging) then
@@ -7792,7 +7792,7 @@ begin
     Inc(g_nTimeFakeDetectCount);
     if g_nTimeFakeDetectCount > 6 then begin
     Str := 'Bad';
-    FrmDlg.DMessageDlg('ç³»ç»Ÿä¸ç¨³å®šæˆ–ç½‘ç»œçŠ¶æ€æå·®ï¼Œæ¸¸æˆè¢«ä¸­æ­¢\' + 'å¦‚æœ‰é—®é¢˜è¯·è”ç³»æ¸¸æˆç®¡ç†å‘˜', [mbOk]);
+    FrmDlg.DMessageDlg('ÏµÍ³²»ÎÈ¶¨»òÍøÂç×´Ì¬¼«²î£¬ÓÎÏ·±»ÖĞÖ¹\' + 'ÈçÓĞÎÊÌâÇëÁªÏµÓÎÏ·¹ÜÀíÔ±', [mbOk]);
     frmMain.Close;
     end;
     end else begin
@@ -7829,7 +7829,7 @@ begin
           g_MySelf.m_nTagX := 0;
           g_MySelf.m_nTagY := 0;
           TimerAutoMove.Enabled := False;
-          DScreen.AddChatBoardString(Format('è‡ªåŠ¨ç§»åŠ¨ç›®æ ‡(%d:%d)è¢«å æ®ï¼Œä¸å¯åˆ°è¾¾',
+          DScreen.AddChatBoardString(Format('×Ô¶¯ÒÆ¶¯Ä¿±ê(%d:%d)±»Õ¼¾İ£¬²»¿Éµ½´ï',
             [g_MySelf.m_nTagX, g_MySelf.m_nTagY]), GetRGB(5), clWhite);
         end;
       finally
@@ -7917,15 +7917,15 @@ begin
             1:
               SendQueryChr();
             2:
-              FrmDlg.DMessageDlg('[å¤±è´¥] è§’è‰²å¹¶æœªè¢«åˆ é™¤', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü] ½ÇÉ«²¢Î´±»É¾³ı', [mbOk]);
             3:
-              FrmDlg.DMessageDlg('[å¤±è´¥] ä½ æœ€å¤šåªèƒ½ä¸ºä¸€ä¸ªå¸å·è®¾ç½®2ä¸ªè§’è‰²', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü] Äã×î¶àÖ»ÄÜÎªÒ»¸öÕÊºÅÉèÖÃ2¸ö½ÇÉ«', [mbOk]);
             4:
-              FrmDlg.DMessageDlg('[å¤±è´¥] æ²¡æœ‰æ‰¾åˆ°è¢«åˆ é™¤çš„è§’è‰²', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü] Ã»ÓĞÕÒµ½±»É¾³ıµÄ½ÇÉ«', [mbOk]);
             5:
-              FrmDlg.DMessageDlg('[å¤±è´¥] è§’è‰²å·²è¢«åˆ é™¤', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü] ½ÇÉ«ÒÑ±»É¾³ı', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[å¤±è´¥] è§’è‰²æ•°æ®è¯»å–å¤±è´¥ï¼Œè¯·ç¨å€™å†è¯•', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½ÇÉ«Êı¾İ¶ÁÈ¡Ê§°Ü£¬ÇëÉÔºòÔÙÊÔ', [mbOk]);
           end;
         end;
       SM_QUERYDELCHR:
@@ -7933,27 +7933,27 @@ begin
           if msg.Recog = 1 then
             ClientGetDelCharList(msg.series, body)
           else
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ²¡æœ‰æ‰¾åˆ°è¢«åˆ é™¤çš„è§’è‰²', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Ã»ÓĞÕÒµ½±»É¾³ıµÄ½ÇÉ«', [mbOk]);
         end;
       SM_NEWID_SUCCESS:
         begin
-          FrmDlg.DMessageDlg('æ‚¨çš„å¸å·åˆ›å»ºæˆåŠŸã€‚\' +
-            'è¯·å¦¥å–„ä¿ç®¡æ‚¨çš„å¸å·å’Œå¯†ç ï¼Œ\å¹¶ä¸”ä¸è¦å› ä»»ä½•åŸå› æŠŠå¸å·å’Œå¯†ç å‘Šè¯‰ä»»ä½•å…¶ä»–äººã€‚\' +
-            'å¦‚æœå¿˜è®°äº†å¯†ç ,\ä½ å¯ä»¥é€šè¿‡æˆ‘ä»¬çš„ä¸»é¡µé‡æ–°æ‰¾å›ã€‚', [mbOk]);
+          FrmDlg.DMessageDlg('ÄúµÄÕÊºÅ´´½¨³É¹¦¡£\' +
+            'ÇëÍ×ÉÆ±£¹ÜÄúµÄÕÊºÅºÍÃÜÂë£¬\²¢ÇÒ²»ÒªÒòÈÎºÎÔ­Òò°ÑÕÊºÅºÍÃÜÂë¸æËßÈÎºÎÆäËûÈË¡£\' +
+            'Èç¹ûÍü¼ÇÁËÃÜÂë,\Äã¿ÉÒÔÍ¨¹ıÎÒÃÇµÄÖ÷Ò³ÖØĞÂÕÒ»Ø¡£', [mbOk]);
         end;
       SM_NEWID_FAIL:
         begin
           case msg.Recog of
             0:
               begin
-                FrmDlg.DMessageDlg('å¸å· "' + MakeNewId + '" å·²è¢«å…¶ä»–çš„ç©å®¶ä½¿ç”¨äº†ã€‚\' +
-                  'è¯·é€‰æ‹©å…¶å®ƒå¸å·åæ³¨å†Œ', [mbOk]);
+                FrmDlg.DMessageDlg('ÕÊºÅ "' + MakeNewId + '" ÒÑ±»ÆäËûµÄÍæ¼ÒÊ¹ÓÃÁË¡£\' +
+                  'ÇëÑ¡ÔñÆäËüÕÊºÅÃû×¢²á', [mbOk]);
                 LoginScene.NewIdRetry(False);
               end;
             -2:
-              FrmDlg.DMessageDlg('æ­¤å¸å·åè¢«ç¦æ­¢ä½¿ç”¨ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('´ËÕÊºÅÃû±»½ûÖ¹Ê¹ÓÃ£¡', [mbOk]);
           else
-            FrmDlg.DMessageDlg('å¸å·åˆ›å»ºå¤±è´¥ï¼Œè¯·ç¡®è®¤å¸å·æ˜¯å¦åŒ…æ‹¬ç©ºæ ¼ã€åŠéæ³•å­—ç¬¦ï¼Code: ' +
+            FrmDlg.DMessageDlg('ÕÊºÅ´´½¨Ê§°Ü£¬ÇëÈ·ÈÏÕÊºÅÊÇ·ñ°üÀ¨¿Õ¸ñ¡¢¼°·Ç·¨×Ö·û£¡Code: ' +
               IntToStr(msg.Recog), [mbOk]);
           end;
         end;
@@ -7961,35 +7961,35 @@ begin
         begin
           case msg.Recog of
             - 1:
-              FrmDlg.DMessageDlg('å¯†ç é”™è¯¯ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('ÃÜÂë´íÎó£¡', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('å¯†ç è¾“å…¥é”™è¯¯è¶…è¿‡3æ¬¡ï¼Œæ­¤å¸å·è¢«æš‚æ—¶é”å®šï¼Œè¯·ç¨å€™å†ç™»å½•ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('ÃÜÂëÊäÈë´íÎó³¬¹ı3´Î£¬´ËÕÊºÅ±»ÔİÊ±Ëø¶¨£¬ÇëÉÔºòÔÙµÇÂ¼£¡', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('æ­¤å¸å·å·²ç»ç™»å½•æˆ–è¢«å¼‚å¸¸é”å®šï¼Œè¯·ç¨å€™å†ç™»å½•ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('´ËÕÊºÅÒÑ¾­µÇÂ¼»ò±»Òì³£Ëø¶¨£¬ÇëÉÔºòÔÙµÇÂ¼£¡', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('è¿™ä¸ªå¸å·è®¿é—®å¤±è´¥ï¼\è¯·ä½¿ç”¨å…¶ä»–å¸å·ç™»å½•ï¼Œ\æˆ–è€…ç”³è¯·ä»˜è´¹æ³¨å†Œ', [mbOk]);
+              FrmDlg.DMessageDlg('Õâ¸öÕÊºÅ·ÃÎÊÊ§°Ü£¡\ÇëÊ¹ÓÃÆäËûÕÊºÅµÇÂ¼£¬\»òÕßÉêÇë¸¶·Ñ×¢²á', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('è¿™ä¸ªå¸å·è¢«é”å®šï¼', [mbOk]);
+              FrmDlg.DMessageDlg('Õâ¸öÕÊºÅ±»Ëø¶¨£¡', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('è¯·ä½¿ç”¨ä¸“ç”¨ç™»é™†å™¨ç™»é™†æ¸¸æˆï¼', [mbOk]);
+              FrmDlg.DMessageDlg('ÇëÊ¹ÓÃ×¨ÓÃµÇÂ½Æ÷µÇÂ½ÓÎÏ·£¡', [mbOk]);
           else
-            FrmDlg.DMessageDlg('æ­¤å¸å·ä¸å­˜åœ¨æˆ–å‡ºç°æœªçŸ¥é”™è¯¯ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('´ËÕÊºÅ²»´æÔÚ»ò³öÏÖÎ´Öª´íÎó£¡', [mbOk]);
           end;
           LoginScene.PassWdFail;
         end;
-      SM_NEEDUPDATE_ACCOUNT: { //æ‹Œæ²¥ æ²¥ç„Šç”« ä¿ƒçŸ« æ¶ä»¿çªæ‰¼. }
+      SM_NEEDUPDATE_ACCOUNT: { //°èÁ¤ Á¤º¸¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¶ó. }
         begin
           ClientGetNeedUpdateAccount(body);
         end;
       SM_UPDATEID_SUCCESS:
         begin
-          FrmDlg.DMessageDlg('æ‚¨çš„å¸å·ä¿¡æ¯æ›´æ–°æˆåŠŸã€‚\' + 'è¯·å¦¥å–„ä¿ç®¡æ‚¨çš„å¸å·å’Œå¯†ç ã€‚\' +
-            'å¹¶ä¸”ä¸è¦å› ä»»ä½•åŸå› æŠŠå¸å·å’Œå¯†ç å‘Šè¯‰ä»»ä½•å…¶ä»–äººã€‚\' + 'å¦‚æœå¿˜è®°äº†å¯†ç ï¼Œä½ å¯ä»¥é€šè¿‡æˆ‘ä»¬çš„ä¸»é¡µé‡æ–°æ‰¾å›ã€‚', [mbOk]);
+          FrmDlg.DMessageDlg('ÄúµÄÕÊºÅĞÅÏ¢¸üĞÂ³É¹¦¡£\' + 'ÇëÍ×ÉÆ±£¹ÜÄúµÄÕÊºÅºÍÃÜÂë¡£\' +
+            '²¢ÇÒ²»ÒªÒòÈÎºÎÔ­Òò°ÑÕÊºÅºÍÃÜÂë¸æËßÈÎºÎÆäËûÈË¡£\' + 'Èç¹ûÍü¼ÇÁËÃÜÂë£¬Äã¿ÉÒÔÍ¨¹ıÎÒÃÇµÄÖ÷Ò³ÖØĞÂÕÒ»Ø¡£', [mbOk]);
           ClientGetSelectServer;
         end;
       SM_UPDATEID_FAIL:
         begin
-          FrmDlg.DMessageDlg('æ›´æ–°å¸å·å¤±è´¥ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('¸üĞÂÕÊºÅÊ§°Ü£¡', [mbOk]);
           ClientGetSelectServer;
         end;
       SM_PASSOK_SELECTSERVER:
@@ -8003,7 +8003,7 @@ begin
           g_boDoFastFadeOut := False;
           g_boDoFadeIn := False;
           g_boDoFadeOut := False;
-          FrmDlg.DMessageDlg('æœåŠ¡å™¨è®¤è¯å¤±è´¥ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('·şÎñÆ÷ÈÏÖ¤Ê§°Ü£¡', [mbOk]);
           Close;
         end;
       SM_NEWCHR_SUCCESS:
@@ -8012,36 +8012,36 @@ begin
         begin
           case msg.Recog of
             0:
-              FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] è¾“å…¥çš„è§’è‰²åç§°åŒ…å«éæ³•å­—ç¬¦ï¼ é”™è¯¯ä»£ç  = 0', [mbOk]);
+              FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] ÊäÈëµÄ½ÇÉ«Ãû³Æ°üº¬·Ç·¨×Ö·û£¡ ´íÎó´úÂë = 0', [mbOk]);
             2:
-              FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] åˆ›å»ºè§’è‰²åç§°å·²è¢«å…¶ä»–äººä½¿ç”¨ï¼ é”™è¯¯ä»£ç  = 2', [mbOk]);
+              FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] ´´½¨½ÇÉ«Ãû³ÆÒÑ±»ÆäËûÈËÊ¹ÓÃ£¡ ´íÎó´úÂë = 2', [mbOk]);
             3:
-              FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] æ‚¨åªèƒ½åˆ›å»ºäºŒä¸ªæ¸¸æˆè§’è‰²ï¼ é”™è¯¯ä»£ç  = 3', [mbOk]);
+              FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] ÄúÖ»ÄÜ´´½¨¶ş¸öÓÎÏ·½ÇÉ«£¡ ´íÎó´úÂë = 3', [mbOk]);
             4:
-              FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] åˆ›å»ºè§’è‰²æ—¶å‡ºç°é”™è¯¯ï¼ é”™è¯¯ä»£ç  = 4', [mbOk]);
+              FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] ´´½¨½ÇÉ«Ê±³öÏÖ´íÎó£¡ ´íÎó´úÂë = 4', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] åˆ›å»ºè§’è‰²æ—¶å‡ºç°æœªçŸ¥é”™è¯¯ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] ´´½¨½ÇÉ«Ê±³öÏÖÎ´Öª´íÎó£¡', [mbOk]);
           end;
         end;
       SM_CHGPASSWD_SUCCESS:
-        FrmDlg.DMessageDlg('å¯†ç ä¿®æ”¹æˆåŠŸ', [mbOk]);
+        FrmDlg.DMessageDlg('ÃÜÂëĞŞ¸Ä³É¹¦', [mbOk]);
       SM_CHGPASSWD_FAIL:
         begin
           case msg.Recog of
             0:
-              FrmDlg.DMessageDlg('è¾“å…¥çš„å¸å·ä¸å­˜åœ¨ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('ÊäÈëµÄÕÊºÅ²»´æÔÚ£¡', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('è¾“å…¥çš„åŸå§‹å¯†ç ä¸æ­£ç¡®ï¼', [mbOk]);
+              FrmDlg.DMessageDlg('ÊäÈëµÄÔ­Ê¼ÃÜÂë²»ÕıÈ·£¡', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('æ­¤å¸å·è¢«é”å®šï¼', [mbOk]);
+              FrmDlg.DMessageDlg('´ËÕÊºÅ±»Ëø¶¨£¡', [mbOk]);
           else
-            FrmDlg.DMessageDlg('è¾“å…¥çš„æ–°å¯†ç é•¿åº¦å°äºå››ä½ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÊäÈëµÄĞÂÃÜÂë³¤¶ÈĞ¡ÓÚËÄÎ»£¡', [mbOk]);
           end;
         end;
       SM_DELCHR_SUCCESS:
         SendQueryChr;
       SM_DELCHR_FAIL:
-        FrmDlg.DMessageDlg('[é”™è¯¯ä¿¡æ¯] åˆ é™¤æ¸¸æˆè§’è‰²æ—¶å‡ºç°é”™è¯¯ï¼', [mbOk]);
+        FrmDlg.DMessageDlg('[´íÎóĞÅÏ¢] É¾³ıÓÎÏ·½ÇÉ«Ê±³öÏÖ´íÎó£¡', [mbOk]);
       SM_STARTPLAY:
         begin
           ClientGetStartPlay(body);
@@ -8050,14 +8050,14 @@ begin
       SM_STARTFAIL:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('æ­¤æœåŠ¡å™¨æ»¡å‘˜ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('´Ë·şÎñÆ÷ÂúÔ±£¡', [mbOk]);
           ClientGetSelectServer();
           Exit;
         end;
       SM_VERSION_FAIL:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('æ¸¸æˆç¨‹åºç‰ˆæœ¬ä¸æ­£ç¡®ï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæœ¬æ¸¸æˆç¨‹åºï¼', [mbOk]);
+          FrmDlg.DMessageDlg('ÓÎÏ·³ÌĞò°æ±¾²»ÕıÈ·£¬ÇëÏÂÔØ×îĞÂ°æ±¾ÓÎÏ·³ÌĞò£¡', [mbOk]);
           Close;
           Exit;
         end;
@@ -8065,7 +8065,7 @@ begin
       SM_OVERCLIENTCOUNT:
         begin
           g_boDoFastFadeOut := False;
-          FrmDlg.DMessageDlg('å®¢æˆ·ç«¯å¼€å¯æ•°é‡è¿‡å¤šï¼Œè¿æ¥è¢«æ–­å¼€ï¼ï¼ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('¿Í»§¶Ë¿ªÆôÊıÁ¿¹ı¶à£¬Á¬½Ó±»¶Ï¿ª£¡£¡£¡', [mbOk]);
           Close();
           Exit;
         end;
@@ -8106,7 +8106,7 @@ begin
       begin
         case msg.Recog of
           - 1:
-            DScreen.AddChatBoardString('åˆ‡æ¢æ—¶è£…å¤–æ˜¾æ“ä½œå¤ªå¿«äº†ï¼', clWhite, clRed);
+            DScreen.AddChatBoardString('ÇĞ»»Ê±×°ÍâÏÔ²Ù×÷Ì«¿ìÁË£¡', clWhite, clRed);
         end;
         if msg.tag <> 0 then
           FrmDlg.CheckBox_hShowFashion.Checked := LoWord(msg.series) <> 0
@@ -8118,16 +8118,16 @@ begin
           if msg.tag <> 0 then
           begin
             if FrmDlg.CheckBox_hShowFashion.Checked then
-              DScreen.AddChatBoardString('[è‹±é›„] å¼€å¯ æ—¶è£…å¤–æ˜¾ï¼', GetRGB(219), clWhite)
+              DScreen.AddChatBoardString('[Ó¢ĞÛ] ¿ªÆô Ê±×°ÍâÏÔ£¡', GetRGB(219), clWhite)
             else
-              DScreen.AddChatBoardString('[è‹±é›„] å…³é—­ æ—¶è£…å¤–æ˜¾ï¼', GetRGB(219), clWhite);
+              DScreen.AddChatBoardString('[Ó¢ĞÛ] ¹Ø±Õ Ê±×°ÍâÏÔ£¡', GetRGB(219), clWhite);
           end
           else
           begin
             if FrmDlg.CheckBox_ShowFashion.Checked then
-              DScreen.AddChatBoardString('å¼€å¯ æ—¶è£…å¤–æ˜¾ï¼', GetRGB(219), clWhite)
+              DScreen.AddChatBoardString('¿ªÆô Ê±×°ÍâÏÔ£¡', GetRGB(219), clWhite)
             else
-              DScreen.AddChatBoardString('å…³é—­ æ—¶è£…å¤–æ˜¾ï¼', GetRGB(219), clWhite);
+              DScreen.AddChatBoardString('¹Ø±Õ Ê±×°ÍâÏÔ£¡', GetRGB(219), clWhite);
           end;
         end;
       end;
@@ -8137,7 +8137,7 @@ begin
       ClientGetMyTitles(msg.Recog, body);
     SM_SecretProperty:
       begin
-        FrmDlg.DBSP.OnbtnState := tnor; // ASPä¸´æ—¶æ³¨é‡Š
+        FrmDlg.DBSP.OnbtnState := tnor; // ASPÁÙÊ±×¢ÊÍ
         FrmDlg.DBMB1.OnbtnState := tnor;
         FrmDlg.DBMB2.OnbtnState := tnor;
         FrmDlg.DBMB3.OnbtnState := tnor;
@@ -8205,7 +8205,7 @@ begin
       end;
     SM_ExchangeItem:
       begin
-        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASPä¸´æ—¶æ³¨é‡Š
+        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASPÁÙÊ±×¢ÊÍ
         FrmDlg.DBTIbtn2.OnbtnState := tnor;
         case msg.Recog of
           00:
@@ -8236,7 +8236,7 @@ begin
       end;
     SM_TreasureIdentify:
       begin
-        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASPä¸´æ—¶æ³¨é‡Š
+        FrmDlg.DBTIbtn1.OnbtnState := tnor; // ASPÁÙÊ±×¢ÊÍ
         FrmDlg.DBTIbtn2.OnbtnState := tnor;
 
         Str := DecodeString(body);
@@ -8316,60 +8316,60 @@ begin
         case msg.series of
           00:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œä¸Šæ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°ÉÏ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           01:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå³ä¸Šæ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°ÓÒÉÏ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           02:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå³æ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°ÓÒ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           03:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå³ä¸‹æ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°ÓÒÏÂ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           04:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œä¸‹æ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°ÏÂ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           05:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå·¦ä¸‹æ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°×óÏÂ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           06:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå·¦æ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°×ó·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           07:
             begin
-              DScreen.AddChatBoardString('[å¯»å®çµåª’æ„Ÿåº”åˆ°äº†å®ç‰©çš„å­˜åœ¨ï¼Œè¯·å‘â€œå·¦ä¸Šæ–¹â€å¯»æ‰¾]', clWhite,
+              DScreen.AddChatBoardString('[Ñ°±¦ÁéÃ½¸ĞÓ¦µ½ÁË±¦ÎïµÄ´æÔÚ£¬ÇëÏò¡°×óÉÏ·½¡±Ñ°ÕÒ]', clWhite,
                 GetRGB($FC));
             end;
           09:
-            DScreen.AddChatBoardString('[è¯·å°†çµåª’è£…å¤‡åœ¨æ¢ç´¢ä½]', clWhite, GetRGB($FC));
+            DScreen.AddChatBoardString('[Çë½«ÁéÃ½×°±¸ÔÚÌ½Ë÷Î»]', clWhite, GetRGB($FC));
           10:
-            DScreen.AddChatBoardString('[çµåª’çš„çµæ°”å€¼å·²ç»ä¸è¶³ï¼Œè¯·è¡¥å……çµæ°”åå†ä½¿ç”¨]', clWhite,
+            DScreen.AddChatBoardString('[ÁéÃ½µÄÁéÆøÖµÒÑ¾­²»×ã£¬Çë²¹³äÁéÆøºóÔÙÊ¹ÓÃ]', clWhite,
               GetRGB($FC));
           11:
-            DScreen.AddChatBoardString('[ä½¿ç”¨å®ç‰©çµåª’é¢‘ç‡ä¸èƒ½å¤ªå¿«]', clWhite, GetRGB($38));
+            DScreen.AddChatBoardString('[Ê¹ÓÃ±¦ÎïÁéÃ½ÆµÂÊ²»ÄÜÌ«¿ì]', clWhite, GetRGB($38));
           12:
-            DScreen.AddChatBoardString('[è¿™æ¬¡ä½ çš„å®ç‰©çµåª’æ²¡æœ‰æ„Ÿåº”åˆ°å®ç‰©çš„å­˜åœ¨]', clWhite,
+            DScreen.AddChatBoardString('[Õâ´ÎÄãµÄ±¦ÎïÁéÃ½Ã»ÓĞ¸ĞÓ¦µ½±¦ÎïµÄ´æÔÚ]', clWhite,
               GetRGB($FC));
 
           20 .. 22:
             begin
               frmMain.DrawEffectHum(41 + msg.series - 20, msg.param, msg.tag);
               DScreen.AddChatBoardString
-                (Format('[å®ç‰©å°±åœ¨æ‚¨å‘¨å›´(%d/%d)ï¼ŒæŒ‰ä¸‹Alt+é¼ æ ‡å·¦é”®å°±å¯ä»¥æŒ–å®äº†]',
+                (Format('[±¦Îï¾ÍÔÚÄúÖÜÎ§(%d/%d)£¬°´ÏÂAlt+Êó±ê×ó¼ü¾Í¿ÉÒÔÍÚ±¦ÁË]',
                 [msg.param, msg.tag]), clWhite, GetRGB($FC));
             end;
 
@@ -8396,7 +8396,7 @@ begin
             end;
           -1:
             begin
-              DScreen.AddChatBoardString('[å¤±è´¥] åŒ…è£¹æ²¡æœ‰æ­¤ç‰©å“', clWhite, GetRGB($38));
+              DScreen.AddChatBoardString('[Ê§°Ü] °ü¹üÃ»ÓĞ´ËÎïÆ·', clWhite, GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
                 if IsBagItem(g_WaitingDetectItem.Index) then
@@ -8407,7 +8407,7 @@ begin
             end;
           -2:
             begin
-              DScreen.AddChatBoardString('[å¤±è´¥] æ”¾å…¥çš„ä¸æ˜¯çµåª’ç‰©å“', clWhite,
+              DScreen.AddChatBoardString('[Ê§°Ü] ·ÅÈëµÄ²»ÊÇÁéÃ½ÎïÆ·', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8419,7 +8419,7 @@ begin
             end;
           -3:
             begin
-              DScreen.AddChatBoardString('[å¤±è´¥] è¦å–ä¸‹çš„çµåª’ç‰©å“ä¸å­˜åœ¨', clWhite,
+              DScreen.AddChatBoardString('[Ê§°Ü] ÒªÈ¡ÏÂµÄÁéÃ½ÎïÆ·²»´æÔÚ', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8429,7 +8429,7 @@ begin
             end;
           -4:
             begin
-              DScreen.AddChatBoardString('[å¤±è´¥] è¦å–ä¸‹çš„çµåª’ç‰©å“ä¸æ­£ç¡®', clWhite,
+              DScreen.AddChatBoardString('[Ê§°Ü] ÒªÈ¡ÏÂµÄÁéÃ½ÎïÆ·²»ÕıÈ·', clWhite,
                 GetRGB($38));
               if g_WaitingDetectItem.Item.S.Name <> '' then
               begin
@@ -8452,36 +8452,36 @@ begin
       begin
         case msg.Recog of
           00:
-            DScreen.AddChatBoardString('ç§°å·å·²æ”¹å˜', GetRGB(219), clWhite);
+            DScreen.AddChatBoardString('³ÆºÅÒÑ¸Ä±ä', GetRGB(219), clWhite);
           -1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç§°å·ç´¢å¼•é”™è¯¯', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ³ÆºÅË÷Òı´íÎó', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç§°å·ä¸å­˜åœ¨', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ³ÆºÅ²»´æÔÚ', [mbOk]);
         end;
       end;
     SM_QUERYCHANGEHERO_FALI:
       begin
         case msg.Recog of
           00:
-            DScreen.AddChatBoardString('[æˆåŠŸ] æ›´æ”¹è‹±é›„æˆåŠŸï¼Œå½“å‰è‹±é›„ä¸ºï¼š' +
+            DScreen.AddChatBoardString('[³É¹¦] ¸ü¸ÄÓ¢ĞÛ³É¹¦£¬µ±Ç°Ó¢ĞÛÎª£º' +
               DecodeString(body), clWhite, GetRGB($38));
           -1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ä½ æ­£åœ¨åˆ›å»ºè‹±é›„ä¸­â€¦â€¦ä¸èƒ½æ”¹å˜è‹±é›„', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÄãÕıÔÚ´´½¨Ó¢ĞÛÖĞ¡­¡­²»ÄÜ¸Ä±äÓ¢ĞÛ', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] å°†è¦å˜æ›´çš„è‹±é›„å’Œå½“å‰è‹±é›„ç›¸åŒï¼Œæ”¹å˜å¤±æ•ˆ', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½«Òª±ä¸üµÄÓ¢ĞÛºÍµ±Ç°Ó¢ĞÛÏàÍ¬£¬¸Ä±äÊ§Ğ§', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ä½ çš„å¸å·ä¸‹ä¸å­˜åœ¨å…¶ä»–è§’è‰²ï¼Œä¸èƒ½è®¾ç½®è‹±é›„', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÄãµÄÕÊºÅÏÂ²»´æÔÚÆäËû½ÇÉ«£¬²»ÄÜÉèÖÃÓ¢ĞÛ', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æœåŠ¡å™¨ä¸å­˜åœ¨å½“å‰è§’è‰²ï¼Œä¸èƒ½æ”¹å˜æ­¤è§’è‰²ä¸ºè‹±é›„', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ·şÎñÆ÷²»´æÔÚµ±Ç°½ÇÉ«£¬²»ÄÜ¸Ä±ä´Ë½ÇÉ«ÎªÓ¢ĞÛ', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[å¤±è´¥] è¦è®¾ç½®å…¶ä»–ä¼´éšçš„è‹±é›„ï¼Œå¿…é¡»å°†å½“å‰è‹±é›„è®¾ç½®ä¸‹çº¿ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÒªÉèÖÃÆäËû°éËæµÄÓ¢ĞÛ£¬±ØĞë½«µ±Ç°Ó¢ĞÛÉèÖÃÏÂÏß£¡', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] å½“å‰è§’è‰²å·²[' + DecodeString(body) +
-              ']åœ¨çº¿ï¼Œä¸èƒ½å°†æ­¤è§’è‰²è®¾ç½®ä¸ºè‹±é›„', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] µ±Ç°½ÇÉ«ÒÑ[' + DecodeString(body) +
+              ']ÔÚÏß£¬²»ÄÜ½«´Ë½ÇÉ«ÉèÖÃÎªÓ¢ĞÛ', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ­¤ç³»ç»ŸåŠŸèƒ½æœªå¼€æ”¾', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ´ËÏµÍ³¹¦ÄÜÎ´¿ª·Å', [mbOk]);
         end;
-        FrmDlg.DListBox_Hero.ChangingHero := False; // ASPä¸´æ—¶æ³¨é‡Š
+        FrmDlg.DListBox_Hero.ChangingHero := False; // ASPÁÙÊ±×¢ÊÍ
         if msg.Recog = 0 then
           FrmDlg.DComboBox_Hero.Caption := g_lastHeroSel
       end;
@@ -8490,7 +8490,7 @@ begin
         Str2 := GetValidStr3(body, Str, ['/']);
         str3 := DecodeString(Str);
         DecodeBuffer(Str2, @g_heros, SizeOf(g_heros));
-        FrmDlg.DListBox_Hero.Items.Clear; // ASPä¸´æ—¶æ³¨é‡Š
+        FrmDlg.DListBox_Hero.Items.Clear; // ASPÁÙÊ±×¢ÊÍ
         for i := Low(g_heros) to High(g_heros) do
         begin
           if g_heros[i].chrname <> '' then
@@ -8515,7 +8515,7 @@ begin
       begin
         case msg.Recog of
           - 1:
-            DScreen.AddChatBoardString('ç‰©å“å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œä½ æ— æ³•æ¡å–', clWhite,
+            DScreen.AddChatBoardString('ÎïÆ·ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬ÄãÎŞ·¨¼ñÈ¡', clWhite,
               GetRGB($38));
         end;
       end;
@@ -8543,19 +8543,19 @@ begin
 
         case msg.Recog of
           01:
-            FrmDlg.DMessageDlg('[æˆåŠŸ] ç‰©å“å·²ç»ç»‘å®šåˆ°ä½ çš„å¸å·ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[³É¹¦] ÎïÆ·ÒÑ¾­°ó¶¨µ½ÄãµÄÕÊºÅ£¡', [mbOk]);
           00:
-            FrmDlg.DMessageDlg('[æˆåŠŸ] ç‰©å“è§£é™¤ç»‘å®šæˆåŠŸï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[³É¹¦] ÎïÆ·½â³ı°ó¶¨³É¹¦£¡', [mbOk]);
           -1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“æœªè¢«ç»‘å®šï¼Œä¸èƒ½è§£ç»‘ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·Î´±»°ó¶¨£¬²»ÄÜ½â°ó£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œä½ ä¸èƒ½è§£ç»‘ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬Äã²»ÄÜ½â°ó£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å·²ç»‘å®šäºä½ å¸å·ï¼Œè¯·ä¸è¦é‡å¤æ“ä½œï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ÒÑ°ó¶¨ÓÚÄãÕÊºÅ£¬Çë²»ÒªÖØ¸´²Ù×÷£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œä¸èƒ½å†æ¬¡ç»‘å®šï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬²»ÄÜÔÙ´Î°ó¶¨£¡', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ­¤ç‰©å“ä¸èƒ½è¿›è¡Œå¸å·ç»‘å®šï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ´ËÎïÆ·²»ÄÜ½øĞĞÕÊºÅ°ó¶¨£¡', [mbOk]);
         end;
       end;
     SM_UPDATESTALLITEM:
@@ -8571,32 +8571,32 @@ begin
         end;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] äº¤æ˜“çŠ¶æ€ä¸èƒ½æ›´æ”¹æ‘†æ‘Šç‰©å“ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½»Ò××´Ì¬²»ÄÜ¸ü¸Ä°ÚÌ¯ÎïÆ·£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ‘Šä½å·²æ»¡ï¼Œä¸èƒ½ç»§ç»­å¢åŠ ç‰©å“ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Ì¯Î»ÒÑÂú£¬²»ÄÜ¼ÌĞøÔö¼ÓÎïÆ·£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“IDé”™è¯¯ï¼Œä¸èƒ½å¢åŠ åˆ°æ‘Šä½ä¸­ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ID´íÎó£¬²»ÄÜÔö¼Óµ½Ì¯Î»ÖĞ£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å‡ºå”®ä»·æ ¼ç±»å‹å®šä¹‰é”™è¯¯ï¼Œä¸èƒ½å¢åŠ åˆ°æ‘Šä½ä¸­ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·³öÊÛ¼Û¸ñÀàĞÍ¶¨Òå´íÎó£¬²»ÄÜÔö¼Óµ½Ì¯Î»ÖĞ£¡', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“ä¸å­˜åœ¨ï¼Œä¸èƒ½å¢åŠ åˆ°æ‘Šä½ä¸­ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·²»´æÔÚ£¬²»ÄÜÔö¼Óµ½Ì¯Î»ÖĞ£¡', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] é‡‘å¸ä»·æ ¼å®šä¹‰è¶…è¿‡å…è®¸çš„èŒƒå›´(1~150,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½ğ±Ò¼Û¸ñ¶¨Òå³¬¹ıÔÊĞíµÄ·¶Î§(1~150,000,000)', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[å¤±è´¥] å…ƒå®ä»·æ ¼å®šä¹‰è¶…è¿‡å…è®¸çš„èŒƒå›´(1~8,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Ôª±¦¼Û¸ñ¶¨Òå³¬¹ıÔÊĞíµÄ·¶Î§(1~8,000,000)', [mbOk]);
           -8:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“ä¸å­˜åœ¨', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·²»´æÔÚ', [mbOk]);
           -9:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %s ä¸å…è®¸å‡ºå”®', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %s ²»ÔÊĞí³öÊÛ', [DecodeString(body)]
               ), [mbOk]);
           -10:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ²¡æœ‰å¯å–æ¶ˆçš„ç‰©å“ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Ã»ÓĞ¿ÉÈ¡ÏûµÄÎïÆ·£¡', [mbOk]);
           -11:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ä¸èƒ½å–æ¶ˆæ­¤ç‰©å“ï¼Œç‰©å“å·²ç»å‡ºå”®äº†ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ²»ÄÜÈ¡Ïû´ËÎïÆ·£¬ÎïÆ·ÒÑ¾­³öÊÛÁË£¡', [mbOk]);
           -12:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“ä¸å­˜åœ¨ï¼Œä¸èƒ½ç§»åŠ¨åˆ°åŒ…è£¹ä¸­ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·²»´æÔÚ£¬²»ÄÜÒÆ¶¯µ½°ü¹üÖĞ£¡', [mbOk]);
           -13:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %s å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œä¸å…è®¸å‡ºå”®',
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %s ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬²»ÔÊĞí³öÊÛ',
               [DecodeString(body)]), [mbOk]);
         else
           if g_WaitingStallItem.Item.S.Name <> '' then
@@ -8631,51 +8631,51 @@ begin
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å·²ç»è¢«å”®å‡º', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ÒÑ¾­±»ÊÛ³ö', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %sæºå¸¦çš„é‡‘å¸å¤ªå¤šï¼Œæ— æ³•è£…ä¸‹ä½ å°†äº¤æ˜“ç»™ä»–(å¥¹)çš„å…ƒå®',
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %sĞ¯´øµÄ½ğ±ÒÌ«¶à£¬ÎŞ·¨×°ÏÂÄã½«½»Ò×¸øËû(Ëı)µÄÔª±¦',
               [DecodeString(body)]), [mbOk]);
           -3:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] ä½ çš„é‡‘å¸ä¸è¶³ä»¥è´­ä¹°ï¼š%s', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] ÄãµÄ½ğ±Ò²»×ãÒÔ¹ºÂò£º%s', [DecodeString(body)]
               ), [mbOk]);
           -4:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %sæºå¸¦çš„å…ƒå®å¤ªå¤šï¼Œæ— æ³•è£…ä¸‹ä½ å°†äº¤æ˜“ç»™ä»–(å¥¹)çš„å…ƒå®',
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %sĞ¯´øµÄÔª±¦Ì«¶à£¬ÎŞ·¨×°ÏÂÄã½«½»Ò×¸øËû(Ëı)µÄÔª±¦',
               [DecodeString(body)]), [mbOk]);
           -5:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] ä½ çš„å…ƒå®ä¸è¶³ä»¥è´­ä¹° %s', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] ÄãµÄÔª±¦²»×ãÒÔ¹ºÂò %s', [DecodeString(body)]
               ), [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] è´­ä¹°çš„ç‰©å“ä¸å­˜åœ¨', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ¹ºÂòµÄÎïÆ·²»´æÔÚ', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ä½ æ— æ³•æºå¸¦æ›´å¤šçš„ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÄãÎŞ·¨Ğ¯´ø¸ü¶àµÄÎïÆ·', [mbOk]);
         end;
       end;
     SM_OPENSTALL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] å½“å‰åœ°å›¾ä¸å…è®¸æ‘†æ‘Š', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] µ±Ç°µØÍ¼²»ÔÊĞí°ÚÌ¯', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] éª‘é©¬çŠ¶æ€ä¸èƒ½æ‘†æ‘Š', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÆïÂí×´Ì¬²»ÄÜ°ÚÌ¯', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ä½ å‘¨å›´æ²¡æœ‰ä½ç½®æ‘†æ‘Š', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÄãÖÜÎ§Ã»ÓĞÎ»ÖÃ°ÚÌ¯', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥] äº¤æ˜“çŠ¶æ€ä¸å…è®¸æ‘†æ‘Š', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½»Ò××´Ì¬²»ÔÊĞí°ÚÌ¯', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å‡ºå”®ä»·æ ¼ç±»å‹å®šä¹‰é”™è¯¯', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·³öÊÛ¼Û¸ñÀàĞÍ¶¨Òå´íÎó', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] é‡‘å¸ä»·æ ¼å®šä¹‰è¶…è¿‡å…è®¸çš„èŒƒå›´(1~150,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½ğ±Ò¼Û¸ñ¶¨Òå³¬¹ıÔÊĞíµÄ·¶Î§(1~150,000,000)', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[å¤±è´¥] å…ƒå®ä»·æ ¼å®šä¹‰è¶…è¿‡å…è®¸çš„èŒƒå›´(1~8,000,000)', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Ôª±¦¼Û¸ñ¶¨Òå³¬¹ıÔÊĞíµÄ·¶Î§(1~8,000,000)', [mbOk]);
           -8:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“ä¸å­˜åœ¨', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·²»´æÔÚ', [mbOk]);
           -9:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %s ä¸å…è®¸å‡ºå”®', [DecodeString(body)]
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %s ²»ÔÊĞí³öÊÛ', [DecodeString(body)]
               ), [mbOk]);
           -10:
-            FrmDlg.DMessageDlg('[å¤±è´¥] åŒä¸€ç‰©å“ä¸å¯å¤šæ¬¡å‡ºå”®', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] Í¬Ò»ÎïÆ·²»¿É¶à´Î³öÊÛ', [mbOk]);
           -11:
-            FrmDlg.DMessageDlg(Format('[å¤±è´¥] %s å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œä¸å…è®¸å‡ºå”®',
+            FrmDlg.DMessageDlg(Format('[Ê§°Ü] %s ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬²»ÔÊĞí³öÊÛ',
               [DecodeString(body)]), [mbOk]);
         else
           begin
@@ -8820,7 +8820,7 @@ begin
             // end;
           end;
         end;
-        // FrmDlg.DMessageDlg('è¯·è¾“å…¥è¡Œä¼šåç§°ï¼š', [mbOk, mbAbort])
+        // FrmDlg.DMessageDlg('ÇëÊäÈëĞĞ»áÃû³Æ£º', [mbOk, mbAbort])
       end;
 {$IF SERIESSKILL}
     SM_BUILDACUS:
@@ -8839,13 +8839,13 @@ begin
               g_BAFirstShape := -1;
             end;
           -1:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: äº¤æ˜“æœŸé—´ä¸èƒ½è¿›è¡Œé”»é€ ');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: ½»Ò×ÆÚ¼ä²»ÄÜ½øĞĞ¶ÍÔì');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: æ²¡æœ‰é”»é€ æ‰€éœ€çš„ç‰©å“');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: Ã»ÓĞ¶ÍÔìËùĞèµÄÎïÆ·');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: ä½ åŒ…è£¹ä¸­æ²¡æœ‰é”»é€ æ‰€éœ€çš„ç‰©å“');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: Äã°ü¹üÖĞÃ»ÓĞ¶ÍÔìËùĞèµÄÎïÆ·');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: é”»é€ ææ–™ä¸ä¸€è‡´,è¯·çœ‹é”»é€ çš„ææ–™è¯´æ˜');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: ¶ÍÔì²ÄÁÏ²»Ò»ÖÂ,Çë¿´¶ÍÔìµÄ²ÄÁÏËµÃ÷');
           -5:
             begin
               FillChar(g_BuildAcuses, SizeOf(g_BuildAcuses), #0);
@@ -8857,7 +8857,7 @@ begin
               g_SndMgr.PlaySound('Wav\UnionHitShield.wav');
             end;
           -6:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: å­˜åœ¨éæ³•é”»é€ ææ–™ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: ´æÔÚ·Ç·¨¶ÍÔì²ÄÁÏ£¡');
         end;
       end;
     SM_TRAINVENATION:
@@ -8873,15 +8873,15 @@ begin
                   FrmDlg.DBV1Click(g_VLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè„‰ç»œé€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÂöÂçÑ¡ÔñÓĞ´íÎó');
             -2:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š%sè¿˜æ²¡æœ‰æ‰“é€š,ä¸èƒ½ä¿®ç‚¼...',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º%s»¹Ã»ÓĞ´òÍ¨,²»ÄÜĞŞÁ¶...',
                 [g_VaStrs[msg.param]]));
             -3:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š%så·²ç»ä¿®ç‚¼åˆ°æœ€é«˜çº§äº†...',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º%sÒÑ¾­ĞŞÁ¶µ½×î¸ß¼¶ÁË...',
                 [g_VaStrs[msg.param]]));
             -4:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼šä½ çš„%sçº§é‡‘é’ˆä¸å¤Ÿ',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£ºÄãµÄ%s¼¶½ğÕë²»¹»',
                 [g_VLevelStr[msg.tag]]));
           end;
         end
@@ -8896,15 +8896,15 @@ begin
                   FrmDlg.DBhV1Click(g_hVLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) è„‰ç»œé€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ÂöÂçÑ¡ÔñÓĞ´íÎó');
             -2:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š(è‹±é›„) %sè¿˜æ²¡æœ‰æ‰“é€š,ä¸èƒ½ä¿®ç‚¼...',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º(Ó¢ĞÛ) %s»¹Ã»ÓĞ´òÍ¨,²»ÄÜĞŞÁ¶...',
                 [g_VaStrs[msg.param]]));
             -3:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š(è‹±é›„) %så·²ç»ä¿®ç‚¼åˆ°æœ€é«˜çº§äº†...',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º(Ó¢ĞÛ) %sÒÑ¾­ĞŞÁ¶µ½×î¸ß¼¶ÁË...',
                 [g_VaStrs[msg.param]]));
             -4:
-              FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š(è‹±é›„) ä½ çš„%sçº§é‡‘é’ˆä¸å¤Ÿ',
+              FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º(Ó¢ĞÛ) ÄãµÄ%s¼¶½ğÕë²»¹»',
                 [g_VLevelStr[msg.tag]]));
           end;
         end;
@@ -8918,28 +8918,28 @@ begin
               begin
                 DecodeBuffer(body, @g_VenationInfos, SizeOf(g_VenationInfos));
                 if msg.tag in [1 .. 5] then
-                  FrmDlg.ShowMDlg(0, '', Format('[æˆåŠŸ]ï¼šæ­å–œä½ æ‰“é€šäº†%sçš„%sç©´ä½,ä¿®ç‚¼æ›´è¿›ä¸€æ­¥',
+                  FrmDlg.ShowMDlg(0, '', Format('[³É¹¦]£º¹§Ï²Äã´òÍ¨ÁË%sµÄ%sÑ¨Î»,ĞŞÁ¶¸ü½øÒ»²½',
                     [g_VaStrs[msg.param], g_VPStrs[msg.param, msg.tag]]));
                 FrmDlg.PageChanged;
                 if g_VLastSender <> nil then
                   FrmDlg.DBV1Click(g_VLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè„‰ç»œé€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÂöÂçÑ¡ÔñÓĞ´íÎó');
             -2:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šç©´ä½é€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÑ¨Î»Ñ¡ÔñÓĞ´íÎó');
             -3:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ çš„å†…åŠŸç­‰çº§ä¸å¤Ÿ,è¯·åŠªåŠ›ä¿®ç‚¼...');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãµÄÄÚ¹¦µÈ¼¶²»¹»,ÇëÅ¬Á¦ĞŞÁ¶...');
             -4:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ­¤ç©´ä½å·²ç»æ‰“é€šäº†');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º´ËÑ¨Î»ÒÑ¾­´òÍ¨ÁË');
             -5:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ­¤ç©´ä½ç›®å‰ä¸å¯æ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º´ËÑ¨Î»Ä¿Ç°²»¿É´òÍ¨');
             -6:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ æ²¡æœ‰èˆ’ç»æ´»ç»œä¸¸,ä¸èƒ½æ‰“é€šç©´ä½');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãÃ»ÓĞÊæ¾­»îÂçÍè,²»ÄÜ´òÍ¨Ñ¨Î»');
             -7:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½¿ç”¨èˆ’ç»æ´»ç»œä¸¸,ä½†ç©´ä½ä¾ç„¶æœªæ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÊ¹ÓÃÊæ¾­»îÂçÍè,µ«Ñ¨Î»ÒÀÈ»Î´´òÍ¨');
             -8:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ æ²¡æœ‰èˆ’ç»æ´»ç»œä¸¸,ç©´ä½ä¸èƒ½æ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãÃ»ÓĞÊæ¾­»îÂçÍè,Ñ¨Î»²»ÄÜ´òÍ¨');
           end;
         end
         else
@@ -8950,28 +8950,28 @@ begin
                 DecodeBuffer(body, @g_hVenationInfos, SizeOf(g_hVenationInfos));
                 if msg.tag in [1 .. 5] then
                   FrmDlg.ShowMDlg(0, '',
-                    Format('[æˆåŠŸ]ï¼š(è‹±é›„) æ­å–œä½ æ‰“é€šäº†%sçš„%sç©´ä½,ä¿®ç‚¼æ›´è¿›ä¸€æ­¥',
+                    Format('[³É¹¦]£º(Ó¢ĞÛ) ¹§Ï²Äã´òÍ¨ÁË%sµÄ%sÑ¨Î»,ĞŞÁ¶¸ü½øÒ»²½',
                     [g_VaStrs[msg.param], g_VPStrs[msg.param, msg.tag]]));
                 FrmDlg.HeroPageChanged;
                 if g_hVLastSender <> nil then
                   FrmDlg.DBhV1Click(g_hVLastSender, 0, 0);
               end;
             -1:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) è„‰ç»œé€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ÂöÂçÑ¡ÔñÓĞ´íÎó');
             -2:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) ç©´ä½é€‰æ‹©æœ‰é”™è¯¯');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) Ñ¨Î»Ñ¡ÔñÓĞ´íÎó');
             -3:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) ä½ çš„å†…åŠŸç­‰çº§ä¸å¤Ÿ,è¯·åŠªåŠ›ä¿®ç‚¼...');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ÄãµÄÄÚ¹¦µÈ¼¶²»¹»,ÇëÅ¬Á¦ĞŞÁ¶...');
             -4:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) æ­¤ç©´ä½å·²ç»æ‰“é€šäº†');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ´ËÑ¨Î»ÒÑ¾­´òÍ¨ÁË');
             -5:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) æ­¤ç©´ä½ç›®å‰ä¸å¯æ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ´ËÑ¨Î»Ä¿Ç°²»¿É´òÍ¨');
             -6:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) ä½ æ²¡æœ‰èˆ’ç»æ´»ç»œä¸¸,ä¸èƒ½æ‰“é€šç©´ä½');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ÄãÃ»ÓĞÊæ¾­»îÂçÍè,²»ÄÜ´òÍ¨Ñ¨Î»');
             -7:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) ä½¿ç”¨èˆ’ç»æ´»ç»œä¸¸,ä½†ç©´ä½ä¾ç„¶æœªæ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) Ê¹ÓÃÊæ¾­»îÂçÍè,µ«Ñ¨Î»ÒÀÈ»Î´´òÍ¨');
             -8:
-              FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼š(è‹±é›„) ä½ æ²¡æœ‰èˆ’ç»æ´»ç»œä¸¸,ç©´ä½ä¸èƒ½æ‰“é€š');
+              FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º(Ó¢ĞÛ) ÄãÃ»ÓĞÊæ¾­»îÂçÍè,Ñ¨Î»²»ÄÜ´òÍ¨');
           end;
         end;
       end;
@@ -8994,13 +8994,13 @@ begin
           g_boNextTimeRushHit := False;
           g_boNextTimeSmiteLongHit := False;
           g_boNextTimeSmiteWideHit := False;
-          DScreen.AddChatBoardString('ä½ çš„è¿å‡»å·²ç»å¯ä»¥å†æ¬¡ä½¿ç”¨äº†', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('ÄãµÄÁ¬»÷ÒÑ¾­¿ÉÒÔÔÙ´ÎÊ¹ÓÃÁË', GetRGB(219), clWhite);
           g_SndMgr.PlaySound('Wav\warpower-up.wav');
           g_SendFireSerieSkillTick := 0;
         end
         else
         begin
-          DScreen.AddChatBoardString('(è‹±é›„) ä½ çš„è¿å‡»å·²ç»å¯ä»¥å†æ¬¡ä½¿ç”¨äº†', GetRGB(219),
+          DScreen.AddChatBoardString('(Ó¢ĞÛ) ÄãµÄÁ¬»÷ÒÑ¾­¿ÉÒÔÔÙ´ÎÊ¹ÓÃÁË', GetRGB(219),
             clWhite);
           g_SndMgr.PlaySound('Wav\warpower-up.wav');
         end;
@@ -9010,7 +9010,7 @@ begin
         if msg.Recog = 0 then
         begin
           frmMain.SeriesSkillFire();
-          DScreen.AddChatBoardString('è¿å‡»å·²å¯åŠ¨', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('Á¬»÷ÒÑÆô¶¯', GetRGB(219), clWhite);
           // , clWhite, GetRGB(253));
           g_SeriesSkillReady := False;
         end
@@ -9023,7 +9023,7 @@ begin
           g_boNextTimeRushHit := False;
           g_boNextTimeSmiteLongHit := False;
           g_boNextTimeSmiteWideHit := False;
-          DScreen.AddChatBoardString('è¿å‡»æ¶ˆå¤±', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('Á¬»÷ÏûÊ§', GetRGB(219), clWhite);
           // frmMain.SeriesSkillFire();
         end;
       end;
@@ -9036,7 +9036,7 @@ begin
             if (msg.Recog < 0) then
             begin
               g_TempSeriesSkillArr[msg.param] := 0;
-              FrmDlg.DMessageDlg('[å¤±è´¥]: è¿æŠ€ç¼–å·é¡ºåºé”™è¯¯', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: Á¬¼¼±àºÅË³Ğò´íÎó', [mbOk]);
             end
             else
               g_TempSeriesSkillArr[msg.param] := msg.Recog;
@@ -9046,7 +9046,7 @@ begin
             if (msg.Recog < 0) then
             begin
               g_hTempSeriesSkillArr[msg.param] := 0;
-              FrmDlg.DMessageDlg('[å¤±è´¥]: (è‹±é›„) è¿æŠ€ç¼–å·é¡ºåºé”™è¯¯', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: (Ó¢ĞÛ) Á¬¼¼±àºÅË³Ğò´íÎó', [mbOk]);
             end
             else
               g_hTempSeriesSkillArr[msg.param] := msg.Recog;
@@ -9171,7 +9171,7 @@ begin
               if Pos('http://', body) = 0 then
                 body := 'http://' + body;
               Open(body);
-              // DebugOUTstrs('ä½ ç°åœ¨æ‰“å¼€çš„æ˜¯è‡ªå¸¦å†…æ ¸æµè§ˆå™¨ï¼š'+IntTostr(kkks));
+              // DebugOUTstrs('ÄãÏÖÔÚ´ò¿ªµÄÊÇ×Ô´øÄÚºËä¯ÀÀÆ÷£º'+IntTostr(kkks));
             end;
           end;
         end
@@ -9183,7 +9183,7 @@ begin
             PChar(string(body)), nil, SW_SHOWNORMAL) = 0 then
             ShellExecute(Handle, 'open', PChar(string(body)), nil, nil,
               SW_SHOWNORMAL);
-          // Debugoutstrs('ä½ ç°åœ¨æ‰“å¼€çš„æ˜¯WIN10å†…æ ¸æµè§ˆå™¨ï¼š'+IntTostr(kkks));
+          // Debugoutstrs('ÄãÏÖÔÚ´ò¿ªµÄÊÇWIN10ÄÚºËä¯ÀÀÆ÷£º'+IntTostr(kkks));
         end;
       end;
     SM_QUERYITEMDLG:
@@ -9210,21 +9210,21 @@ begin
       begin
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[æˆåŠŸ]: äº¤æ˜“æˆåŠŸï¼');
+            FrmDlg.ShowMDlg(0, '', '[³É¹¦]: ½»Ò×³É¹¦£¡');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè¿›è¡Œäº¤æ˜“å¤±è´¥ï¼Œè¯·ç¨å€™æ“ä½œï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º½øĞĞ½»Ò×Ê§°Ü£¬ÇëÉÔºò²Ù×÷£¡');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä¸å­˜åœ¨äº¤æ˜“è®¢å•ï¼Œäº¤æ˜“å¤±è´¥ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º²»´æÔÚ½»Ò×¶©µ¥£¬½»Ò×Ê§°Ü£¡');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè¯·å…ˆè¿›è¡Œå…ƒå®å†²å€¼ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÇëÏÈ½øĞĞÔª±¦³åÖµ£¡');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ çš„èƒŒåŒ…ç©ºä½ä¸è¶³ï¼Œè¯·æ•´ç†åå†è¿›è¡Œæ“ä½œ');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãµÄ±³°ü¿ÕÎ»²»×ã£¬ÇëÕûÀíºóÔÙ½øĞĞ²Ù×÷');
           -5:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè¯¥è®¢å•å·²è¶…æ—¶ï¼Œä½ æ— æ³•æ”¶è´­ï¼Œåªèƒ½[å–æ¶ˆæ”¶è´­]ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º¸Ã¶©µ¥ÒÑ³¬Ê±£¬ÄãÎŞ·¨ÊÕ¹º£¬Ö»ÄÜ[È¡ÏûÊÕ¹º]£¡');
           -6:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨æŒæœ‰çš„å…ƒå®æ•°ä¸è¶³ä»¥æ”¶è´­ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄú³ÖÓĞµÄÔª±¦Êı²»×ãÒÔÊÕ¹º£¡');
         else
-          FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæœªçŸ¥é”™è¯¯ï¼Œäº¤æ˜“å¤±è´¥ï¼');
+          FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÎ´Öª´íÎó£¬½»Ò×Ê§°Ü£¡');
         end;
       end;
     SM_CANCELYBSELL_FAIL:
@@ -9232,26 +9232,26 @@ begin
         // FrmDlg.DBYbDealItemsCloseClick(nil, 0, 0);
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[æˆåŠŸ]: å–æ¶ˆäº¤æ˜“æˆåŠŸï¼');
+            FrmDlg.ShowMDlg(0, '', '[³É¹¦]: È¡Ïû½»Ò×³É¹¦£¡');
           02:
-            FrmDlg.ShowMDlg(0, '', '[æˆåŠŸ]: å–æ¶ˆæ”¶è´­æˆåŠŸï¼');
+            FrmDlg.ShowMDlg(0, '', '[³É¹¦]: È¡ÏûÊÕ¹º³É¹¦£¡');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šå–æ¶ˆäº¤æ˜“å¤±è´¥ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÈ¡Ïû½»Ò×Ê§°Ü£¡');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä¸å­˜åœ¨äº¤æ˜“è®¢å•ï¼Œå–æ¶ˆå¤±è´¥ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º²»´æÔÚ½»Ò×¶©µ¥£¬È¡ÏûÊ§°Ü£¡');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ çš„èƒŒåŒ…ç©ºä½ä¸è¶³ï¼Œè¯·æ•´ç†åå†è¿›è¡Œæ“ä½œï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãµÄ±³°ü¿ÕÎ»²»×ã£¬ÇëÕûÀíºóÔÙ½øĞĞ²Ù×÷£¡');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä½ æ²¡æœ‰å¯ä»¥æ”¯ä»˜çš„å…ƒå®ï¼Œ(ä½ çš„ç‰©å“å·²è¶…æœŸï¼Œéœ€è¦æ”¯ä»˜1ä¸ªå…ƒå®)');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄãÃ»ÓĞ¿ÉÒÔÖ§¸¶µÄÔª±¦£¬(ÄãµÄÎïÆ·ÒÑ³¬ÆÚ£¬ĞèÒªÖ§¸¶1¸öÔª±¦)');
         else
-          FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæœªçŸ¥é”™è¯¯ï¼Œå–æ¶ˆäº¤æ˜“å¤±è´¥ï¼');
+          FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÎ´Öª´íÎó£¬È¡Ïû½»Ò×Ê§°Ü£¡');
         end;
       end;
     SM_QUERYYBSELL_SELL:
       begin
         if (msg.Recog = -1) or (msg.Recog = -2) then
         begin
-          FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: æ²¡æœ‰æŸ¥è¯¢åˆ°æŒ‡å®šçš„è®°å½•ï¼');
+          FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: Ã»ÓĞ²éÑ¯µ½Ö¸¶¨µÄ¼ÇÂ¼£¡');
         end
         else
         begin
@@ -9262,7 +9262,7 @@ begin
       begin
         if (msg.Recog = -1) or (msg.Recog = -2) then
         begin
-          FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]: æ²¡æœ‰æŸ¥è¯¢åˆ°æŒ‡å®šçš„è®°å½•ï¼');
+          FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]: Ã»ÓĞ²éÑ¯µ½Ö¸¶¨µÄ¼ÇÂ¼£¡');
         end
         else
         begin
@@ -9282,61 +9282,61 @@ begin
         g_boYbDealing := False;
         case msg.Recog of
           01:
-            FrmDlg.ShowMDlg(0, '', '[æˆåŠŸ]: ç³»ç»Ÿå·²ç»æˆåŠŸæ¥å—æ‚¨çš„ç”³è¯·ï¼');
+            FrmDlg.ShowMDlg(0, '', '[³É¹¦]: ÏµÍ³ÒÑ¾­³É¹¦½ÓÊÜÄúµÄÉêÇë£¡');
           -1:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨æˆ–è€…å¯¹æ–¹è§’è‰²åä¸­å«æœ‰éæ³•å­—ç¬¦ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄú»òÕß¶Ô·½½ÇÉ«ÃûÖĞº¬ÓĞ·Ç·¨×Ö·û£¡');
           -2:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè‡³å°‘éœ€è¦ä¸€ä»¶ç‰©å“ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÖÁÉÙĞèÒªÒ»¼şÎïÆ·£¡');
           -3:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šä¸Šæ¬¡å¯„å”®ç‰©å“å·²è¶…è¿‡æ—¶é—´é™åˆ¶ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÉÏ´Î¼ÄÊÛÎïÆ·ÒÑ³¬¹ıÊ±¼äÏŞÖÆ£¡');
           -4:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨å°šæœªå¼€é€šå…ƒå®äº¤æ˜“ç³»ç»Ÿï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄúÉĞÎ´¿ªÍ¨Ôª±¦½»Ò×ÏµÍ³£¡');
           -5:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨ä¸Šæ¬¡å¯„å”®çš„ç‰©å“å°šæœªæˆåŠŸäº¤æ˜“ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄúÉÏ´Î¼ÄÊÛµÄÎïÆ·ÉĞÎ´³É¹¦½»Ò×£¡');
           -6:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šå¯¹æ–¹å·²åœ¨å…ƒå®äº¤æ˜“ä¸­ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º¶Ô·½ÒÑÔÚÔª±¦½»Ò×ÖĞ£¡');
           -7:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨åŒ…è£¹ä¸­æ²¡æœ‰æ‚¨è¦å‡ºå”®çš„ç‰©å“ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄú°ü¹üÖĞÃ»ÓĞÄúÒª³öÊÛµÄÎïÆ·£¡');
           -8:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šå®šå•å¤±æ•ˆï¼ŒNPCå‡†å¤‡æœªå°±ç»ªï¼Œè¯·é‡è¯•ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£º¶¨µ¥Ê§Ğ§£¬NPC×¼±¸Î´¾ÍĞ÷£¬ÇëÖØÊÔ£¡');
           -9:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ™®é€šäº¤æ˜“çŠ¶æ€ä¸‹ä¸èƒ½è¿›è¡Œå…ƒå®ä¹°å–ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÆÕÍ¨½»Ò××´Ì¬ÏÂ²»ÄÜ½øĞĞÔª±¦ÂòÂô£¡');
           -10:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šè¯·è¾“å…¥åˆç†çš„å…ƒå®æ•°é‡ï¼Œåœ¨0~9999ä¹‹é—´ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÇëÊäÈëºÏÀíµÄÔª±¦ÊıÁ¿£¬ÔÚ0~9999Ö®¼ä£¡');
           -11:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæ‚¨æ²¡æœ‰è¶³å¤Ÿçš„é‡‘åˆšçŸ³ï¼Œä¸”æ•°é‡åœ¨0~9999ä¹‹é—´ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÄúÃ»ÓĞ×ã¹»µÄ½ğ¸ÕÊ¯£¬ÇÒÊıÁ¿ÔÚ0~9999Ö®¼ä£¡');
           -12:
-            FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šç‰©å“æ•°é‡ä¸æ­£ç¡®ï¼');
+            FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÎïÆ·ÊıÁ¿²»ÕıÈ·£¡');
           -13:
-            FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š%s ç¦æ­¢å¯„å”®ï¼',
+            FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º%s ½ûÖ¹¼ÄÊÛ£¡',
               [DecodeString(body)]));
           -14:
-            FrmDlg.ShowMDlg(0, '', Format('[å¤±è´¥]ï¼š%s å·²ç»‘å®šäºå…¶ä»–å¸å·ï¼Œç¦æ­¢å¯„å”®ï¼',
+            FrmDlg.ShowMDlg(0, '', Format('[Ê§°Ü]£º%s ÒÑ°ó¶¨ÓÚÆäËûÕÊºÅ£¬½ûÖ¹¼ÄÊÛ£¡',
               [DecodeString(body)]));
         else
-          FrmDlg.ShowMDlg(0, '', '[å¤±è´¥]ï¼šæœªçŸ¥é”™è¯¯');
+          FrmDlg.ShowMDlg(0, '', '[Ê§°Ü]£ºÎ´Öª´íÎó');
         end;
       end;
     SM_OPENDEAL_FAIL:
       begin
         case msg.Recog of
           00:
-            FrmDlg.DMessageDlg('[æˆåŠŸ]ï¼šæˆåŠŸå¼€å¯å…ƒå®äº¤æ˜“ç³»ç»Ÿï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[³É¹¦]£º³É¹¦¿ªÆôÔª±¦½»Ò×ÏµÍ³£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šè¯·å…ˆè¿›è¡Œå…ƒå®å†²å€¼ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]£ºÇëÏÈ½øĞĞÔª±¦³åÖµ£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šæ‚¨å·²ç»å¼€å¯å…ƒå®äº¤æ˜“ç³»ç»Ÿï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]£ºÄúÒÑ¾­¿ªÆôÔª±¦½»Ò×ÏµÍ³£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šæ‚¨çš„å…ƒå®æ•°é‡ä¸è¶³å¼€å¯äº¤æ˜“ç³»ç»Ÿï¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]£ºÄúµÄÔª±¦ÊıÁ¿²»×ã¿ªÆô½»Ò×ÏµÍ³£¡', [mbOk]);
         else
-          FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šå¼€é€šå…ƒå®äº¤æ˜“ç³»ç»Ÿå¤±è´¥ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('[Ê§°Ü]£º¿ªÍ¨Ôª±¦½»Ò×ÏµÍ³Ê§°Ü£¡', [mbOk]);
         end;
       end;
     SM_CLOSEBOX:
       begin
         if msg.Recog = 0 then
         begin
-          DScreen.AddChatBoardString('è‡³å°‘éœ€è¦é¢„ç•™å…­ä¸ªç©ºä½', clWhite, clBlue);
+          DScreen.AddChatBoardString('ÖÁÉÙĞèÒªÔ¤ÁôÁù¸ö¿ÕÎ»', clWhite, clBlue);
         end
         else
         begin
@@ -9383,20 +9383,20 @@ begin
       begin
         case msg.Recog of
           2:
-            DScreen.AddChatBoardString('å®ç®±ä¸é’¥åŒ™ç±»å‹ä¸åŒ¹é…', clWhite, clBlue);
+            DScreen.AddChatBoardString('±¦ÏäÓëÔ¿³×ÀàĞÍ²»Æ¥Åä', clWhite, clBlue);
           3:
-            DScreen.AddChatBoardString('è‡³å°‘éœ€è¦é¢„ç•™å…­ä¸ªç©ºä½', clWhite, clBlue);
+            DScreen.AddChatBoardString('ÖÁÉÙĞèÒªÔ¤ÁôÁù¸ö¿ÕÎ»', clWhite, clBlue);
         end;
         if g_OpenBoxItem.Item.S.Name <> '' then
         begin
           AddItemBag(g_OpenBoxItem.Item, g_OpenBoxItem.Index);
-          DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + 'è¢«å‘ç°');
+          DScreen.AddSysMsg(g_OpenBoxItem.Item.S.Name + '±»·¢ÏÖ');
           g_OpenBoxItem.Item.S.Name := '';
         end;
         if g_WaitingUseItem.Item.S.Name <> '' then
         begin
           AddItemBag(g_WaitingUseItem.Item, g_WaitingUseItem.Index);
-          DScreen.AddSysMsg(g_WaitingUseItem.Item.S.Name + 'è¢«å‘ç°');
+          DScreen.AddSysMsg(g_WaitingUseItem.Item.S.Name + '±»·¢ÏÖ');
           g_WaitingUseItem.Item.S.Name := '';
         end;
         g_RareBoxWindow.m_boKeyAvail := False;
@@ -9442,9 +9442,9 @@ begin
         begin
           case msg.param of // reture type
             0 .. 3:
-              FrmDlg.DMessageDlg('[æç¤º]: ä½ åœ¨è¯¥ç‰ˆæ²¡æœ‰æ’å', [mbOk]);
+              FrmDlg.DMessageDlg('[ÌáÊ¾]: ÄãÔÚ¸Ã°æÃ»ÓĞÅÅÃû', [mbOk]);
             4 .. 7:
-              FrmDlg.DMessageDlg('[æç¤º]: ä½ çš„è‹±é›„åœ¨è¯¥ç‰ˆæ²¡æœ‰æ’å', [mbOk]);
+              FrmDlg.DMessageDlg('[ÌáÊ¾]: ÄãµÄÓ¢ĞÛÔÚ¸Ã°æÃ»ÓĞÅÅÃû', [mbOk]);
           end;
         end;
       end;
@@ -9482,21 +9482,21 @@ begin
       begin
         case msg.Recog of
           00:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: éæ³•ç‰©å“å', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ·Ç·¨ÎïÆ·Ãû', [mbOk]);
           -1:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä¸å­˜åœ¨ä½ æƒ³è´­ä¹°çš„ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ²»´æÔÚÄãÏë¹ºÂòµÄÎïÆ·', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: è¯·å…ˆè¿›è¡Œå…ƒå®å†²å€¼', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÇëÏÈ½øĞĞÔª±¦³åÖµ', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ å¸å·ä¸­çš„å…ƒå®æ•°ä¸å¤Ÿ', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÕÊºÅÖĞµÄÔª±¦Êı²»¹»', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šä½ æ— æ³•æºå¸¦æ›´å¤šçš„ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]£ºÄãÎŞ·¨Ğ¯´ø¸ü¶àµÄÎïÆ·', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šè´­ä¹°ç‰©å“ä¸åœ¨å•†åŸä¸­', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]£º¹ºÂòÎïÆ·²»ÔÚÉÌ³ÇÖĞ', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: æ‚¨çš„è´­ä¹°é€Ÿåº¦è¿‡å¿«', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÄúµÄ¹ºÂòËÙ¶È¹ı¿ì', [mbOk]);
         else
-          FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ æ— æ³•è´­ä¹°', [mbOk]);
+          FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÎŞ·¨¹ºÂò', [mbOk]);
         end;
       end;
     SM_PRESENDITEMFAIL:
@@ -9505,58 +9505,58 @@ begin
         begin
           case msg.Recog of
             01:
-              FrmDlg.DMessageDlg('[æˆåŠŸ]: å¯¹æ–¹å·²ç»æ”¶åˆ°ä½ çš„ç¤¼ç‰©', [mbOk]);
+              FrmDlg.DMessageDlg('[³É¹¦]: ¶Ô·½ÒÑ¾­ÊÕµ½ÄãµÄÀñÎï', [mbOk]);
             00:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: éæ³•çš„ç‰©å“åç§°', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ·Ç·¨µÄÎïÆ·Ãû³Æ', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æŠ±æ­‰, æœåŠ¡å™¨ä¸å­˜åœ¨ä½ æƒ³è´­ä¹°èµ é€çš„ç‰©å“', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ±§Ç¸, ·şÎñÆ÷²»´æÔÚÄãÏë¹ºÂòÔùËÍµÄÎïÆ·', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: è¯·å…ˆè¿›è¡Œå…ƒå®å†²å€¼', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÇëÏÈ½øĞĞÔª±¦³åÖµ', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ å¸å·ä¸­çš„å…ƒå®æ•°ä¸å¤Ÿ', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÕÊºÅÖĞµÄÔª±¦Êı²»¹»', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šèµ é€äººæ— æ³•æºå¸¦æ›´å¤šçš„ç‰©å“', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]£ºÔùËÍÈËÎŞ·¨Ğ¯´ø¸ü¶àµÄÎïÆ·', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šä½ æƒ³è´­ä¹°ç‰©å“ä¸åœ¨å•†åŸä¸­', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]£ºÄãÏë¹ºÂòÎïÆ·²»ÔÚÉÌ³ÇÖĞ', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æ‚¨çš„è´­ä¹°é€Ÿåº¦è¿‡å¿«', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄúµÄ¹ºÂòËÙ¶È¹ı¿ì', [mbOk]);
             -7:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: èµ é€äººä¸å­˜åœ¨æˆ–ä¸åœ¨çº¿', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÔùËÍÈË²»´æÔÚ»ò²»ÔÚÏß', [mbOk]);
             -8:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: èµ é€äººä¸èƒ½æ˜¯è‡ªå·±', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÔùËÍÈË²»ÄÜÊÇ×Ô¼º', [mbOk]);
             -9:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æœåŠ¡å™¨æœªå¼€å¯èµ é€åŠŸèƒ½', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ·şÎñÆ÷Î´¿ªÆôÔùËÍ¹¦ÄÜ', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ æ— æ³•è´­ä¹°', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÎŞ·¨¹ºÂò', [mbOk]);
           end;
         end
         else
         begin
           case msg.Recog of
             01:
-              FrmDlg.DMessageDlg('[æˆåŠŸ]: å¯¹æ–¹å·²ç»æ”¶åˆ°ä½ çš„ç¤¼ç‰©', [mbOk]);
+              FrmDlg.DMessageDlg('[³É¹¦]: ¶Ô·½ÒÑ¾­ÊÕµ½ÄãµÄÀñÎï', [mbOk]);
             00:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: éæ³•çš„ç‰©å“åç§°', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ·Ç·¨µÄÎïÆ·Ãû³Æ', [mbOk]);
             -1:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æŠ±æ­‰, æœåŠ¡å™¨ä¸å­˜åœ¨ä½ æƒ³è´­ä¹°èµ é€çš„ç‰©å“', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ±§Ç¸, ·şÎñÆ÷²»´æÔÚÄãÏë¹ºÂòÔùËÍµÄÎïÆ·', [mbOk]);
             -2:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ æ²¡æœ‰é‡‘å¸', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÃ»ÓĞ½ğ±Ò', [mbOk]);
             -3:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ å¸çš„é‡‘å¸æ•°ä¸å¤Ÿ', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÕÊµÄ½ğ±ÒÊı²»¹»', [mbOk]);
             -4:
-              FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šèµ é€äººæ— æ³•æºå¸¦æ›´å¤šçš„ç‰©å“', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]£ºÔùËÍÈËÎŞ·¨Ğ¯´ø¸ü¶àµÄÎïÆ·', [mbOk]);
             -5:
-              FrmDlg.DMessageDlg('[å¤±è´¥]ï¼šä½ æƒ³è´­ä¹°ç‰©å“ä¸åœ¨å•†åŸä¸­', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]£ºÄãÏë¹ºÂòÎïÆ·²»ÔÚÉÌ³ÇÖĞ', [mbOk]);
             -6:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æ‚¨çš„è´­ä¹°é€Ÿåº¦è¿‡å¿«', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄúµÄ¹ºÂòËÙ¶È¹ı¿ì', [mbOk]);
             -7:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: èµ é€äººä¸å­˜åœ¨æˆ–ä¸åœ¨çº¿', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÔùËÍÈË²»´æÔÚ»ò²»ÔÚÏß', [mbOk]);
             -8:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: èµ é€äººä¸èƒ½æ˜¯è‡ªå·±', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÔùËÍÈË²»ÄÜÊÇ×Ô¼º', [mbOk]);
             -9:
-              FrmDlg.DMessageDlg('[å¤±è´¥]: æœåŠ¡å™¨æœªå¼€å¯èµ é€åŠŸèƒ½', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ·şÎñÆ÷Î´¿ªÆôÔùËÍ¹¦ÄÜ', [mbOk]);
           else
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ æ— æ³•è´­ä¹°', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãÎŞ·¨¹ºÂò', [mbOk]);
           end;
         end;
       end;
@@ -9589,19 +9589,19 @@ begin
         end;
         if g_wAvailIDDay > 0 then
         begin
-          DScreen.AddChatBoardString('æ‚¨å½“å‰é€šè¿‡åŒ…æœˆå¸å·å……å€¼', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('Äúµ±Ç°Í¨¹ı°üÔÂÕÊºÅ³äÖµ', GetRGB(219), clWhite)
         end
         else if g_wAvailIPDay > 0 then
         begin
-          DScreen.AddChatBoardString('æ‚¨å½“å‰é€šè¿‡åŒ…æœˆIP å……å€¼', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('Äúµ±Ç°Í¨¹ı°üÔÂIP ³äÖµ', GetRGB(219), clWhite)
         end
         else if g_wAvailIPHour > 0 then
         begin
-          DScreen.AddChatBoardString('æ‚¨å½“å‰é€šè¿‡è®¡æ—¶IP å……å€¼', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('Äúµ±Ç°Í¨¹ı¼ÆÊ±IP ³äÖµ', GetRGB(219), clWhite)
         end
         else if g_wAvailIDHour > 0 then
         begin
-          DScreen.AddChatBoardString('æ‚¨å½“å‰é€šè¿‡è®¡æ—¶å¸å·å……å€¼', GetRGB(219), clWhite)
+          DScreen.AddChatBoardString('Äúµ±Ç°Í¨¹ı¼ÆÊ±ÕÊºÅ³äÖµ', GetRGB(219), clWhite)
         end;
         LoadUserConfig(m_sCharName);
         FrmDlg.LoadMySelfConfig();
@@ -9614,7 +9614,7 @@ begin
 
         if not g_gcGeneral[11] then
         begin
-          DScreen.AddChatBoardString('[æ¸¸æˆå£°éŸ³å·²å…³é—­]', clWhite, clblack);
+          DScreen.AddChatBoardString('[ÓÎÏ·ÉùÒôÒÑ¹Ø±Õ]', clWhite, clblack);
         end;
         // g_ModuleDetect.FCheckTick
       end;
@@ -9954,7 +9954,7 @@ begin
           begin
             Actor.SendMsg(SM_SITDOWN, msg.param { x } , msg.tag { y } ,
               msg.series { dir } , 0, 0, '', 0);
-//            if msg.ident = SM_SITDOWN then      å–æ¶ˆæŒ–è‚‰è¹²ä¸‹ä¸åœæ­¢
+//            if msg.ident = SM_SITDOWN then      È¡ÏûÍÚÈâ¶×ÏÂ²»Í£Ö¹
 //              if body <> '' then
 //                Actor.m_boDigFragment := True;
           end;
@@ -10014,7 +10014,7 @@ begin
         begin
           Actor.SendMsg(msg.ident, msg.param { x } , msg.tag { y } ,
             msg.series { dir } , 0, 0, '', 0);
-          Actor.m_nTargetX := mbw.Param1; // x å¸¦ç˜¤ç»° æ ¼é’
+          Actor.m_nTargetX := mbw.Param1; // x ´øÁö´Â ¸ñÇ¥
           Actor.m_nTargetY := mbw.Param2; // y
           Actor.m_nTargetRecog := Makelong(mbw.Tag1, mbw.Tag2);
         end;
@@ -10028,10 +10028,10 @@ begin
         begin
           Actor.SendMsg(msg.ident, msg.param { x } , msg.tag { y } ,
             msg.series { dir } , 0, 0, '', 0);
-          Actor.m_nTargetX := wl.lParam1; // x å¸¦ç˜¤ç»° æ ¼é’
+          Actor.m_nTargetX := wl.lParam1; // x ´øÁö´Â ¸ñÇ¥
           Actor.m_nTargetY := wl.lParam2; // y
           Actor.m_nTargetRecog := wl.lTag1;
-          Actor.m_nMagicNum := wl.lTag2; // ä»˜è¿‡ é”…é¾‹
+          Actor.m_nMagicNum := wl.lTag2; // ¸¶¹ı ¹øÈ£
         end;
       end;
 
@@ -10054,7 +10054,7 @@ begin
         g_boDoFastFadeOut := False;
         g_boDoFadeIn := False;
         g_boDoFadeOut := False;
-        FrmDlg.DMessageDlg('æœåŠ¡å™¨è¿æ¥è¢«å¼ºè¡Œä¸­æ–­ã€‚\è¿æ¥æ—¶é—´å¯èƒ½è¶…è¿‡é™åˆ¶', [mbOk]);
+        FrmDlg.DMessageDlg('·şÎñÆ÷Á¬½Ó±»Ç¿ĞĞÖĞ¶Ï¡£\Á¬½ÓÊ±¼ä¿ÉÄÜ³¬¹ıÏŞÖÆ', [mbOk]);
         Close;
       end;
     SM_DEATH, SM_NOWDEATH:
@@ -10146,14 +10146,14 @@ begin
           if not g_gcGeneral[3] or
             (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
             DScreen.AddSysMsgBottom
-              (Format('ç»éªŒå€¼ +%d', [LongWord(Makelong(msg.param, msg.tag))]));
+              (Format('¾­ÑéÖµ +%d', [LongWord(Makelong(msg.param, msg.tag))]));
         end
         else
         begin
           if not g_gcGeneral[3] or
             (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
             DScreen.AddChatBoardString
-              (Format('%dç»éªŒå€¼å¢åŠ ', [LongWord(Makelong(msg.param, msg.tag))]),
+              (Format('%d¾­ÑéÖµÔö¼Ó', [LongWord(Makelong(msg.param, msg.tag))]),
               clWhite, clRed);
         end;
       end;
@@ -10166,7 +10166,7 @@ begin
           begin
             if not g_gcGeneral[3] or
               (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
-              DScreen.AddSysMsgBottom(Format('(è‹±é›„)ç»éªŒå€¼ +%d',
+              DScreen.AddSysMsgBottom(Format('(Ó¢ĞÛ)¾­ÑéÖµ +%d',
                 [LongWord(Makelong(msg.param, msg.tag))]));
           end
           else
@@ -10174,7 +10174,7 @@ begin
             if not g_gcGeneral[3] or
               (LongWord(Makelong(msg.param, msg.tag)) > g_MaxExpFilter) then
               DScreen.AddChatBoardString
-                (Format('%dè‹±é›„ç»éªŒå€¼å¢åŠ ', [LongWord(Makelong(msg.param, msg.tag))]),
+                (Format('%dÓ¢ĞÛ¾­ÑéÖµÔö¼Ó', [LongWord(Makelong(msg.param, msg.tag))]),
                 clWhite, clRed);
           end;
         end;
@@ -10182,19 +10182,19 @@ begin
     SM_WINNIMBUSEXP:
       begin
         if msg.Recog > 0 then
-          DScreen.AddSysMsgBottom(Format('å½“å‰çµæ°”å€¼ %d', [msg.Recog]));
+          DScreen.AddSysMsgBottom(Format('µ±Ç°ÁéÆøÖµ %d', [msg.Recog]));
       end;
     SM_HEROWINNIMBUSEXP:
       begin
         if msg.Recog > 0 then
-          DScreen.AddSysMsgBottom(Format('(è‹±é›„)å½“å‰çµæ°”å€¼ %d', [msg.Recog]));
+          DScreen.AddSysMsgBottom(Format('(Ó¢ĞÛ)µ±Ç°ÁéÆøÖµ %d', [msg.Recog]));
       end;
     SM_WINIPEXP:
       begin
         g_MySelf.m_nIPowerExp := msg.Recog;
         ipExp := LongWord(Makelong(msg.param, msg.tag));
         if ipExp > 0 then
-          DScreen.AddSysMsgBottom(Format('%dç‚¹å†…åŠŸç»éªŒå¢åŠ ', [ipExp]));
+          DScreen.AddSysMsgBottom(Format('%dµãÄÚ¹¦¾­ÑéÔö¼Ó', [ipExp]));
         if msg.series in [3 .. 28] then
           g_nMagicRange := msg.series;
       end;
@@ -10205,13 +10205,13 @@ begin
           g_MySelf.m_HeroObject.m_nIPowerExp := msg.Recog;
           ipExp := LongWord(Makelong(msg.param, msg.tag));
           if ipExp > 0 then
-            DScreen.AddSysMsgBottom(Format('(è‹±é›„)%dç‚¹å†…åŠŸç»éªŒå¢åŠ ', [ipExp]));
+            DScreen.AddSysMsgBottom(Format('(Ó¢ĞÛ)%dµãÄÚ¹¦¾­ÑéÔö¼Ó', [ipExp]));
         end;
       end;
     SM_LEVELUP:
       begin
         g_MySelf.m_Abil.level := msg.param;
-        DScreen.AddSysMsg('æ‚¨çš„ç­‰çº§å·²å‡çº§ï¼');
+        DScreen.AddSysMsg('ÄúµÄµÈ¼¶ÒÑÉı¼¶£¡');
       end;
     SM_HEALTHSPELLCHANGED:
       begin
@@ -10252,9 +10252,9 @@ begin
           end;
 
           if g_IgnoreStruck then
-          begin // ç¨³å¦‚æ³°å±±
+          begin // ÎÈÈçÌ©É½
             if (Actor <> g_MySelf) and (Actor <> g_MySelf.m_HeroObject) then
-              // å¯¹è±¡ä¸æ˜¯è‡ªå·±ä¸”ä¸æ˜¯æˆ‘çš„è‹±é›„ï¼Œåˆ™æ‰§è¡Œ
+              // ¶ÔÏó²»ÊÇ×Ô¼ºÇÒ²»ÊÇÎÒµÄÓ¢ĞÛ£¬ÔòÖ´ĞĞ
               Actor.UpdateMsg(SM_STRUCK, wl.lTag2, 0, msg.series { damage } ,
                 wl.lParam1, wl.lParam2, '', wl.lTag1);
           end
@@ -10270,7 +10270,7 @@ begin
           Actor.m_Abil.MaxHP := msg.tag;
 {$IFEND}
           if g_boOpenAutoPlay and TimerAutoPlay.Enabled then
-          begin // 0613 è‡ªå·±å—äººæ”»å‡»,å°é€€
+          begin // 0613 ×Ô¼ºÊÜÈË¹¥»÷,Ğ¡ÍË
             Actor2 := g_PlayScene.FindActor(wl.lTag1);
             if (Actor2 = nil) or
               ((Actor2.m_btRace <> 0) and (Actor2.m_btIsHero <> 1)) then
@@ -10279,14 +10279,14 @@ begin
             if (g_MySelf <> nil) then
             begin
               if (Actor = g_MySelf.m_HeroObject) then
-              begin // è‹±é›„å—äººæ”»å‡»
+              begin // Ó¢ĞÛÊÜÈË¹¥»÷
                 //
                 FrmDlg.ClientCallHero();
 
               end
               else if (Actor = g_MySelf) then
-              begin // è‡ªå·±å—äººæ”»å‡»,å°é€€
-                g_nAPReLogon := 1; // ä¿å­˜çŠ¶æ€
+              begin // ×Ô¼ºÊÜÈË¹¥»÷,Ğ¡ÍË
+                g_nAPReLogon := 1; // ±£´æ×´Ì¬
                 g_nAPrlRecallHero := (g_MySelf.m_HeroObject <> nil);
                 g_nOverAPZone2 := g_nOverAPZone;
                 g_APGoBack2 := g_APGoBack;
@@ -10696,7 +10696,7 @@ begin
     SM_OPENDOOR_OK:
       Map.OpenDoor(msg.param, msg.tag);
     SM_OPENDOOR_LOCK:
-      DScreen.AddSysMsg('æ­¤é—¨è¢«é”å®š');
+      DScreen.AddSysMsg('´ËÃÅ±»Ëø¶¨');
     SM_CLOSEDOOR:
       Map.CloseDoor(msg.param, msg.tag);
 
@@ -10714,18 +10714,18 @@ begin
         begin
           AddItemBag(g_WaitingUseItem.Item);
           g_WaitingUseItem.Item.S.Name := '';
-          DScreen.AddChatBoardString('(è‹±é›„) èƒŒåŒ…å·²æ»¡ï¼Œè¯·æ•´ç†åè¿›è¡Œæ“ä½œ', clWhite, clRed);
+          DScreen.AddChatBoardString('(Ó¢ĞÛ) ±³°üÒÑÂú£¬ÇëÕûÀíºó½øĞĞ²Ù×÷', clWhite, clRed);
         end
         else if msg.Recog = 1 then
         begin
           HeroAddItemBag(g_WaitingUseItem.Item);
           g_WaitingUseItem.Item.S.Name := '';
-          DScreen.AddChatBoardString('ä½ çš„èƒŒåŒ…å·²æ»¡ï¼Œè¯·æ•´ç†åè¿›è¡Œæ“ä½œ', clWhite, clRed);
+          DScreen.AddChatBoardString('ÄãµÄ±³°üÒÑÂú£¬ÇëÕûÀíºó½øĞĞ²Ù×÷', clWhite, clRed);
         end
         else if msg.Recog = 2 then
         begin
           AddItemBag(g_WaitingUseItem.Item);
-          DScreen.AddChatBoardString(g_WaitingUseItem.Item.S.Name + 'ä¸èƒ½æ”¾åˆ°è‹±é›„åŒ…è£¹ä¸­',
+          DScreen.AddChatBoardString(g_WaitingUseItem.Item.S.Name + '²»ÄÜ·Åµ½Ó¢ĞÛ°ü¹üÖĞ',
             clWhite, clRed);
           g_WaitingUseItem.Item.S.Name := '';
         end;
@@ -10819,7 +10819,7 @@ begin
       begin
         g_SndMgr.PlaySound(s_money);
         if msg.Recog > g_MySelf.m_nGold then
-          DScreen.AddSysMsg('è·å¾— ' + IntToStr(msg.Recog - g_MySelf.m_nGold) +
+          DScreen.AddSysMsg('»ñµÃ ' + IntToStr(msg.Recog - g_MySelf.m_nGold) +
             g_sGoldName);
         g_MySelf.m_nGold := msg.Recog;
         g_MySelf.m_nGameGold := Makelong(msg.param, msg.tag);
@@ -10900,13 +10900,13 @@ begin
         m_boSupplyItem := False;
         case msg.series of
           1:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„é‡‘å¸ä¸è¶³ï¼Œä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed, clWhite);
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄ½ğ±Ò²»×ã£¬²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed, clWhite);
           2:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„å…ƒå®ä¸è¶³ï¼Œä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed, clWhite);
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄÔª±¦²»×ã£¬²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed, clWhite);
           3:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„é‡‘åˆšçŸ³ä¸è¶³ï¼Œä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed, clWhite);
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄ½ğ¸ÕÊ¯²»×ã£¬²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed, clWhite);
           4:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„çµç¬¦ä¸è¶³ï¼Œä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed, clWhite);
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄÁé·û²»×ã£¬²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed, clWhite);
         end;
       end;
     SM_HEROEAT_FAIL:
@@ -10917,16 +10917,16 @@ begin
         g_EatingItem.S.Name := '';
         case msg.series of
           1:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„é‡‘å¸ä¸è¶³ï¼Œè‹±é›„ä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed,
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄ½ğ±Ò²»×ã£¬Ó¢ĞÛ²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed,
               clWhite);
           2:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„å…ƒå®ä¸è¶³ï¼Œè‹±é›„ä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed,
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄÔª±¦²»×ã£¬Ó¢ĞÛ²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed,
               clWhite);
           3:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„é‡‘åˆšçŸ³ä¸è¶³ï¼Œè‹±é›„ä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼',
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄ½ğ¸ÕÊ¯²»×ã£¬Ó¢ĞÛ²»ÄÜÊÍ·Å»ıÁéÖé£¡',
               clRed, clWhite);
           4:
-            DScreen.AddChatBoardString('[å¤±è´¥] ä½ çš„çµç¬¦ä¸è¶³ï¼Œè‹±é›„ä¸èƒ½é‡Šæ”¾ç§¯çµç ï¼', clRed,
+            DScreen.AddChatBoardString('[Ê§°Ü] ÄãµÄÁé·û²»×ã£¬Ó¢ĞÛ²»ÄÜÊÍ·Å»ıÁéÖé£¡', clRed,
               clWhite);
         end;
       end;
@@ -11007,7 +11007,7 @@ begin
               g_sSellPriceStr := IntToStr(msg.Recog) + g_sGoldName;
           end
           else
-            g_sSellPriceStr := '???? ' + g_sGoldName { é‡‘å¸' };
+            g_sSellPriceStr := '???? ' + g_sGoldName { ½ğ±Ò' };
         end;
       end;
     SM_SENDBOOKCNT:
@@ -11017,22 +11017,22 @@ begin
           if msg.Recog > 0 then
           begin
             if g_SellDlgItem.S.Overlap > 0 then
-              g_sSellPriceStr := 'æ¢: ' +
-                IntToStr(msg.Recog * g_SellDlgItem.Dura) + 'å·è½´ç¢ç‰‡'
+              g_sSellPriceStr := '»»: ' +
+                IntToStr(msg.Recog * g_SellDlgItem.Dura) + '¾íÖáËéÆ¬'
             else
-              g_sSellPriceStr := 'æ¢: ' + IntToStr(msg.Recog) + 'å·è½´ç¢ç‰‡';
+              g_sSellPriceStr := '»»: ' + IntToStr(msg.Recog) + '¾íÖáËéÆ¬';
           end
           else
           begin
             case msg.Recog of
               00:
-                g_sSellPriceStr := 'ä¸å¯ä»¥å…‘æ¢';
+                g_sSellPriceStr := '²»¿ÉÒÔ¶Ò»»';
               -1:
-                g_sSellPriceStr := 'ä¸æ˜¯è£…å¤‡ç±»';
+                g_sSellPriceStr := '²»ÊÇ×°±¸Àà';
               -2:
-                g_sSellPriceStr := 'è£…å¤‡çº§åˆ«å¤ªä½';
+                g_sSellPriceStr := '×°±¸¼¶±ğÌ«µÍ';
               -3:
-                g_sSellPriceStr := 'è£…å¤‡çº§åˆ«å¤ªé«˜';
+                g_sSellPriceStr := '×°±¸¼¶±ğÌ«¸ß';
             end;
           end;
         end;
@@ -11049,7 +11049,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('æ­¤ç‰©å“ä¸èƒ½å‡ºå”®', [mbOk]);
+        FrmDlg.DMessageDlg('´ËÎïÆ·²»ÄÜ³öÊÛ', [mbOk]);
       end;
     SM_USEREXCHGITEM_FAIL:
       begin
@@ -11058,19 +11058,19 @@ begin
         g_SellDlgItemSellWait.Item.S.Name := '';
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ‘†æ‘Šä¸­ï¼Œä¸èƒ½æ“ä½œ', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] °ÚÌ¯ÖĞ£¬²»ÄÜ²Ù×÷', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç‰©å“å·²ç»ç»‘å®šä»–äºº', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ÎïÆ·ÒÑ¾­°ó¶¨ËûÈË', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[å¤±è´¥] ç¦æ­¢å‡ºå”®çš„ç‰©å“ï¼Œä¹Ÿä¸èƒ½æ›´æ¢å·è½´ç¢ç‰‡', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ½ûÖ¹³öÊÛµÄÎïÆ·£¬Ò²²»ÄÜ¸ü»»¾íÖáËéÆ¬', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[å¤±è´¥] æ›´æ¢å·è½´ç¢ç‰‡å¤±è´¥', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ¸ü»»¾íÖáËéÆ¬Ê§°Ü', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[å¤±è´¥] è¯¥ä¸æ˜¯è£…å¤‡ç±»', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ¸Ã²»ÊÇ×°±¸Àà', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[å¤±è´¥] è¯¥è£…å¤‡çº§åˆ«å¤ªä½', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ¸Ã×°±¸¼¶±ğÌ«µÍ', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[å¤±è´¥] è¯¥è£…å¤‡çº§åˆ«å¤ªé«˜', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü] ¸Ã×°±¸¼¶±ğÌ«¸ß', [mbOk]);
         end;
 
       end;
@@ -11088,7 +11088,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('æ­¤ç‰©å“ä¸èƒ½å‡ºå”®', [mbOk]);
+        FrmDlg.DMessageDlg('´ËÎïÆ·²»ÄÜ³öÊÛ', [mbOk]);
       end;
 
     SM_SENDREPAIRCOST:
@@ -11096,9 +11096,9 @@ begin
         if g_SellDlgItem.S.Name <> '' then
         begin
           if msg.Recog >= 0 then
-            g_sSellPriceStr := IntToStr(msg.Recog) + ' ' + g_sGoldName { é‡‘å¸ }
+            g_sSellPriceStr := IntToStr(msg.Recog) + ' ' + g_sGoldName { ½ğ±Ò }
           else
-            g_sSellPriceStr := '???? ' + g_sGoldName { é‡‘å¸ };
+            g_sSellPriceStr := '???? ' + g_sGoldName { ½ğ±Ò };
         end;
       end;
     SM_USERREPAIRITEM_OK:
@@ -11118,7 +11118,7 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         AddItemBag(g_SellDlgItemSellWait.Item);
         g_SellDlgItemSellWait.Item.S.Name := '';
-        FrmDlg.DMessageDlg('æ‚¨ä¸èƒ½ä¿®ç†æ­¤ç‰©å“', [mbOk]);
+        FrmDlg.DMessageDlg('Äú²»ÄÜĞŞÀí´ËÎïÆ·', [mbOk]);
       end;
     SM_ITEMSUMCOUNT_FAIL:
       begin
@@ -11130,7 +11130,7 @@ begin
             begin
               HeroAddItemBag(g_WaitingUseItem.Item);
               g_WaitingUseItem.Item.S.Name := '';
-              DScreen.AddChatBoardString('(è‹±é›„)é‡å å¤±è´¥,ç‰©å“æœ€é«˜æ•°é‡æ˜¯ ' +
+              DScreen.AddChatBoardString('(Ó¢ĞÛ)ÖØµşÊ§°Ü,ÎïÆ·×î¸ßÊıÁ¿ÊÇ ' +
                 IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
             end
             else
@@ -11146,7 +11146,7 @@ begin
             begin
               AddItemBag(g_WaitingUseItem.Item, g_WaitingUseItem.Index);
               g_WaitingUseItem.Item.S.Name := '';
-              DScreen.AddChatBoardString('é‡å å¤±è´¥,ç‰©å“æœ€é«˜æ•°é‡æ˜¯ ' +
+              DScreen.AddChatBoardString('ÖØµşÊ§°Ü,ÎïÆ·×î¸ßÊıÁ¿ÊÇ ' +
                 IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
             end
             else
@@ -11164,22 +11164,22 @@ begin
         if msg.ident <> SM_STORAGE_OK then
         begin
           if msg.ident = SM_STORAGE_FULL then
-            FrmDlg.DMessageDlg('æ‚¨çš„ä¸ªäººä»“åº“å·²ç»æ»¡äº†ï¼Œä¸èƒ½å†ä¿ç®¡ä»»ä½•ä¸œè¥¿äº†', [mbOk])
+            FrmDlg.DMessageDlg('ÄúµÄ¸öÈË²Ö¿âÒÑ¾­ÂúÁË£¬²»ÄÜÔÙ±£¹ÜÈÎºÎ¶«Î÷ÁË', [mbOk])
           else
           begin
             if msg.Recog = 2 then
-              FrmDlg.DMessageDlg('å¯„å­˜ç‰©å“å¤±è´¥,åŒç±»å•ä¸ªç‰©å“æœ€é«˜é‡å æ•°é‡æ˜¯ ' +
+              FrmDlg.DMessageDlg('¼Ä´æÎïÆ·Ê§°Ü,Í¬Ààµ¥¸öÎïÆ·×î¸ßÖØµşÊıÁ¿ÊÇ ' +
                 IntToStr(MAX_OVERLAPITEM), [mbOk])
             else if msg.Recog = 3 then
             begin
               g_SellDlgItemSellWait.Item.Dura := g_SellDlgItemSellWait.Item.Dura
                 - msg.param;
-              DScreen.AddChatBoardString(Format('æˆåŠŸå¯„å­˜ %s %dä¸ª',
+              DScreen.AddChatBoardString(Format('³É¹¦¼Ä´æ %s %d¸ö',
                 [g_SellDlgItemSellWait.Item.S.Name, msg.param]),
                 clBlue, clWhite);
             end
             else
-              FrmDlg.DMessageDlg('æ‚¨ä¸èƒ½å¯„å­˜ç‰©å“', [mbOk]);
+              FrmDlg.DMessageDlg('Äú²»ÄÜ¼Ä´æÎïÆ·', [mbOk]);
           end;
           AddItemBag(g_SellDlgItemSellWait.Item);
         end
@@ -11200,9 +11200,9 @@ begin
         if msg.ident <> SM_TAKEBACKSTORAGEITEM_OK then
         begin
           if msg.ident = SM_TAKEBACKSTORAGEITEM_FULLBAG then
-            FrmDlg.DMessageDlg('æ‚¨æ— æ³•æºå¸¦æ›´å¤šç‰©å“äº†', [mbOk])
+            FrmDlg.DMessageDlg('ÄúÎŞ·¨Ğ¯´ø¸ü¶àÎïÆ·ÁË', [mbOk])
           else
-            FrmDlg.DMessageDlg('æ‚¨æ— æ³•å–å›ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÎŞ·¨È¡»ØÎïÆ·', [mbOk]);
         end
         else
         begin
@@ -11221,31 +11221,31 @@ begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('æ­¤ç‰©å“è¢«å–å‡º', [mbOk]);
+            FrmDlg.DMessageDlg('´ËÎïÆ·±»Âô³ö', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('æ‚¨æ— æ³•æºå¸¦æ›´å¤šç‰©å“äº†', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÎŞ·¨Ğ¯´ø¸ü¶àÎïÆ·ÁË', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('æ‚¨æ²¡æœ‰è¶³å¤Ÿçš„é’±æ¥è´­ä¹°æ­¤ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÃ»ÓĞ×ã¹»µÄÇ®À´¹ºÂò´ËÎïÆ·', [mbOk]);
         end;
       end;
     SM_MAKEDRUG_SUCCESS:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         g_MySelf.m_nGold := msg.Recog;
-        FrmDlg.DMessageDlg('æ‚¨è¦çš„ç‰©å“å·²ç»æå®šäº†', [mbOk]);
+        FrmDlg.DMessageDlg('ÄúÒªµÄÎïÆ·ÒÑ¾­¸ã¶¨ÁË', [mbOk]);
       end;
     SM_MAKEDRUG_FAIL:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('æœªçŸ¥é”™è¯¯', [mbOk]);
+            FrmDlg.DMessageDlg('Î´Öª´íÎó', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('å‘ç”Ÿäº†é”™è¯¯', [mbOk]);
+            FrmDlg.DMessageDlg('·¢ÉúÁË´íÎó', [mbOk]);
           3:
-            FrmDlg.DMessageDlg(g_sGoldName { 'é‡‘å¸' } + 'ä¸è¶³', [mbOk]);
+            FrmDlg.DMessageDlg(g_sGoldName { '½ğ±Ò' } + '²»×ã', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('ä½ ç¼ºä¹æ‰€å¿…éœ€çš„ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('ÄãÈ±·¦Ëù±ØĞèµÄÎïÆ·', [mbOk]);
         end;
       end;
     SM_NORMALEFFECT:
@@ -11263,12 +11263,12 @@ begin
         if msg.param > 0 then
         begin
           g_boAllowGroup := True;
-          DScreen.AddChatBoardString('[å¼€å¯ç»„é˜Ÿå¼€å…³]', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('[¿ªÆô×é¶Ó¿ª¹Ø]', GetRGB(219), clWhite);
         end
         else
         begin
           g_boAllowGroup := False;
-          DScreen.AddChatBoardString('[å…³é—­ç»„é˜Ÿå¼€å…³]', GetRGB(219), clWhite);
+          DScreen.AddChatBoardString('[¹Ø±Õ×é¶Ó¿ª¹Ø]', GetRGB(219), clWhite);
         end;
         g_dwChangeGroupModeTick := GetTickCount;
       end;
@@ -11282,13 +11282,13 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('ç¼–ç»„è¿˜æœªæˆç«‹æˆ–è€…ä½ è¿˜ä¸å¤Ÿç­‰çº§åˆ›å»ºï¼', [mbOk]);
+            FrmDlg.DMessageDlg('±à×é»¹Î´³ÉÁ¢»òÕßÄã»¹²»¹»µÈ¼¶´´½¨£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('è¾“å…¥çš„äººç‰©åç§°ä¸æ­£ç¡®ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÊäÈëµÄÈËÎïÃû³Æ²»ÕıÈ·£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('æ‚¨æƒ³é‚€è¯·åŠ å…¥ç¼–ç»„çš„äººå·²ç»åŠ å…¥äº†å…¶å®ƒç»„ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÏëÑûÇë¼ÓÈë±à×éµÄÈËÒÑ¾­¼ÓÈëÁËÆäËü×é£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('å¯¹æ–¹ä¸å…è®¸ç¼–ç»„ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½²»ÔÊĞí±à×é£¡', [mbOk]);
         end;
       end;
     SM_GROUPADDMEM_OK:
@@ -11301,15 +11301,15 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('ç¼–ç»„è¿˜æœªæˆç«‹æˆ–è€…ä½ è¿˜ä¸å¤Ÿç­‰çº§åˆ›å»ºï¼', [mbOk]);
+            FrmDlg.DMessageDlg('±à×é»¹Î´³ÉÁ¢»òÕßÄã»¹²»¹»µÈ¼¶´´½¨£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('è¾“å…¥çš„äººç‰©åç§°ä¸æ­£ç¡®ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÊäÈëµÄÈËÎïÃû³Æ²»ÕıÈ·£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('å·²ç»åŠ å…¥ç¼–ç»„ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÒÑ¾­¼ÓÈë±à×é£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('å¯¹æ–¹ä¸å…è®¸ç¼–ç»„ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½²»ÔÊĞí±à×é£¡', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('æ‚¨æƒ³é‚€è¯·åŠ å…¥ç¼–ç»„çš„äººå·²ç»åŠ å…¥äº†å…¶å®ƒç»„ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÏëÑûÇë¼ÓÈë±à×éµÄÈËÒÑ¾­¼ÓÈëÁËÆäËü×é£¡', [mbOk]);
         end;
       end;
     SM_GROUPDELMEM_OK:
@@ -11319,11 +11319,11 @@ begin
         g_dwChangeGroupModeTick := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('ç¼–ç»„è¿˜æœªæˆç«‹æˆ–è€…æ‚¨è¿˜ä¸å¤Ÿç­‰çº§åˆ›å»º', [mbOk]);
+            FrmDlg.DMessageDlg('±à×é»¹Î´³ÉÁ¢»òÕßÄú»¹²»¹»µÈ¼¶´´½¨', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('è¾“å…¥çš„äººç‰©åç§°ä¸æ­£ç¡®ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÊäÈëµÄÈËÎïÃû³Æ²»ÕıÈ·£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('æ­¤äººä¸åœ¨æœ¬ç»„ä¸­ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('´ËÈË²»ÔÚ±¾×éÖĞ£¡', [mbOk]);
         end;
       end;
     SM_GROUPCANCEL:
@@ -11344,12 +11344,12 @@ begin
     SM_OPENGUILDDLG_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        FrmDlg.DMessageDlg('æ‚¨è¿˜æ²¡æœ‰åŠ å…¥è¡Œä¼šï¼', [mbOk]);
+        FrmDlg.DMessageDlg('Äú»¹Ã»ÓĞ¼ÓÈëĞĞ»á£¡', [mbOk]);
       end;
     SM_DEALTRY_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        FrmDlg.DMessageDlg('åªæœ‰äºŒäººé¢å¯¹é¢æ‰èƒ½è¿›è¡Œäº¤æ˜“', [mbOk]);
+        FrmDlg.DMessageDlg('Ö»ÓĞ¶şÈËÃæ¶ÔÃæ²ÅÄÜ½øĞĞ½»Ò×', [mbOk]);
       end;
     SM_DEALMENU:
       begin
@@ -11390,7 +11390,7 @@ begin
           g_DealDlgItem.S.Name := '';
         end;
         if msg.Recog <> 0 then
-          DScreen.AddChatBoardString('é‡å å¤±è´¥,ç‰©å“æœ€é«˜æ•°é‡æ˜¯ ' +
+          DScreen.AddChatBoardString('ÖØµşÊ§°Ü,ÎïÆ·×î¸ßÊıÁ¿ÊÇ ' +
             IntToStr(MAX_OVERLAPITEM), clWhite, clRed);
       end;
     SM_DEALDELITEM_OK:
@@ -11448,7 +11448,7 @@ begin
     SM_READMINIMAP_FAIL:
       begin
         g_dwQueryMsgTick := GetTickCount;
-        DScreen.AddChatBoardString('æ²¡æœ‰å°åœ°å›¾', clWhite, clRed);
+        DScreen.AddChatBoardString('Ã»ÓĞĞ¡µØÍ¼', clWhite, clRed);
         g_nMiniMapIndex := -1;
       end;
     SM_CHANGEGUILDNAME:
@@ -11467,15 +11467,15 @@ begin
       begin
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('ä½ æ²¡æœ‰æƒåˆ©ä½¿ç”¨è¿™ä¸ªå‘½ä»¤', [mbOk]);
+            FrmDlg.DMessageDlg('ÄãÃ»ÓĞÈ¨ÀûÊ¹ÓÃÕâ¸öÃüÁî', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('æƒ³åŠ å…¥è¿›æ¥çš„æˆå‘˜åº”è¯¥æ¥é¢å¯¹æŒé—¨äºº', [mbOk]);
+            FrmDlg.DMessageDlg('Ïë¼ÓÈë½øÀ´µÄ³ÉÔ±Ó¦¸ÃÀ´Ãæ¶ÔÕÆÃÅÈË', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('å¯¹æ–¹å·²ç»åŠ å…¥æˆ‘ä»¬çš„è¡Œä¼š', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½ÒÑ¾­¼ÓÈëÎÒÃÇµÄĞĞ»á', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('å¯¹æ–¹å·²ç»åŠ å…¥å…¶ä»–è¡Œä¼š', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½ÒÑ¾­¼ÓÈëÆäËûĞĞ»á', [mbOk]);
           5:
-            FrmDlg.DMessageDlg('å¯¹æ–¹ä¸å…è®¸åŠ å…¥è¡Œä¼š', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½²»ÔÊĞí¼ÓÈëĞĞ»á', [mbOk]);
         end;
       end;
     SM_GUILDDELMEMBER_OK:
@@ -11486,73 +11486,73 @@ begin
       begin
         case msg.Recog of
           1:
-            FrmDlg.DMessageDlg('ä¸èƒ½ä½¿ç”¨å‘½ä»¤ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('²»ÄÜÊ¹ÓÃÃüÁî£¡', [mbOk]);
           2:
-            FrmDlg.DMessageDlg('æ­¤äººéæœ¬è¡Œä¼šæˆå‘˜ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('´ËÈË·Ç±¾ĞĞ»á³ÉÔ±£¡', [mbOk]);
           3:
-            FrmDlg.DMessageDlg('è¡Œä¼šæŒé—¨äººä¸èƒ½å¼€é™¤è‡ªå·±ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ĞĞ»áÕÆÃÅÈË²»ÄÜ¿ª³ı×Ô¼º£¡', [mbOk]);
           4:
-            FrmDlg.DMessageDlg('ä¸èƒ½ä½¿ç”¨å‘½ä»¤ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('²»ÄÜÊ¹ÓÃÃüÁî£¡', [mbOk]);
         end;
       end;
     SM_GUILDRANKUPDATE_FAIL:
       begin
         case msg.Recog of
           - 2:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] æŒé—¨äººä½ç½®ä¸èƒ½ä¸ºç©º', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] ÕÆÃÅÈËÎ»ÖÃ²»ÄÜÎª¿Õ', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] æ–°çš„è¡Œä¼šæŒé—¨äººå·²ç»è¢«ä¼ ä½', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] ĞÂµÄĞĞ»áÕÆÃÅÈËÒÑ¾­±»´«Î»', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] ä¸€ä¸ªè¡Œä¼šæœ€å¤šåªèƒ½æœ‰äºŒä¸ªæŒé—¨äºº', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] Ò»¸öĞĞ»á×î¶àÖ»ÄÜÓĞ¶ş¸öÕÆÃÅÈË', [mbOk]);
           -5:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] æŒé—¨äººä½ç½®ä¸èƒ½ä¸ºç©º', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] ÕÆÃÅÈËÎ»ÖÃ²»ÄÜÎª¿Õ', [mbOk]);
           -6:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] ä¸èƒ½æ·»åŠ æˆå‘˜/åˆ é™¤æˆå‘˜', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] ²»ÄÜÌí¼Ó³ÉÔ±/É¾³ı³ÉÔ±', [mbOk]);
           -7:
-            FrmDlg.DMessageDlg('[æç¤ºä¿¡æ¯] èŒä½é‡å¤æˆ–è€…å‡ºé”™', [mbOk]);
+            FrmDlg.DMessageDlg('[ÌáÊ¾ĞÅÏ¢] Ö°Î»ÖØ¸´»òÕß³ö´í', [mbOk]);
         end;
       end;
     SM_GUILDMAKEALLY_OK, SM_GUILDMAKEALLY_FAIL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('æ‚¨æ— æ­¤æƒé™ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÎŞ´ËÈ¨ÏŞ£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('ç»“ç›Ÿå¤±è´¥ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('½áÃËÊ§°Ü£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('è¡Œä¼šç»“ç›Ÿå¿…é¡»åŒæ–¹æŒé—¨äººé¢å¯¹é¢ï¼', [mbOk]);
+            FrmDlg.DMessageDlg('ĞĞ»á½áÃË±ØĞëË«·½ÕÆÃÅÈËÃæ¶ÔÃæ£¡', [mbOk]);
           -4:
-            FrmDlg.DMessageDlg('å¯¹æ–¹è¡Œä¼šæŒé—¨äººä¸å…è®¸ç»“ç›Ÿï¼', [mbOk]);
+            FrmDlg.DMessageDlg('¶Ô·½ĞĞ»áÕÆÃÅÈË²»ÔÊĞí½áÃË£¡', [mbOk]);
         end;
       end;
     SM_GUILDBREAKALLY_OK, SM_GUILDBREAKALLY_FAIL:
       begin
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('è§£é™¤ç»“ç›Ÿï¼', [mbOk]);
+            FrmDlg.DMessageDlg('½â³ı½áÃË£¡', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('æ­¤è¡Œä¼šä¸æ˜¯æ‚¨è¡Œä¼šçš„ç»“ç›Ÿè¡Œä¼šï¼', [mbOk]);
+            FrmDlg.DMessageDlg('´ËĞĞ»á²»ÊÇÄúĞĞ»áµÄ½áÃËĞĞ»á£¡', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('æ²¡æœ‰æ­¤è¡Œä¼šï¼', [mbOk]);
+            FrmDlg.DMessageDlg('Ã»ÓĞ´ËĞĞ»á£¡', [mbOk]);
         end;
       end;
     SM_BUILDGUILD_OK:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
-        FrmDlg.DMessageDlg('è¡Œä¼šå»ºç«‹æˆåŠŸ', [mbOk]);
+        FrmDlg.DMessageDlg('ĞĞ»á½¨Á¢³É¹¦', [mbOk]);
       end;
     SM_BUILDGUILD_FAIL:
       begin
         FrmDlg.LastestClickTime := GetTickCount;
         case msg.Recog of
           - 1:
-            FrmDlg.DMessageDlg('æ‚¨å·²ç»åŠ å…¥å…¶å®ƒè¡Œä¼š', [mbOk]);
+            FrmDlg.DMessageDlg('ÄúÒÑ¾­¼ÓÈëÆäËüĞĞ»á', [mbOk]);
           -2:
-            FrmDlg.DMessageDlg('ç¼ºå°‘åˆ›å»ºè´¹ç”¨', [mbOk]);
+            FrmDlg.DMessageDlg('È±ÉÙ´´½¨·ÑÓÃ', [mbOk]);
           -3:
-            FrmDlg.DMessageDlg('ä½ æ²¡æœ‰å‡†å¤‡å¥½éœ€è¦çš„å…¨éƒ¨ç‰©å“', [mbOk]);
+            FrmDlg.DMessageDlg('ÄãÃ»ÓĞ×¼±¸ºÃĞèÒªµÄÈ«²¿ÎïÆ·', [mbOk]);
         else
-          FrmDlg.DMessageDlg('åˆ›å»ºè¡Œä¼šå¤±è´¥ï¼ï¼ï¼', [mbOk]);
+          FrmDlg.DMessageDlg('´´½¨ĞĞ»áÊ§°Ü£¡£¡£¡', [mbOk]);
         end;
       end;
     SM_MENU_OK:
@@ -11630,59 +11630,59 @@ begin
           UMResult_Success:
             ;
           UMResult_Fail:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä½¿ç”¨äº¤æ˜“å¸‚åœºå‡ºé”™, è¯·å‘ŠçŸ¥ç®¡ç†å‘˜.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: Ê¹ÓÃ½»Ò×ÊĞ³¡³ö´í, Çë¸æÖª¹ÜÀíÔ±.', [mbOk]);
           UMResult_ReadFail:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: è¯»å–å¯„å”®ç‰©å“åˆ—è¡¨å‡ºé”™, è¯·å‘ŠçŸ¥ç®¡ç†å‘˜.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ¶ÁÈ¡¼ÄÊÛÎïÆ·ÁĞ±í³ö´í, Çë¸æÖª¹ÜÀíÔ±.', [mbOk]);
           UMResult_WriteFail:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: å­˜å‚¨å¯„å”®ç‰©å“å‡ºé”™, è¯·å‘ŠçŸ¥ç®¡ç†å‘˜.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ´æ´¢¼ÄÊÛÎïÆ·³ö´í, Çë¸æÖª¹ÜÀíÔ±.', [mbOk]);
           UMResult_ReadyToSell:
             ClientGetSendUserMaketSell(msg.Recog);
           UMResult_OverSellCount:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: å¯„å”®ç‰©å“è¶…è¿‡é™åˆ¶. æœ€å¤šå¯ä»¥å¯„å”® ' +
-              IntToStr(MARKET_MAX_SELL_COUNT) + ' ä¸ªç‰©å“.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ¼ÄÊÛÎïÆ·³¬¹ıÏŞÖÆ. ×î¶à¿ÉÒÔ¼ÄÊÛ ' +
+              IntToStr(MARKET_MAX_SELL_COUNT) + ' ¸öÎïÆ·.', [mbOk]);
           UMResult_LessMoney:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               if g_SellDlgItemSellWait.Item.S.Name <> '' then
                 AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[å¤±è´¥]: ä½ æºå¸¦çš„é‡‘å¸ä¸è¶³ä»¥æ”¯ä»˜å¯„å”®çš„è´¹ç”¨.', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ÄãĞ¯´øµÄ½ğ±Ò²»×ãÒÔÖ§¸¶¼ÄÊÛµÄ·ÑÓÃ.', [mbOk]);
             end;
           UMResult_LessLevel:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: éœ€è¦ ' + IntToStr(MARKET_ALLOW_LEVEL) +
-              ' çº§ä»¥ä¸Šæ‰èƒ½ä½¿ç”¨äº¤æ˜“å¸‚åœº.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ĞèÒª ' + IntToStr(MARKET_ALLOW_LEVEL) +
+              ' ¼¶ÒÔÉÏ²ÅÄÜÊ¹ÓÃ½»Ò×ÊĞ³¡.', [mbOk]);
           UMResult_MaxBagItemCount:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: èƒŒåŒ…ç©ºä½ä¸è¶³.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ±³°ü¿ÕÎ»²»×ã.', [mbOk]);
           UMResult_NoItem:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ç‰©å“ä¸å­˜åœ¨.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ÎïÆ·²»´æÔÚ.', [mbOk]);
           UMResult_DontSell:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[å¤±è´¥]: è¯¥ç‰©å“ä¸èƒ½å¯„å”®.', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ¸ÃÎïÆ·²»ÄÜ¼ÄÊÛ.', [mbOk]);
             end;
           UMResult_DontBuy:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: ä¸èƒ½è´­ä¹°è‡ªå·±çš„ç‰©å“.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ²»ÄÜ¹ºÂò×Ô¼ºµÄÎïÆ·.', [mbOk]);
           // UMResult_DontGetMoney: ;
           UMResult_MarketNotReady:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: äº¤æ˜“å¸‚åœºæœªå‡†å¤‡å°±ç»ª.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ½»Ò×ÊĞ³¡Î´×¼±¸¾ÍĞ÷.', [mbOk]);
           UMResult_LessTrustMoney:
             begin
               FrmDlg.LastestClickTime := GetTickCount;
               if g_SellDlgItemSellWait.Item.S.Name <> '' then
                 AddItemBag(g_SellDlgItemSellWait.Item);
               g_SellDlgItemSellWait.Item.S.Name := '';
-              FrmDlg.DMessageDlg('[å¤±è´¥]: å¯„å”®ç‰©å“ä»·æ ¼è‡³å°‘ ' +
-                IntToStr(MARKET_CHARGE_MONEY) + ' é‡‘å¸.', [mbOk]);
+              FrmDlg.DMessageDlg('[Ê§°Ü]: ¼ÄÊÛÎïÆ·¼Û¸ñÖÁÉÙ ' +
+                IntToStr(MARKET_CHARGE_MONEY) + ' ½ğ±Ò.', [mbOk]);
             end;
           UMResult_MaxTrustMoney:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: å¯„å”®ç‰©å“ä»·æ ¼ä¸èƒ½å¤§äº ' +
-              IntToStr(MARKET_MAX_TRUST_MONEY) + ' é‡‘å¸.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ¼ÄÊÛÎïÆ·¼Û¸ñ²»ÄÜ´óÓÚ ' +
+              IntToStr(MARKET_MAX_TRUST_MONEY) + ' ½ğ±Ò.', [mbOk]);
           UMResult_CancelFail:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: è¯¥ç‰©å“ä¸å±äºä½ .', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ¸ÃÎïÆ·²»ÊôÓÚÄã.', [mbOk]);
           UMResult_OverMoney:
-            FrmDlg.DMessageDlg('[å¤±è´¥]: è¾¾åˆ°é‡‘å¸å­˜æ”¾çš„é™é¢.', [mbOk]);
+            FrmDlg.DMessageDlg('[Ê§°Ü]: ´ïµ½½ğ±Ò´æ·ÅµÄÏŞ¶î.', [mbOk]);
           UMResult_SellOK:
             begin
               FrmDlg.DSellDlg.Visible := False;
@@ -11780,26 +11780,26 @@ begin
   if g_wAvailIDDay > 0 then
   begin
     if g_wAvailIDDay = 1 then
-      FrmDlg.DMessageDlg('æ‚¨å½“å‰IDè´¹ç”¨åˆ°ä»Šå¤©ä¸ºæ­¢', [mbOk])
+      FrmDlg.DMessageDlg('Äúµ±Ç°ID·ÑÓÃµ½½ñÌìÎªÖ¹', [mbOk])
     else if g_wAvailIDDay <= 3 then
-      FrmDlg.DMessageDlg('æ‚¨å½“å‰IPè´¹ç”¨è¿˜å‰© ' + IntToStr(g_wAvailIDDay) + ' å¤©', [mbOk]);
+      FrmDlg.DMessageDlg('Äúµ±Ç°IP·ÑÓÃ»¹Ê£ ' + IntToStr(g_wAvailIDDay) + ' Ìì', [mbOk]);
   end
   else if g_wAvailIPDay > 0 then
   begin
     if g_wAvailIPDay = 1 then
-      FrmDlg.DMessageDlg('æ‚¨å½“å‰IPè´¹ç”¨åˆ°ä»Šå¤©ä¸ºæ­¢', [mbOk])
+      FrmDlg.DMessageDlg('Äúµ±Ç°IP·ÑÓÃµ½½ñÌìÎªÖ¹', [mbOk])
     else if g_wAvailIPDay <= 3 then
-      FrmDlg.DMessageDlg('æ‚¨å½“å‰IPè´¹ç”¨è¿˜å‰© ' + IntToStr(g_wAvailIPDay) + ' å¤©', [mbOk]);
+      FrmDlg.DMessageDlg('Äúµ±Ç°IP·ÑÓÃ»¹Ê£ ' + IntToStr(g_wAvailIPDay) + ' Ìì', [mbOk]);
   end
   else if g_wAvailIPHour > 0 then
   begin
     if g_wAvailIPHour <= 100 then
-      FrmDlg.DMessageDlg('æ‚¨å½“å‰IPè´¹ç”¨è¿˜å‰© ' + IntToStr(g_wAvailIPHour) +
-        ' å°æ—¶', [mbOk]);
+      FrmDlg.DMessageDlg('Äúµ±Ç°IP·ÑÓÃ»¹Ê£ ' + IntToStr(g_wAvailIPHour) +
+        ' Ğ¡Ê±', [mbOk]);
   end
   else if g_wAvailIDHour > 0 then
   begin
-    FrmDlg.DMessageDlg('æ‚¨å½“å‰IDè´¹ç”¨è¿˜å‰© ' + IntToStr(g_wAvailIDHour) + ' å°æ—¶',
+    FrmDlg.DMessageDlg('Äúµ±Ç°ID·ÑÓÃ»¹Ê£ ' + IntToStr(g_wAvailIDHour) + ' Ğ¡Ê±',
       [mbOk]);;
   end;
 
@@ -11863,7 +11863,7 @@ begin
       if (FrmDlg.DscStart.WLib <> nil) and
         (FrmDlg.DscStart.WLib.Images[g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)] <> nil) then
         FrmDlg.DscStart.tag := FrmDlg.DscStart.WLib.Images
-          [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height; // ASPä¸´æ—¶æ³¨é‡Š
+          [g_sDscStart0 + BYTE(FrmDlg.DscStart.Downed)].Height; // ASPÁÙÊ±×¢ÊÍ
     {$IFEND}
       if not g_Logined then
       begin
@@ -12039,7 +12039,7 @@ begin
     DecodeBuffer(body, @cu, SizeOf(TClientItem));
     AddItemBag(cu);
     if Hint <> 0 then
-      DScreen.AddSysMsg(cu.S.Name + ' è¢«å‘ç°');
+      DScreen.AddSysMsg(cu.S.Name + ' ±»·¢ÏÖ');
   end;
 end;
 
@@ -12051,7 +12051,7 @@ begin
   begin
     DecodeBuffer(body, @cu, SizeOf(TClientItem));
     HeroAddItemBag(cu);
-    DScreen.AddSysMsg(cu.S.Name + ' åœ¨è‹±é›„åŒ…è£¹å†…è¢«å‘ç°');
+    DScreen.AddSysMsg(cu.S.Name + ' ÔÚÓ¢ĞÛ°ü¹üÄÚ±»·¢ÏÖ');
   end;
 end;
 
@@ -12440,7 +12440,7 @@ begin
     g_APMapPath2 := nil;
     GetNearPoint();
     frmMain.TimerAutoPlay.Enabled := g_gcAss[0];
-    DScreen.AddChatBoardString('[æŒ‚æœº] å¼€å§‹è‡ªåŠ¨æŒ‚æœº...', clWhite, clRed);
+    DScreen.AddChatBoardString('[¹Ò»ú] ¿ªÊ¼×Ô¶¯¹Ò»ú...', clWhite, clRed);
     SaveWayPoint;
     if g_nAPrlRecallHero or (g_MySelf.m_HeroObject = nil) then
     begin // := (g_MySelf.m_HeroObject <> nil);
@@ -13696,7 +13696,7 @@ begin
     Str := GetValidStr3(Str, data, [#13]);
     if data = '<Notice>' then
     begin
-      FrmDlg.GuildStrs.AddObject(Char(7) + 'è¡Œä¼šå…¬å‘Š', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + 'ĞĞ»á¹«¸æ', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 1;
       Continue;
@@ -13704,7 +13704,7 @@ begin
     if data = '<KillGuilds>' then
     begin
       FrmDlg.GuildStrs.Add(' ');
-      FrmDlg.GuildStrs.AddObject(Char(7) + 'æ•Œå¯¹è¡Œä¼š', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + 'µĞ¶ÔĞĞ»á', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 2;
       linestr := '';
@@ -13716,7 +13716,7 @@ begin
         FrmDlg.GuildStrs.Add(linestr);
       linestr := '';
       FrmDlg.GuildStrs.Add(' ');
-      FrmDlg.GuildStrs.AddObject(Char(7) + 'è”ç›Ÿè¡Œä¼š', TObject(clWhite));
+      FrmDlg.GuildStrs.AddObject(Char(7) + 'ÁªÃËĞĞ»á', TObject(clWhite));
       FrmDlg.GuildStrs.Add(' ');
       pstep := 3;
       Continue;
@@ -13838,7 +13838,7 @@ end;
 procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
 // const
 // busy: boolean = FALSE;
-// æ£€æµ‹éšè—å·¥å…·
+// ¼ì²âÒş²Ø¹¤¾ß
   function CheckHideToolz(sCaption: string): Boolean;
   const
     SE_Shell_TrayWnd_NAME = 'Shell_TrayWnd';
@@ -13893,7 +13893,7 @@ procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
     CloseHandle(hProc);
   end;
 
-// æ£€æµ‹è°ƒè¯•
+// ¼ì²âµ÷ÊÔ
   function IsSlefRemoteDebuggerPresent(): Boolean;
   var
     Func_Addr: Pointer;
@@ -13924,7 +13924,7 @@ procedure TfrmMain.CheckHackTimerTimer(Sender: TObject);
     end;
   end;
 
-// æ£€æµ‹æ˜¯å¦è¢«HOOK
+// ¼ì²âÊÇ·ñ±»HOOK
   function IsSlefApiHook(): Boolean;
   const
     wsock32 = 'wsock32.dll';
@@ -13959,7 +13959,7 @@ begin
   if CheckHideToolz(FileName) or IsSlefRemoteDebuggerPresent or IsSlefApiHook
   then
   begin
-    FrmDlg.DMessageDlg('ä½ æ­£åœ¨ä½¿ç”¨éæ³•å¤–æŒ‚ï¼Œè¯·å…³é—­å¤–æŒ‚åå†è¿›å…¥æ¸¸æˆ.', [mbOk]);
+    FrmDlg.DMessageDlg('ÄãÕıÔÚÊ¹ÓÃ·Ç·¨Íâ¹Ò£¬Çë¹Ø±ÕÍâ¹ÒºóÔÙ½øÈëÓÎÏ·.', [mbOk]);
     frmMain.Close;
   end;
 end;
@@ -14304,7 +14304,7 @@ begin
   end;
   if idx < 30000 then
   begin
-    Result := g_ShineDnItems.Images[idx - 20000]; //åœ°é¢
+    Result := g_ShineDnItems.Images[idx - 20000]; //µØÃæ
     Exit;
   end;
 end;
@@ -14331,7 +14331,7 @@ begin
   end;
   if idx < 30000 then
   begin
-    Result := g_ShineDnItems.GetCachedImage(idx - 20000, ax, ay);//åœ°é¢
+    Result := g_ShineDnItems.GetCachedImage(idx - 20000, ax, ay);//µØÃæ
     Exit;
   end;
 end;
@@ -14739,10 +14739,10 @@ begin
       Result := g_WHumEffect2.GetCachedImage(13200 + HUMANFRAME * (m_btSex) +
         nFrame, ax, ay);
   end;
-  //20200913æ­¦å™¨å¤–å‘å…‰
+  //20200913ÎäÆ÷Íâ·¢¹â
   if Weapon > 99  then begin
   for i := 0 to WeaponeffectImageList.count - 1 do
-  begin // æ³¨é‡Š
+  begin // ×¢ÊÍ
     WMImage := TWMImages(WeaponeffectImageList.Items[i]);
     if WMImage.Appr = Weapon then
     begin
@@ -14759,7 +14759,7 @@ begin
   end;
 end;
 
-//è¯»å–æ­¦å™¨å¤–è§‚
+//¶ÁÈ¡ÎäÆ÷Íâ¹Û
 function TfrmMain.GetWWeaponImg(Weapon, m_btSex, nFrame: Integer;
   var ax, ay: Integer; boUseCboLib: Boolean): TCustomLockableTexture;
 var
@@ -14814,7 +14814,7 @@ begin
   end;
 
   for i := 0 to WeaponImageList.count - 1 do
-  begin // æ³¨é‡Š
+  begin // ×¢ÊÍ
     WMImage := TWMImages(WeaponImageList.Items[i]);
     if WMImage.Appr = FileIdx then
     begin
@@ -14832,7 +14832,7 @@ begin
   Result := WMImage.GetCachedImage(HUMANFRAME * m_btSex + nFrame, ax, ay);
 end;
 
-//è¯»å–è¡£æœå¤–è§‚
+//¶ÁÈ¡ÒÂ·şÍâ¹Û
 function TfrmMain.GetWHumImg(Dress, m_btSex, nFrame: Integer;
   var ax, ay: Integer; boUseCboLib: Boolean): TCustomLockableTexture;
 var
@@ -14890,7 +14890,7 @@ begin
   end;
 
   for i := 0 to HumImageList.count - 1 do
-  begin // ASPæ³¨é‡Š
+  begin // ASP×¢ÊÍ
     WMImage := TWMImages(HumImageList.Items[i]);
     if WMImage.Appr = FileIdx then
     begin
@@ -15015,9 +15015,9 @@ begin
   // g_dwSpellTime := ClientConf.wSpellTime;
   // g_nItemSpeed := ClientConf.btItemSpeed;
 
-  g_boCanStartRun := True;  // å¼ºåˆ¶å…åŠ©è·‘ - åŸæ¥ä» ClientConf è¯»é»˜è®¤ False
-  g_boParalyCanRun := True;  // éº»ç—¹æ—¶å¯è·‘åŠ¨
-  g_boParalyCanWalk := True;  // éº»ç—¹æ—¶å¯è¡Œèµ°
+  g_boCanStartRun := True;  // Ç¿ÖÆÃâÖúÅÜ - Ô­À´´Ó ClientConf ¶ÁÄ¬ÈÏ False
+  g_boParalyCanRun := True;  // Âé±ÔÊ±¿ÉÅÜ¶¯
+  g_boParalyCanWalk := True;  // Âé±ÔÊ±¿ÉĞĞ×ß
   g_boParalyCanHit := ClientConf.boParalyCanHit;
   g_boParalyCanSpell := ClientConf.boParalyCanSpell;
   g_boShowRedHPLable := ClientConf.boShowRedHPLable;
@@ -15026,22 +15026,22 @@ begin
   g_boDuraAlert := ClientConf.boDuraAlert;
   g_boMagicLock := ClientConf.boMagicLock;
 
-  // 20200726å¼€å…³é›†åˆ
-  g_Button_DetectBox := ClientConf.Button_DetectBox; // çµåª’çª—ä½“
-  FrmDlg.DBDetectBox.Visible := g_Button_DetectBox; // çµåª’çª—ä½“
-  g_Button_Mission := ClientConf.Button_Mission; // ä»»åŠ¡
-  FrmDlg.DBMissionOpen.Visible := g_Button_Mission; // ä»»åŠ¡æŒ‰é’®
-  g_Button_Shop := ClientConf.Button_Shop; // å•†é“º
-  FrmDlg.DButtonShop.Visible := g_Button_Shop; // å•†é“ºæŒ‰é’®
+  // 20200726¿ª¹Ø¼¯ºÏ
+  g_Button_DetectBox := ClientConf.Button_DetectBox; // ÁéÃ½´°Ìå
+  FrmDlg.DBDetectBox.Visible := g_Button_DetectBox; // ÁéÃ½´°Ìå
+  g_Button_Mission := ClientConf.Button_Mission; // ÈÎÎñ
+  FrmDlg.DBMissionOpen.Visible := g_Button_Mission; // ÈÎÎñ°´Å¥
+  g_Button_Shop := ClientConf.Button_Shop; // ÉÌÆÌ
+  FrmDlg.DButtonShop.Visible := g_Button_Shop; // ÉÌÆÌ°´Å¥
 
   g_Button_Friend := ClientConf.Button_Friend;
-  FrmDlg.DBotFriend.Visible := g_Button_Friend; // å…³ç³»æŒ‰é’®
+  FrmDlg.DBotFriend.Visible := g_Button_Friend; // ¹ØÏµ°´Å¥
   g_Button_PlusAbil := ClientConf.Button_PlusAbil;
-  FrmDlg.DBotPlusAbil.Visible := g_Button_PlusAbil; // å±æ€§
+  FrmDlg.DBotPlusAbil.Visible := g_Button_PlusAbil; // ÊôĞÔ
   g_Button_baoguo := ClientConf.Button_baoguo;
-  FrmDlg.DRefurbishItem.Visible := g_Button_baoguo; // åŒ…è£¹
-  g_ShowWinExpMode := ClientConf.ShowWinExpMode; // ç»éªŒæ¨¡å¼æ˜¾ç¤º
-  g_IgnoreStruck := ClientConf.IgnoreStruck; // ç¨³å¦‚æ³°å±±
+  FrmDlg.DRefurbishItem.Visible := g_Button_baoguo; // °ü¹ü
+  g_ShowWinExpMode := ClientConf.ShowWinExpMode; // ¾­ÑéÄ£Ê½ÏÔÊ¾
+  g_IgnoreStruck := ClientConf.IgnoreStruck; // ÎÈÈçÌ©É½
 
 end;
 
@@ -15082,7 +15082,7 @@ begin
     ShowMsgActor := g_PlayScene.FindActor(sHumanName);
     if ShowMsgActor = nil then
     begin
-      DScreen.AddChatBoardString(Format('%sæ²¡æ‰¾åˆ°', [sHumanName]), clWhite, clRed);
+      DScreen.AddChatBoardString(Format('%sÃ»ÕÒµ½', [sHumanName]), clWhite, clRed);
       Exit;
     end;
   end;
@@ -15103,7 +15103,7 @@ begin
   end;
 
   if { not frmWebBrowser.Showing and } not g_DlgInitialize and
-    ((g_MySelf = nil) or (mrOk = FrmDlg.DMessageDlg('ç¡®è®¤é€€å‡ºæ¸¸æˆå—ï¼Ÿ',
+    ((g_MySelf = nil) or (mrOk = FrmDlg.DMessageDlg('È·ÈÏÍË³öÓÎÏ·Âğ£¿',
     [mbOk, mbCancel]))) then
   begin
     if g_MySelf <> nil then
@@ -15265,25 +15265,25 @@ begin
   g_MySelf.m_btPoisonDecHealth := 0;
   if pcm.Def.wMagicid in [13 .. 19, 30, 43, 55, 57] then
   begin
-    Str := 'ç¬¦';
-    cStr := 'ç¬¦';
+    Str := '·û';
+    cStr := '·û';
   end
   else if pcm.Def.wMagicid in [6, 38] then
   begin
     if (g_MagicTarget <> nil) then
     begin
-      Str := 'è¯';
+      Str := 'Ò©';
       g_boExchgPoison := not g_boExchgPoison;
       if g_boExchgPoison then
       begin
         // dec health
         g_MySelf.m_btPoisonDecHealth := 1;
-        cStr := 'ç°';
+        cStr := '»Ò';
       end
       else
       begin
         g_MySelf.m_btPoisonDecHealth := 2;
-        cStr := 'é»„';
+        cStr := '»Æ';
       end;
     end
     else
@@ -15317,12 +15317,12 @@ begin
       Exit;
     end;
   end;
-  if Str = 'ç¬¦' then
-    DScreen.AddChatBoardString('ä½ çš„[æŠ¤èº«ç¬¦]å·²ç»ç”¨å®Œ', clWhite, clBlue)
+  if Str = '·û' then
+    DScreen.AddChatBoardString('ÄãµÄ[»¤Éí·û]ÒÑ¾­ÓÃÍê', clWhite, clBlue)
   else if g_boExchgPoison then
-    DScreen.AddChatBoardString('ä½ çš„[ç°è‰²è¯ç²‰]å·²ç»ç”¨å®Œ', clWhite, clBlue)
+    DScreen.AddChatBoardString('ÄãµÄ[»ÒÉ«Ò©·Û]ÒÑ¾­ÓÃÍê', clWhite, clBlue)
   else
-    DScreen.AddChatBoardString('ä½ çš„[é»„è‰²è¯ç²‰]å·²ç»ç”¨å®Œ', clWhite, clBlue)
+    DScreen.AddChatBoardString('ÄãµÄ[»ÆÉ«Ò©·Û]ÒÑ¾­ÓÃÍê', clWhite, clBlue)
 end;
 
 procedure TfrmMain.ClientOpenBook(msg: TDefaultMessage; sBody: string);
@@ -15439,7 +15439,7 @@ begin
           Inc(ChatBoardTop, _MIN(3, ChatStrs.count - 1 - ChatBoardTop));
       end;
     end;
-    // FrmDlg.DMBChat.UpdatePos(ChatBoardTop);      //ASPæ³¨é‡Š
+    // FrmDlg.DMBChat.UpdatePos(ChatBoardTop);      //ASP×¢ÊÍ
   end;
 end;
 
@@ -15608,7 +15608,7 @@ begin
       (g_MySelf.m_nCurrY = g_MySelf.m_nTagY)) then
     begin
       TimerAutoMove.Enabled := False;
-      DScreen.AddChatBoardString('å·²ç»åˆ°è¾¾ç»ˆç‚¹', GetRGB(5), clWhite);
+      DScreen.AddChatBoardString('ÒÑ¾­µ½´ïÖÕµã', GetRGB(5), clWhite);
       SetLength(g_MapPath, 0);
       g_MapPath := nil;
       g_MySelf.m_nTagX := 0;
@@ -15668,7 +15668,7 @@ begin
 
         if (abs(g_MySelf.m_nCurrX - g_nTargetX) <= 1) and
           (abs(g_MySelf.m_nCurrY - g_nTargetY) <= 1) then
-        begin // ç›®æ ‡åº§æ ‡
+        begin // Ä¿±ê×ù±ê
           g_ChrAction := caWalk;
           g_MoveBusy := True;
         end
@@ -15817,11 +15817,11 @@ begin
   case GetAutoPalyStation() of
     0:
       begin
-        if not EatItemName('å›åŸå·') and not EatItemName('å›åŸå·åŒ…') and
-          not EatItemName('ç›Ÿé‡ä¼ é€çŸ³') and not EatItemName('æ¯”å¥‡ä¼ é€çŸ³') then
-          DScreen.AddChatBoardString('[æŒ‚æœº] ä½ çš„å›åŸå·å·²ç”¨å®Œ,å·²æŒ‚æœºåœæ­¢!!!', clWhite, clRed)
+        if not EatItemName('»Ø³Ç¾í') and not EatItemName('»Ø³Ç¾í°ü') and
+          not EatItemName('ÃËÖØ´«ËÍÊ¯') and not EatItemName('±ÈÆæ´«ËÍÊ¯') then
+          DScreen.AddChatBoardString('[¹Ò»ú] ÄãµÄ»Ø³Ç¾íÒÑÓÃÍê,ÒÑ¹Ò»úÍ£Ö¹!!!', clWhite, clRed)
         else
-          DScreen.AddChatBoardString('[æŒ‚æœº] å›åŸå¹¶æŒ‚æœºåœæ­¢!!!', clWhite, clRed);
+          DScreen.AddChatBoardString('[¹Ò»ú] »Ø³Ç²¢¹Ò»úÍ£Ö¹!!!', clWhite, clRed);
         g_gcAss[0] := False;
         g_APTagget := nil;
         g_AutoPicupItem := nil;
@@ -15832,7 +15832,7 @@ begin
         Exit;
       end;
     1:
-      begin // æ­¤æ—¶ä¸ºè¯¥æ€ªç‰©é¦–æ¬¡è¢«å‘ç°ï¼Œè‡ªåŠ¨å¯»æ‰¾è·¯å¾„
+      begin // ´ËÊ±Îª¸Ã¹ÖÎïÊ×´Î±»·¢ÏÖ£¬×Ô¶¯Ñ°ÕÒÂ·¾¶
         if HeroAttackTagget(g_APTagget) then
         begin
           Exit;
@@ -15849,7 +15849,7 @@ begin
         g_boAPAutoMove := True;
       end;
     2:
-      begin // æ­¤æ—¶è¯¥ç‰©å“ä¸ºé¦–æ¬¡å‘ç°ï¼Œè‡ªåŠ¨å¯»æ‰¾è·¯å¾„
+      begin // ´ËÊ±¸ÃÎïÆ·ÎªÊ×´Î·¢ÏÖ£¬×Ô¶¯Ñ°ÕÒÂ·¾¶
         if (g_AutoPicupItem <> nil) and
           ((g_nAPStatus <> 2) or (g_APPathList.count = 0)) then
         begin
@@ -15858,7 +15858,7 @@ begin
           AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
             g_nTargetY);
           g_nTargetX := -1;
-          g_sAPStr := Format('[æŒ‚æœº] ç‰©å“ç›®æ ‡ï¼š%s(%d,%d) æ­£åœ¨å»æ‹¾å–',
+          g_sAPStr := Format('[¹Ò»ú] ÎïÆ·Ä¿±ê£º%s(%d,%d) ÕıÔÚÈ¥Ê°È¡',
             [g_AutoPicupItem.Name, g_AutoPicupItem.X, g_AutoPicupItem.Y])
         end
         else if (g_AutoPicupItem <> nil) then
@@ -15868,7 +15868,7 @@ begin
           AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
             g_nTargetY);
           g_nTargetX := -1;
-          g_sAPStr := Format('[æŒ‚æœº] ç‰©å“ç›®æ ‡ï¼š%s(%d,%d) æ­£åœ¨å»æ‹¾å–',
+          g_sAPStr := Format('[¹Ò»ú] ÎïÆ·Ä¿±ê£º%s(%d,%d) ÕıÔÚÈ¥Ê°È¡',
             [g_AutoPicupItem.Name, g_AutoPicupItem.X, g_AutoPicupItem.Y])
         end;
         g_nAPStatus := 2;
@@ -15885,7 +15885,7 @@ begin
             g_nTargetY := g_APMapPath[g_APStep].Y;
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
-            g_sAPStr := Format('[æŒ‚æœº] å¾ªè·¯æœå¯»ç›®æ ‡(%d,%d)', [g_nTargetX, g_nTargetY]);
+            g_sAPStr := Format('[¹Ò»ú] Ñ­Â·ËÑÑ°Ä¿±ê(%d,%d)', [g_nTargetX, g_nTargetY]);
             g_nTargetX := -1;
           end
           else
@@ -15909,7 +15909,7 @@ begin
               if b then
                 AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
                   g_nTargetY); // memory leak !!!
-              g_sAPStr := Format('[æŒ‚æœº] å®šç‚¹éšæœºæœå¯»ç›®æ ‡(%d,%d)',
+              g_sAPStr := Format('[¹Ò»ú] ¶¨µãËæ»úËÑÑ°Ä¿±ê(%d,%d)',
                 [g_APMapPath[g_APStep].X, g_APMapPath[g_APStep].Y]);
               g_nTargetX := -1;
             end;
@@ -15934,8 +15934,8 @@ begin
           if b then
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY); // memory leak !!!
-          // g_sAPStr := format('[æŒ‚æœº] éšæœºæœå¯»ç›®æ ‡(%d,%d)', [g_nTargetX, g_nTargetY]);
-          g_sAPStr := '[æŒ‚æœº] éšæœºæœå¯»ç›®æ ‡...';
+          // g_sAPStr := format('[¹Ò»ú] Ëæ»úËÑÑ°Ä¿±ê(%d,%d)', [g_nTargetX, g_nTargetY]);
+          g_sAPStr := '[¹Ò»ú] Ëæ»úËÑÑ°Ä¿±ê...';
           g_nTargetX := -1;
         end;
         g_nAPStatus := 3;
@@ -15960,7 +15960,7 @@ begin
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
           end;
-          g_sAPStr := Format('[æŒ‚æœº] è¶…å‡ºæœå¯»èŒƒå›´,è¿”å›(%d,%d)', [g_nTargetX, g_nTargetY]);
+          g_sAPStr := Format('[¹Ò»ú] ³¬³öËÑÑ°·¶Î§,·µ»Ø(%d,%d)', [g_nTargetX, g_nTargetY]);
           g_nTargetX := -1;
         end
         else if (g_nTargetX = -1) or (g_APPathList.count = 0) then
@@ -15982,7 +15982,7 @@ begin
           if b then
             AP_findpath(g_MySelf.m_nCurrX, g_MySelf.m_nCurrY, g_nTargetX,
               g_nTargetY);
-          g_sAPStr := Format('[æŒ‚æœº] è¶…å‡ºæœå¯»èŒƒå›´,éšæœºæœå¯»ç›®æ ‡(%d,%d)',
+          g_sAPStr := Format('[¹Ò»ú] ³¬³öËÑÑ°·¶Î§,Ëæ»úËÑÑ°Ä¿±ê(%d,%d)',
             [g_nTargetX, g_nTargetY]);
           g_nTargetX := -1;
         end;
@@ -16283,11 +16283,11 @@ begin
       // end;
       // cltime := GetTickCount - g_dwFirstClientTime;
       // svtime := rtime - g_dwFirstServerTime;
-      // //DScreen.AddChatBoardString('[é€Ÿåº¦æ£€æµ‹] æ—¶é—´å·®ï¼š' + IntToStr(cltime - svtime), GetRGB(219), clWhite);
+      // //DScreen.AddChatBoardString('[ËÙ¶È¼ì²â] Ê±¼ä²î£º' + IntToStr(cltime - svtime), GetRGB(219), clWhite);
       // if cltime > svtime + 4500 then begin
       // Inc(g_nTimeFakeDetectCount);
       // if g_nTimeFakeDetectCount >= 3 then begin
-      // //FrmDlg.DMessageDlg('ç³»ç»Ÿä¸ç¨³å®šæˆ–ç½‘ç»œçŠ¶æ€æå·®ï¼Œæ¸¸æˆè¢«ä¸­æ­¢ï¼\å¦‚æœ‰é—®é¢˜è¯·è”ç³»æ¸¸æˆç®¡ç†å‘˜ï¼', [mbOk]);
+      // //FrmDlg.DMessageDlg('ÏµÍ³²»ÎÈ¶¨»òÍøÂç×´Ì¬¼«²î£¬ÓÎÏ·±»ÖĞÖ¹£¡\ÈçÓĞÎÊÌâÇëÁªÏµÓÎÏ·¹ÜÀíÔ±£¡', [mbOk]);
       // ExitProcess(0);
       // DScreen.Finalize;
       // g_PlayScene.Finalize;
@@ -16339,18 +16339,18 @@ begin
   else if tagstr = 'CRS' then
   begin
     g_boCanCrsHit := True;
-    DScreen.AddChatBoardString('åŒé¾™æ–©å¼€å¯', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('Ë«ÁúÕ¶¿ªÆô', GetRGB(219), clWhite);
   end
   else if tagstr = 'UCRS' then
   begin
     g_boCanCrsHit := False;
-    DScreen.AddChatBoardString('åŒé¾™æ–©å…³é—­', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('Ë«ÁúÕ¶¹Ø±Õ', GetRGB(219), clWhite);
   end
   else if tagstr = 'TWN' then
   begin
     g_boNextTimeTwinHit := True;
     g_dwLatestTwinHitTick := GetTickCount;
-    DScreen.AddChatBoardString('å¬é›†é›·ç”µåŠ›é‡æˆåŠŸ', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('ÕÙ¼¯À×µçÁ¦Á¿³É¹¦', GetRGB(219), clWhite);
     meff := TCharEffect.Create(210, 6, g_MySelf);
     meff.NextFrameTime := 80;
     meff.ImgLib := g_WMagic2Images;
@@ -16360,12 +16360,12 @@ begin
   else if tagstr = 'UTWN' then
   begin
     g_boNextTimeTwinHit := False;
-    DScreen.AddChatBoardString('é›·ç”µåŠ›é‡æ¶ˆå¤±', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('À×µçÁ¦Á¿ÏûÊ§', GetRGB(219), clWhite);
   end
   else if tagstr = 'SQU' then
   begin
     g_boCanSquHit := True;
-    DScreen.AddChatBoardString('[é¾™å½±å‰‘æ³•] å¼€å¯', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[ÁúÓ°½£·¨] ¿ªÆô', GetRGB(219), clWhite);
   end
   else if tagstr = 'FIR' then
   begin
@@ -16387,25 +16387,25 @@ begin
   begin
     g_boNextTimeSmiteHit := True;
     g_dwLatestSmiteHitTick := GetTickCount;
-    // DScreen.AddChatBoardString('ä¸‰ç»æ€ get ready...', clWhite, clRed);
+    // DScreen.AddChatBoardString('Èı¾øÉ± get ready...', clWhite, clRed);
   end
   else if tagstr = 'SMIL3' then
   begin
     g_boNextTimeSmiteLongHit3 := True;
     g_dwLatestSmiteLongHitTick3 := GetTickCount;
-    DScreen.AddChatBoardString('[è¡€é­‚ä¸€å‡»] å·²å‡†å¤‡...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[Ñª»êÒ»»÷] ÒÑ×¼±¸...', GetRGB(219), clWhite);
   end
   else if tagstr = 'SMIL' then
   begin
     g_boNextTimeSmiteLongHit := True;
     g_dwLatestSmiteLongHitTick := GetTickCount;
-    // DScreen.AddChatBoardString('æ–­å²³æ–© get ready...', clWhite, clRed);
+    // DScreen.AddChatBoardString('¶ÏÔÀÕ¶ get ready...', clWhite, clRed);
   end
   else if tagstr = 'SMIL2' then
   begin
     g_boNextTimeSmiteLongHit2 := True;
     g_dwLatestSmiteLongHitTick2 := GetTickCount;
-    DScreen.AddChatBoardString('[æ–­ç©ºæ–©] å·²å‡†å¤‡...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[¶Ï¿ÕÕ¶] ÒÑ×¼±¸...', GetRGB(219), clWhite);
   end
   else if tagstr = 'SMIW' then
   begin
@@ -16416,12 +16416,12 @@ begin
   begin
     g_boNextTimeSmiteWideHit2 := True;
     g_dwLatestSmiteWideHitTick2 := GetTickCount;
-    DScreen.AddChatBoardString('[å€šå¤©è¾Ÿåœ°] å·²å‡†å¤‡', clBlue, clWhite);
+    DScreen.AddChatBoardString('[ÒĞÌì±ÙµØ] ÒÑ×¼±¸', clBlue, clWhite);
     g_SndMgr.PlaySound('Wav\S6-1.wav');
   end
   else if tagstr = 'MDS' then
   begin
-    DScreen.AddChatBoardString('[ç¾æœèä¹‹ç³] æŠ€èƒ½å¯æ–½å±•', clBlue, clWhite);
+    DScreen.AddChatBoardString('[ÃÀ¶ÅÉ¯Ö®Í«] ¼¼ÄÜ¿ÉÊ©Õ¹', clBlue, clWhite);
     meff := TCharEffect.Create(1110, 10, g_MySelf);
     meff.NextFrameTime := 80;
     meff.ImgLib := g_WMagic2Images;
@@ -16443,7 +16443,7 @@ begin
   else if tagstr = 'USML2' then
   begin
     g_boNextTimeSmiteLongHit2 := False;
-    // DScreen.AddChatBoardString('[æ–­ç©ºæ–©] åŠ›é‡æ¶ˆå¤±...', clWhite, clRed);
+    // DScreen.AddChatBoardString('[¶Ï¿ÕÕ¶] Á¦Á¿ÏûÊ§...', clWhite, clRed);
   end
   else if tagstr = 'USMIW' then
     g_boNextTimeSmiteWideHit := False
@@ -16452,18 +16452,18 @@ begin
   else if tagstr = 'USQU' then
   begin
     g_boCanSquHit := False;
-    DScreen.AddChatBoardString('[é¾™å½±å‰‘æ³•] å…³é—­', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[ÁúÓ°½£·¨] ¹Ø±Õ', GetRGB(219), clWhite);
   end
   else if tagstr = 'SLON' then
   begin
     g_boCanSLonHit := True;
     g_dwLatestSLonHitTick := GetTickCount;
-    DScreen.AddChatBoardString('[å¼€å¤©æ–©] åŠ›é‡å‡èš...', GetRGB(219), clWhite);
+    DScreen.AddChatBoardString('[¿ªÌìÕ¶] Á¦Á¿Äı¾Û...', GetRGB(219), clWhite);
   end
   else if tagstr = 'USLON' then
   begin
     g_boCanSLonHit := False;
-    DScreen.AddChatBoardString('[å¼€å¤©æ–©] åŠ›é‡æ¶ˆå¤±', clWhite, clRed);
+    DScreen.AddChatBoardString('[¿ªÌìÕ¶] Á¦Á¿ÏûÊ§', clWhite, clRed);
   end;
 end;
 
@@ -16526,7 +16526,7 @@ begin
             dMsg := MakeDefaultMsg(CM_QUERYDYNCODE, 0, 0, 0, 0);
             if g_LoginKey <> '' then
               SendSocket(EncodeMessage(dMsg) + EncodeString(g_LoginKey));
-            ConsoleDebug('å‘é€ç½‘å…³éªŒè¯ç§˜é’¥ä¿¡æ¯æˆåŠŸ');
+            ConsoleDebug('·¢ËÍÍø¹ØÑéÖ¤ÃØÔ¿ĞÅÏ¢³É¹¦');
           end;
         end;
     end; // case
@@ -16624,7 +16624,7 @@ begin
           // if b then
           // begin
           // sCPU:= 'CPU:' + FormatFloat('0.##', ProcessCpuUsage.Current) + '%';
-          // ATexture := FontManager.GetFont('å®‹ä½“', 9, []).TextOut('å†…å­˜ä½¿ç”¨é‡ : '+IntToStr(pmc.WorkingSetSize div 1024 div 1024)+'MB  '+sCPU);
+          // ATexture := FontManager.GetFont('ËÎÌå', 9, []).TextOut('ÄÚ´æÊ¹ÓÃÁ¿ : '+IntToStr(pmc.WorkingSetSize div 1024 div 1024)+'MB  '+sCPU);
           // if ATexture <> nil then
           // begin
           // g_GameCanvas.DrawBoldText(100,10, ATexture, $0093F4F2, $08080808)
