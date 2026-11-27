@@ -1,13 +1,26 @@
-# 任务清单：修复老兵（NPC）外观显示为腐肉团
+# 任务清单 — 跑路卡住/弹回修复
 
-## 根因（已确认）
-服务端 `Merchant.txt` 给老兵配 `Appr=41`，客户端 `GetNpcOffset(41)=2520`，从 `NPC.wil` 取索引 2520 的图 = 腐肉团。该 Appr 编号体系与当前客户端不匹配（旁证：客户端把 Appr 42–47 设为不可见，而配置里书店/铁匠等正是 42–46）。与 CharDesc 修复无关（Feature 字节未变，StatusEx 不参与取图）。
+## 阶段 0：确认运行时配置（验证项，不改代码）
+- [ ] 读取运行中 GameSrv 的 config.conf，确认 `RunIntervalTime` / `HumanGetMsgTime` 实际值（预期 600 / 200），确认服务端兜底限速存在。
+- [ ] 读取运行中 GameGate config.conf，确认 `MoveInterval=570` / `IsMoveInterval=1` / `OverSpeedPunishMethod=3` 当前生效。
 
-- [x] T1. 定位服务端 Feature 来源：`Merchant.txt` Appr=41 + `RaceImg=50` → `GetFeature`=MakeMonsterFeature(50,0,41)
-- [x] T2. 定位客户端取图链路：`RACEfeature=50`→TNpcActor；`GetNpcOffset(41)=2520`→NPC.wil 索引 2520=腐肉团
-- [x] T3. 排除 CharDesc 修复回归：Feature 首字段位置未变，StatusEx 仅用于 MaxHP，不影响取图
-- [ ] T4. 获取客户端数据目录（含 NPC.wil），用 WIL 工具确认索引 2520=腐肉团，并找到老兵人形图的正确起始索引
-- [ ] T5. 反查 `GetNpcOffset` 得到老兵（及书店/铁匠/杂货铺/药店/酒馆）的正确 Appr；判定是情形 A（改配置）还是情形 B（补资源）
-- [ ] T6. 情形 A：更新 `src\GameSrv\Envir\Merchant.txt` 与 `bin\Release\Envir\Merchant.txt`（同步检查 `Npcs.txt`）
-- [ ] T7. 重启 GameSrv，客户端验证老兵/各 NPC 外观与名字正常、怪物无回归
-- [ ] T8. 情形 B：提示用户补齐匹配的 NPC.wil 资源，不改配置
+## 阶段 1：主修复（改动 1）
+- [ ] 停掉 GameGate 后台服务（StopCommand）。
+- [ ] 编辑 `GameGate\bin\Release\config.conf`：`[Integer] MoveInterval` 570 → 480。
+- [ ] 后台重启 GameGate，确认端口 7300 监听、无异常。
+
+## 阶段 2：诊断日志（改动 2）
+- [ ] 停掉 GameSrv 后台服务（DLL 解锁）。
+- [ ] 在 `PlayObject.Attack.cs` 的 `ClientRunXY`、`ClientWalkXY` 中，返回 false 且 delayTime==0 的分支加 `LogService.Info` 诊断日志（角色名、CurrX/Y、nX/nY、差值、MoveTick 间隔、SpaceMoved）。
+- [ ] 编译 `GameSrv\GameSrv.csproj -c Release`，确认成功。
+- [ ] 后台重启 GameSrv，确认端口 5000 监听、无启动异常。
+
+## 阶段 3：用户验证
+- [ ] 通知用户进游戏连续跑步 2~3 分钟复现。
+- [ ] 收集 GameSrv 诊断日志，统计弹回次数与坐标差。
+- [ ] 判定根因是否确认（坐标差是否为 2 格的漏处理）。
+
+## 阶段 4：收尾
+- [ ] 若根因确认且弹回消失：将改动 2 日志降级为 `LogService.Debug` 或移除（按用户决策）。
+- [ ] 若仍频繁弹回：分析日志，评估是否实施改动 3（服务端位置容忍）。
+- [ ] 向用户汇报结果。

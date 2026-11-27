@@ -1,74 +1,55 @@
-# 修复老兵（NPC）外观显示为腐肉团
+# 玩家跑路卡住并被弹回 — 修复规格
 
-## 1. 问题描述
-盟重省老兵（Merchant NPC）头顶名字已正确显示"老兵"，但角色外观是一团暗红色腐肉/肉块，而不是人形 NPC。周围怪物（鸡、鹿）外观正常。
+## 1. 现象
+玩家跑步/走路移动时，经常出现短暂"卡住"，随后角色被"弹回"到上一个位置。复现频率高，正常跑路即可触发。
 
-## 2. 根因（已用代码证据确认）
+## 2. 根因（已由代码证据确认）
 
-**服务端 `Merchant.txt` 给老兵配置的 `Appr=41`，与该客户端 `NPC.wil` 的外观索引体系不匹配，导致客户端从 `NPC.wil` 取到了错误的图（腐肉团）。**
+弹回链路：
+1. 客户端预测移动，先发 `CM_RUN`/`CM_WALK` 再本地改坐标。
+2. **GameGate 丢弃了部分移动消息** → 服务端漏处理 → 服务端权威坐标 `CurrX/Y` 落后于客户端。
+3. 客户端下一包请求目标 `nX/nY`，服务端 `RunTo` 按方向移动 2 格后 `CurrX != nX`（[PlayObject.Attack.cs:1322-1327](file:///d:/sources/github3/OpenMir2/src/M2Server/Player/PlayObject.Attack.cs)）→ `ClientRunXY` 返回 `false` 且 `delayTime==0` → 服务端发 `RM_MOVEFAIL`（[PlayObject.Message.cs:1059-1116](file:///d:/sources/github3/OpenMir2/src/M2Server/Player/PlayObject.Message.cs)）。
+4. 客户端收到 `RM_MOVEFAIL` → `TActor.MoveFail`（[Actor.pas:3581-3589](file:///d:/sources/github3/MirClient/Source/MirClient/Actor.pas)）回滚到 `m_nOldx/m_nOldy` 并清空消息队列 → 表现为"弹回"。
+5. 被 GameGate 延迟（而非丢弃）的消息造成短暂"卡住"。
 
-### 完整链路证据
-1. **服务端配置**（`bin\Release\Envir\Merchant.txt`）：
-   ```
-   老兵 3 325 333 老兵 0 41 0 0 0
-   ; 注释写 "41=老兵 42=书店 43=铁匠 44=杂货铺 45=药店 46=酒馆"
-   ```
-   格式第 7 字段 = 外观（Appr），由 [LocalDB.cs:458](file:///D:/sources/github3/OpenMir2/src/GameSrv/DB/LocalDB.cs#L458) 读入：`Appr = (ushort)HUtil32.StrToInt(sAppr, 0)`。
+GameGate 丢包的具体原因：
+- 配置 `MoveInterval=570`、`IsMoveInterval=1`、`OverSpeedPunishMethod=DelaySend`（[GameGate config.conf](file:///d:/sources/github3/OpenMir2/src/GameGate/bin/Release/config.conf)）。
+- 客户端跑步发包间隔约 500ms（`g_dwLastMoveTick`，[ClMain.pas](file:///d:/sources/github3/MirClient/Source/MirClient/ClMain.pas) 多处 `> 500` 判断，2227 行发包后更新），**500 < 570 → 正常跑步每包都被判为过快**。
+- [ClientSession.cs:243-263](file:///d:/sources/github3/OpenMir2/src/GameGate/Services/ClientSession.cs)：过快且延迟队列已有消息（`delayMsgCount>=1`）时 `return` 丢弃；惩罚把 `MoveTick` 推后到未来，正反馈加速丢包。
 
-2. **服务端 Feature 计算**：
-   - `Merchant` 构造函数设 `RaceImg = ActorRace.Merchant`（=50，[Race.cs:28](file:///D:/sources/github3/OpenMir2/src/OpenMir2/Enums/Race.cs#L28)），`Appr` 来自配置 = 41。
-   - `GetFeature`（[BaseObject.Base.cs:909](file:///D:/sources/github3/OpenMir2/src/M2Server/Actor/BaseObject.Base.cs#L909)）= `MakeMonsterFeature(RaceImg=50, MonsterWeapon=0, Appr=41)` = `MakeLong(MakeWord(50,0), 41)`（[M2Share.cs:1961](file:///D:/sources/github3/OpenMir2/src/M2Server/M2Share.cs#L1961)）。
+## 3. 修复方案（分层，低风险优先）
 
-3. **客户端解析**（Feature 字节布局正确）：
-   - `RACEfeature` = Feature 低字节 = 50 → [PlayScn.pas:3268](file:///D:/sources/github3/MirClient/Source/MirClient/PlayScn.pas#L3268) `case RACEfeature of 50: Actor := TNpcActor.Create` ✓（创建的是 NPC 类，正确）。
-   - `APPRfeature` = Feature 高字 = 41 → [PlayScn.pas:3394](file:///D:/sources/github3/MirClient/Source/MirClient/PlayScn.pas#L3394) `m_wAppearance := APPRfeature(cfeature)`。
+### 改动 1（主修复）：放宽 GameGate 移动间隔过滤
+- 文件：`d:\sources\github3\OpenMir2\src\GameGate\bin\Release\config.conf`
+- 将 `[Integer] MoveInterval` 从 `570` 调整为 `480`（略低于客户端 ~500ms 发包间隔，留出帧率波动余量，避免正常跑步被误判过快）。
+- 防加速不丢失：服务端 `RunIntervalTime=600` 仍在服务端做最终限速（过快走 `SendSelfDelayMsg` 延迟重发，不弹回、不放行），GameGate 仅为前置过滤。
+- 不重新编译 GameGate（改配置即可），重启 GameGate 生效。
 
-4. **取图偏移错误**（根因落点）：
-   - `TNpcActor.CalcActorFrame`（[Actor.pas:3701](file:///D:/sources/github3/MirClient/Source/MirClient/Actor.pas#L3701)）：`m_nBodyOffset := GetNpcOffset(m_wAppearance)`。
-   - `GetNpcOffset(41)`（[Actor.pas:1559](file:///D:/sources/github3/MirClient/Source/MirClient/Actor.pas#L1559)）命中 `33..41: Result := (nAppr - 26) * 60 + 1620` → **(41−26)×60+1620 = 2520**。
-   - `TNpcActor.LoadSurface`（[Actor.pas:3982-3992](file:///D:/sources/github3/MirClient/Source/MirClient/Actor.pas#L3982)）：`m_btRace=50` 且 Appr=41 不在 `[100,130)`/`[130,131]` → 走 else → `m_BodySurface := g_WNpcImgImages.GetCachedImage(2520 + 当前帧, ...)` → **从 NPC.wil 取索引 2520 的图 = 腐肉团**。
+### 改动 2（诊断验证，临时）：在服务端弹回分支加坐标日志
+- 文件：`d:\sources\github3\OpenMir2\src\M2Server\Player\PlayObject.Attack.cs`
+- 在 `ClientRunXY` / `ClientWalkXY` 返回 `false` 且 `delayTime==0`（即会发 `RM_MOVEFAIL`）的分支，输出 `LogService.Info`：角色名、`CurrX/Y`、请求的 `nX/nY`、坐标差、`MoveTick` 间隔、`SpaceMoved`。
+- 用途：部署后让用户复现，确认弹回时坐标差是否为 2 格（=漏处理一次移动），验证根因。
+- 验证通过后：保留为 `LogService.Debug` 或移除（由用户决定，默认降级保留）。
+- 需重新编译 `GameSrv`。
 
-### 旁证（Merchant.txt 的 Appr 编号不适用于此客户端）
-客户端 `TNpcActor.LoadSurface`（[Actor.pas:3996](file:///D:/sources/github3/MirClient/Source/MirClient/Actor.pas#L3996)）对 `m_wAppearance in [42..47, 54..58]` 直接设 `m_BodySurface := nil`（不可见）。而 Merchant.txt 注释把书店/铁匠/杂货铺/药店/酒馆配成 42–46——这些值在该客户端会让 NPC **完全不可见**。说明文件里这套 41–46 的 Appr 编号体系与当前客户端不匹配。
+### 改动 3（可选，仅当改动 1+2 验证后仍频繁弹回时）：服务端对坐标脱节做容忍
+- 位置：`ClientRunXY`/`ClientWalkXY` 中 `RunTo` 成功但 `CurrX != nX` 的分支。
+- 不发 `RM_MOVEFAIL` 弹回，改为按服务端权威位置向客户端发送位置同步（如 `SM_TURN` 或现有位置修正消息），使客户端平滑纠正而非硬回滚。
+- 风险较高（影响移动权威模型），**必须在改动 1+2 数据确认后再实施**，默认不做。
 
-### 排除：与本次 CharDesc 修复无关
-- `Feature` 是 `CharDesc` 首字段，在末尾加 `StatusEx` 不改变 Feature 的 4 字节位置与值。
-- `StatusEx` 仅在 `SM_HEALTHSPELLCHANGED` 用于 `Actor.m_Abil.MaxHP`（[ClMain.pas:10225](file:///D:/sources/github3/MirClient/Source/MirClient/ClMain.pas#L10225)），不参与取图。
-- 故老兵肉团是**预先存在的配置/资源不匹配**，非名字修复引入的回归。
+## 4. 验证步骤
+1. 确认运行中 GameSrv 的 `RunIntervalTime` 实际值（读其 `config.conf`，应为 600 或自定义值，确保服务端兜底限速存在）。
+2. 应用改动 1（改 GameGate config.conf MoveInterval=480）→ 停 GameGate → 后台重启 GameGate。
+3. 应用改动 2 → 停 GameSrv → 编译 `GameSrv\GameSrv.csproj -c Release` → 后台重启 GameSrv。
+4. 让用户进入游戏连续跑步 2~3 分钟，观察是否还卡住/弹回。
+5. 查看 GameSrv 诊断日志：统计弹回次数及坐标差分布。
+6. 判定：弹回基本消失且坐标差日志不再出现 → 根因确认，完成；若仍出现，分析日志后决定是否实施改动 3。
 
-## 3. 待确认的关键点（决定修复方向）
-客户端 `.wil` 资源不在工作区（`d:\sources\github3` 下无任何 `.wil`）。需确认两件事以选定正确修复：
+## 5. 风险与回滚
+- 改动 1：`MoveInterval` 降低 → 前置过滤变松，但服务端 `RunIntervalTime=600` 兜底，正常玩家不受影响；加速挂仍被服务端限速。回滚：改回 570 重启 GameGate。
+- 改动 2：仅加日志，无行为变化；编译失败回滚 Edit。
+- 改动 3：默认不实施。
 
-1. **客户端数据目录路径**：运行时 `NPC.wil`/`Monster*.wil` 所在目录（Delphi 客户端加载资源的位置）。
-2. **索引 2520 的实际内容**：用 WIL 查看工具打开客户端 `NPC.wil`，确认索引 2520 是否就是腐肉团；并在 `NPC.wil` 中找到老兵应有的人形图所在索引。
-
-基于以上两种结果，修复分两种情形：
-- **情形 A（Appr 编号错）**：NPC.wil 中存在正确的老兵人形图，只是 Appr=41 映射错了。→ 修正 `Merchant.txt` 中各 NPC 的 Appr（必要时同步 `Npcs.txt`）。
-- **情形 B（资源缺失/版本错）**：NPC.wil 本身版本不对或缺失老兵图。→ 需获取与该客户端匹配的 `NPC.wil` 资源，改配置无效。
-
-## 4. 修复方案（默认按情形 A，找到正确 Appr 后改配置）
-
-**目标文件**：
-- `D:\sources\github3\OpenMir2\src\GameSrv\Envir\Merchant.txt`（源码，提交用）
-- `D:\sources\github3\OpenMir2\src\GameSrv\bin\Release\Envir\Merchant.txt`（运行时，实际生效）
-
-**步骤**：
-1. 拿到客户端 `NPC.wil`，用 WIL 工具定位老兵人形图的起始索引 `N`。
-2. 反查 `GetNpcOffset`（[Actor.pas:1551-1576](file:///D:/sources/github3/MirClient/Source/MirClient/Actor.pas#L1551)），找到满足 `GetNpcOffset(Appr) == N` 且 `Appr` 不落在 `LoadSurface` 不可见区间 `[42..47, 54..58]` 的 Appr 值，即为老兵的正确 Appr。
-3. 同理确定书店/铁匠/杂货铺/药店/酒馆的正确 Appr（若它们也显示异常）。
-4. 更新 `Merchant.txt` 两行（源码 + 运行时）中各 NPC 的第 7 字段；同步检查 `Npcs.txt`（比奇省，当前全部 Appr=42，42 属不可见区间，几乎肯定也错）。
-5. 重启 GameSrv 验证。
-
-> 若步骤 1/2 确认是情形 B（资源问题），则停止改配置，转而提示用户补齐正确的 `NPC.wil` 资源。
-
-## 5. 验证步骤
-1. 重启 GameSrv（后台任务方式，避免进程被回收）。
-2. 客户端进盟重省，确认老兵显示为人形 NPC（不再是腐肉团）。
-3. 确认书店/铁匠/杂货铺/药店/酒馆（如可见）外观正常、名字正常。
-4. 确认怪物（鸡/鹿）外观无回归。
-5. 检查 gamesrv 日志无新增异常。
-
-## 6. 不做的事
-- 不改客户端代码（取图逻辑 `GetNpcOffset`/`LoadSurface` 是客户端原版逻辑，服务端应适配它，而非反向）。
-- 不改 `CharDesc`（已确认与本问题无关）。
-- 不改数据库（NPC 外观来自本地 Merchant.txt，非 DB）。
+## 6. 待批准决策
+- 是否同意先实施改动 1（MoveInterval=480）+ 改动 2（诊断日志），部署后由你复现验证？
+- 改动 2 的日志验证通过后，是降级为 Debug 保留还是直接移除？

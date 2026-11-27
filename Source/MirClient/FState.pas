@@ -2529,6 +2529,7 @@ begin
   DButtonShop.Left := SCREENWIDTH - 47;
   DButtonShop.Top := 203;
 
+  DBAttackMode.Caption := sAttackModeOfAll;
   DBAttackMode.CaptionEx := '';
   DBAttackMode.AdjustPos(SCREENWIDTH - 162, 126, 79, 14);
   DBAttackMode.Visible := True;
